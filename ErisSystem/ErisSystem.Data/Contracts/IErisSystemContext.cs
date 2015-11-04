@@ -1,6 +1,7 @@
 ﻿namespace ErisSystem.Data
 {
     using System.Data.Entity;
+
     using ErisSystem.Models;
 
     public interface IErisSystemContext

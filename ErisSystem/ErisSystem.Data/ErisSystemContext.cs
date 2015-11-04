@@ -4,6 +4,7 @@
     using System.Data.Entity;
 
     using ErisSystem.Models;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class ErisSystemContext : DbContext, IErisSystemContext
     {
@@ -24,5 +25,13 @@
         public IDbSet<Location> Locations { get; set; }
 
         public IDbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

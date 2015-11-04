@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class User
     {
         private ICollection<Image> images;
@@ -23,6 +25,7 @@
         [MaxLength(20)]
         public string LastName { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
 
         [MaxLength(250)]
