@@ -50,6 +50,37 @@ File ???
   Author
   File/content
   
+ ## Proposal model:
+  
+  Hitman profile:
+                 Nickname,
+                 RegionsOfOperation (collection of - >eg. Europe/USA..),
+                 MurderMethods(eg. Firearm/Poison/Strangling)
+                 MurderCount,
+                 BitCoinAccountInfo,
+                 Images: of weapons or idk dead ppl whatever the hitman wants,
+                 Rating
+  
+  Customer profile:
+                 Nickname,
+                 Rating
+              
+  Hitmen can rate customers and vise versa             
+                
+  Connection:(Like Friendships only its one way -> Customer sends con requiest to Hitman)
+            CustomerId,
+            HitmanId,
+            Deadline,
+            Price
+            
+  Image:
+  
+  RegionOfOperation: Continents maybe countries aswell
+  
+  MurderMethod:
+  
+  Rating: 0-5 star probably
+  
   
   
 
