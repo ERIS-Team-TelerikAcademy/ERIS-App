@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity;
 
-    using ErisSystem.Models;
+    using global::ErisSystem.Models;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class ErisSystemContext : DbContext, IErisSystemContext
@@ -16,15 +16,17 @@
 
         public IDbSet<City> Cities { get; set; }
 
-        public IDbSet<Country> Countries { get; set; } 
+        public IDbSet<Country> Countries { get; set; }
 
-        public IDbSet<Friendship> Friendships { get; set; }
+        public IDbSet<Client> Clients { get; set; }
+
+        public IDbSet<Hitman> Hitmen { get; set; }
+
+        public IDbSet<Connection> Connections { get; set; }
 
         public IDbSet<Image> Images { get; set; }
 
         public IDbSet<Location> Locations { get; set; }
-
-        public IDbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

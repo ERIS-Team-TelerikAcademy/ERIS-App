@@ -1,17 +1,21 @@
 ﻿namespace ErisSystem.Models
 {
+    using Enumerators;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class User
+    public class Hitman
     {
         private ICollection<Image> images;
 
-        public User()
+        private ICollection<Country> countriesOfOperation;
+
+        public Hitman()
         {
             this.images = new HashSet<Image>();
+            this.countriesOfOperation = new HashSet<Country>();
         }
 
         [Key]
@@ -19,17 +23,15 @@
 
         [MinLength(3)]
         [MaxLength(20)]
-        public string FirstName { get; set; }
-
-        [MinLength(3)]
-        [MaxLength(20)]
-        public string LastName { get; set; }
+        public string NickName { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
 
         [MaxLength(250)]
         public string AboutMe { get; set; }
+
+        public Genders Gender { get; set; }
 
         public int LocationId { get; set; }
 
@@ -39,6 +41,12 @@
         {
             get { return this.images; }
             set { this.images = value; }
+        }
+
+        public virtual ICollection<Country> CountriesOfOperation
+        {
+            get { return this.countriesOfOperation;}
+            set { this.countriesOfOperation = value; }
         }
     }
 }
