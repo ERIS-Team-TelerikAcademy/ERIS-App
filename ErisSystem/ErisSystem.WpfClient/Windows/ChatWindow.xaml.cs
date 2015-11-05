@@ -24,5 +24,20 @@ namespace ErisSystem.WpfClient.Windows
             this.SizeToContent = SizeToContent.WidthAndHeight;
             InitializeComponent();
         }
+
+        private void ChatButtonSend_Click(object sender, RoutedEventArgs e)
+        {
+            var msg = this.ChatTxtBox.Text;
+
+            InsertMessageInChatBox("SomeGuy", msg);
+        }
+
+        private void InsertMessageInChatBox(string user, string message)
+        {
+            ListBoxItem itm = new ListBoxItem();
+            itm.FontSize = 26;
+            itm.Content = user + ": " + message;
+            this.ChatMessages.Items.Add(itm);
+        }
     }
 }

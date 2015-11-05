@@ -73,10 +73,10 @@
             <ColumnDefinition Width="600"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="loginLabelTitle" Style="{StaticResource windowHeader}" Grid.Row="0" >Eris</Label>
-        <ListBox x:Name="chatListBoxMsgs" Style="{StaticResource chatMsgs}" Grid.Row="1" Grid.Column="0" />
-        <ListBox x:Name="chatListBoxNames" Style="{StaticResource usersList}" Grid.Row="1" Grid.Column="1" Margin="0,1,-193,0"  />
-        <TextBox x:Name="chatTxtBoxType" Style="{StaticResource text}" Grid.Row="2" Grid.Column="0" />
-        <Button x:Name="chatButtonSend" Style="{StaticResource buttonStyle}" Grid.Row="2" Grid.Column="0">Send</Button>
+        <Label x:Name="CoginLabelTitle" Style="{StaticResource windowHeader}" Grid.Row="0" >Eris</Label>
+        <ListBox x:Name="ChatMessages" Style="{StaticResource chatMsgs}" Grid.Row="1" Grid.Column="0" />
+        <ListBox x:Name="ChatUsers" Style="{StaticResource usersList}" Grid.Row="1" Grid.Column="1" Margin="0,1,-193,0"  />
+        <TextBox x:Name="ChatTxtBox" Style="{StaticResource text}" Grid.Row="2" Grid.Column="0" />
+        <Button x:Name="ChatButtonSend" Style="{StaticResource buttonStyle}" Grid.Row="2" Grid.Column="0" Click="ChatButtonSend_Click">Send</Button>
     </Grid>
 </Window>
