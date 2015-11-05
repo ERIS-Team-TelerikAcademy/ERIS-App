@@ -7,7 +7,6 @@
 
     public class Contract
     {
-
         public Contract()
         {
             this.Status = ConnectionStatus.Pending;
@@ -17,10 +16,12 @@
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public int HitmanId { get; set; }
 
         public virtual Hitman Hitman { get; set; }
 
+        [Required]
         public int ClientId { get; set; }
 
         public virtual Client Client{ get; set; }
@@ -29,6 +30,7 @@
 
         public HitStatus HitStatus { get; set; }
 
+        [Required]
         [Column(TypeName = "datetime2")]
         public DateTime DeadLine { get; set; }
     }

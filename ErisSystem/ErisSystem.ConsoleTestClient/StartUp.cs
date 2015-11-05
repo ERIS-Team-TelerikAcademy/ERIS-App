@@ -15,16 +15,14 @@
         static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Configuration>());
+
+            Importer.ImportCountries();
+
             var db = new ErisSystemContext();
 
             var date = new DateTime(1991, 01, 01);
 
-            var country = new Country();
-            country.Name = "USA";
-
-            db.Countries.AddOrUpdate(country);
-            db.SaveChanges();
-
+            var country = db.Countries.Find(3);
 
             var hitman = new Hitman();
             hitman.AboutMe = "Thug life";
@@ -48,6 +46,13 @@
 
             db.Contracts.AddOrUpdate(connection);
 
+            var rating = new HitmanRating();
+            rating.Client = client;
+            rating.Hitman = hitman;
+            rating.Rating = 4;
+
+            db.HitmanRatings.AddOrUpdate(rating);
+
             db.SaveChanges();
 
 
@@ -61,6 +66,13 @@
                 Console.WriteLine(x.Gender);
                 Console.WriteLine(x.AboutMe);
                 Console.WriteLine(x.DateOfBirth);
+            }
+
+            var ratingOfHitman = db.HitmanRatings.Where(x => x.HitmanId == hitman.Id).ToList();
+
+            foreach (var rate in ratingOfHitman)
+            {
+                Console.WriteLine(rate.Rating);
             }
         }
     }

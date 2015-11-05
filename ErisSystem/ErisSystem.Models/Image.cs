@@ -7,12 +7,15 @@
         [Key]
         public int Id { get; set; }
 
+        [Required]
         [MinLength(1)]
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [Required]
         public byte[] ImageData { get; set; }
 
+        [Required]
         public int UserId { get; set; }
 
         public virtual Hitman User { get; set; }

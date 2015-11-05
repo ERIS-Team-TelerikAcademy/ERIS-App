@@ -24,6 +24,8 @@
 
         public IDbSet<Image> Images { get; set; }
 
+        public IDbSet<HitmanRating> HitmanRatings { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
