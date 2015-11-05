@@ -21,6 +21,7 @@ namespace ErisSystem.WpfClient.Windows
     {
         public ChatWindow()
         {
+            this.SizeToContent = SizeToContent.WidthAndHeight;
             InitializeComponent();
         }
     }

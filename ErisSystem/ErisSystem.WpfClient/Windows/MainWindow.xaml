@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ErisSystem.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="400" Width="500">
     <Window.Resources>
-        <Style x:Key="buttonStyle" TargetType="Button">
+        <Style x:Key="loginButton" TargetType="Button">
             <Setter Property="Background" Value="Red" />
             <Setter Property="FontStyle" Value="Italic" />
             <Setter Property="Width" Value="200" />
@@ -16,6 +16,21 @@
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="10,0,20,0" />
+        </Style>
+
+        <Style x:Key="registerButton" TargetType="Button">
+            <Setter Property="Background" Value="Red" />
+            <Setter Property="FontStyle" Value="Italic" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="10,0,30,0" />
         </Style>
 
         <Style x:Key="border" TargetType="Border">
@@ -27,33 +42,45 @@
         <Style x:Key="grid" TargetType="Grid">
             <Setter Property="Background" Value="Transparent"/>
         </Style>
-        
+
         <Style x:Key="boxes" TargetType="TextBox">
             <Setter Property="Width" Value="200" />
-            <Setter Property="Height" Value="50" />
+            <Setter Property="Height" Value="30" />
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="FontSize" Value="20" />
         </Style>
 
         <Style x:Key="menuHeader" TargetType="TextBlock">
             <Setter Property="Background" Value="White" />
             <Setter Property="Padding" Value="5" />
-            <Setter Property="Margin" Value="196,10" />
             <Setter Property="FontSize" Value="26" />
             <Setter Property="TextAlignment" Value="Center" />
-            <Setter Property="Width" Value="500" />
+            <Setter Property="Width" Value="Auto" />
             <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="10,0,25,0" />
         </Style>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="../Image/MainWindowBackground.jpg" />
     </Window.Background>
     <Grid Style="{StaticResource grid}">
-        <TextBlock Style="{StaticResource menuHeader}" Margin="10,10,7,259">Eris</TextBlock>
-        <TextBox Style="{StaticResource boxes}" Margin="158,123,159,166"></TextBox>
-        <TextBox Style="{StaticResource boxes}" Margin="158,171,159,118"></TextBox>
-        <Button Style="{StaticResource buttonStyle}" Margin="277,191,40,28" Click="OnLoginButtonClick">Login</Button>
-        <Button Style="{StaticResource buttonStyle}" Margin="31,191,286,28" Click="OnRegisterButtonClick">Regiser</Button>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource menuHeader}" Grid.Row="0" Grid.Column="0">Eris</TextBlock>
+        <TextBox Style="{StaticResource boxes}" Grid.Row="1"/>
+        <TextBox Style="{StaticResource boxes}" Grid.Row="2"></TextBox>
+        <Button Style="{StaticResource loginButton}" Grid.Row="3" Click="OnLoginButtonClick">Login</Button>
+        <Button Style="{StaticResource registerButton}" Grid.Row="3" Click="OnRegisterButtonClick">Regiser</Button>
+
     </Grid>
 </Window>

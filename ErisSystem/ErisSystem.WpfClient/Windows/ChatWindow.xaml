@@ -9,11 +9,17 @@
 
     <Window.Resources>
         <Style x:Key="buttonStyle" TargetType="Button">
-            <Setter Property="Background" Value="White" />
+            <Setter Property="Background" Value="Red" />
             <Setter Property="Margin" Value="4" />
             <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="50" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="10,0,0,0"/>
         </Style>
 
         <Style x:Key="usersList" TargetType="ListBox">
@@ -28,15 +34,14 @@
             <Setter Property="Background" Value="White" />
             <Setter Property="Width" Value="600" />
             <Setter Property="Height" Value="400" />
-            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="10,0,0,0"/>
         </Style>
 
         <Style x:Key="windowHeader" TargetType="Label">
             <Setter Property="Background" Value="White" />
             <Setter Property="Width" Value="300" />
             <Setter Property="Height" Value="60" />
-            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="FontFamily" Value="San Serif" />
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="Foreground" Value="White" />
@@ -45,18 +50,33 @@
 
         <Style x:Key="text" TargetType="TextBox">
             <Setter Property="Width" Value="480" />
-            <Setter Property="Height" Value="50" />
+            <Setter Property="Height" Value="40" />
             <Setter Property="FontSize" Value="26"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+
+        <Style x:Key="grid" TargetType="Grid">
+            <Setter Property="Margin" Value="5"/>
         </Style>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="../Image/ChatWindowBackground.jpg" />
     </Window.Background>
     <Grid>
-        <Label x:Name="loginLabelTitle" Style="{StaticResource windowHeader}" Margin="0,0,510,459">Eris</Label>
-        <ListBox x:Name="chatListBoxMsgs" Style="{StaticResource chatMsgs}" Margin="0,59,210,60" />
-        <ListBox x:Name="chatListBoxNames" Style="{StaticResource usersList}" Margin="0,59,24,60" />
-        <TextBox x:Name="chatTxtBoxType" Style="{StaticResource text}" Margin="10,464,336,5" />
-        <Button x:Name="chatButtonSend" Style="{StaticResource buttonStyle}"  Margin="516,0,210,5" VerticalAlignment="Bottom">Send</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="400"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="loginLabelTitle" Style="{StaticResource windowHeader}" Grid.Row="0" >Eris</Label>
+        <ListBox x:Name="chatListBoxMsgs" Style="{StaticResource chatMsgs}" Grid.Row="1" Grid.Column="0" />
+        <ListBox x:Name="chatListBoxNames" Style="{StaticResource usersList}" Grid.Row="1" Grid.Column="1" Margin="0,1,-193,0"  />
+        <TextBox x:Name="chatTxtBoxType" Style="{StaticResource text}" Grid.Row="2" Grid.Column="0" />
+        <Button x:Name="chatButtonSend" Style="{StaticResource buttonStyle}" Grid.Row="2" Grid.Column="0">Send</Button>
     </Grid>
 </Window>
