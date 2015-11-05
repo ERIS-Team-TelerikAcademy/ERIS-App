@@ -8,6 +8,7 @@
 
     using ErisSystem.Data;
     using System.Data.Entity.Migrations;
+    using Data.Repositories;
 
     class StartUp
     {
@@ -15,6 +16,7 @@
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Configuration>());
             var db = new ErisSystemContext();
+
             var date = new DateTime(1991, 01, 01);
 
             var country = new Country();
@@ -41,7 +43,8 @@
             hitman.Location = location;
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
-            s
+           
+
             db.Hitmen.AddOrUpdate(hitman);
             db.SaveChanges();
 
@@ -60,6 +63,20 @@
             db.Connections.AddOrUpdate(connection);
 
             db.SaveChanges();
+
+
+            var repositoryTest = new EfGenericRepository<Hitman>(db);
+
+            var hitmen = repositoryTest.All();
+
+            foreach (var x in hitmen)
+            {
+                Console.WriteLine(x.NickName);
+                Console.WriteLine(x.Gender);
+                Console.WriteLine(x.AboutMe);
+                Console.WriteLine(x.DateOfBirth);
+                Console.WriteLine(x.Location.City.Name + " " + x.Location.Country.Name);
+            }
         }
     }
 }

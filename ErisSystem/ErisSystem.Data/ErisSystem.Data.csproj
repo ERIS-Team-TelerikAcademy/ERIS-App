@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="ErisSystemContext.cs" />
     <Compile Include="Contracts\IErisSystemContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -58,6 +59,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\EfGenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

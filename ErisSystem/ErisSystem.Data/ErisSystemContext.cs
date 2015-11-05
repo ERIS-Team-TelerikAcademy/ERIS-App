@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity;
 
-    using global::ErisSystem.Models;
+    using ErisSystem.Models;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class ErisSystemContext : DbContext, IErisSystemContext
