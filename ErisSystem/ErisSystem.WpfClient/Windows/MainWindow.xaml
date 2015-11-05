@@ -60,6 +60,15 @@
             <Setter Property="Height" Value="50" />
             <Setter Property="Margin" Value="10,0,25,0" />
         </Style>
+
+        <Style x:Key="lableText" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="35,10,0,0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontStyle" Value="Italic" />
+        </Style>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="../Image/MainWindowBackground.jpg" />
@@ -77,9 +86,11 @@
             <ColumnDefinition Width="250"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Style="{StaticResource menuHeader}" Grid.Row="0" Grid.Column="0">Eris</TextBlock>
-        <TextBox Style="{StaticResource boxes}" Grid.Row="1"/>
-        <TextBox Style="{StaticResource boxes}" Grid.Row="2"></TextBox>
-        <Button Style="{StaticResource loginButton}" Grid.Row="3" Click="OnLoginButtonClick">Login</Button>
+        <Label Style="{StaticResource lableText}" Grid.Row="1">User name</Label>
+        <TextBox x:Name ="UserName" Style="{StaticResource boxes}" Grid.Row="1" />
+        <Label Style="{StaticResource lableText}" Grid.Row="2">Password</Label>
+        <TextBox x:Name="Password" Style="{StaticResource boxes}" Grid.Row="2" />
+            <Button Style="{StaticResource loginButton}" Grid.Row="3" Click="OnLoginButtonClick">Login</Button>
         <Button Style="{StaticResource registerButton}" Grid.Row="3" Click="OnRegisterButtonClick">Regiser</Button>
 
     </Grid>

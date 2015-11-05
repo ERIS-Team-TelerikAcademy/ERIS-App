@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace ErisSystem.WpfClient.Windows
+﻿namespace ErisSystem.WpfClient.Windows
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+
     /// <summary>
     /// Interaction logic for ChatWindow.xaml
     /// </summary>
     public partial class ChatWindow : Window
     {
-        public ChatWindow()
+        private string userName;
+        public ChatWindow(string userName)
         {
             this.KeyDown += HandleKeyDown;
             this.SizeToContent = SizeToContent.WidthAndHeight;
+            this.userName = userName;
             InitializeComponent();
         }
 
@@ -30,7 +22,7 @@ namespace ErisSystem.WpfClient.Windows
         {
             var msg = this.ChatTxtBox.Text;
 
-            InsertMessageInChatBox("SomeGuy", msg);
+            InsertMessageInChatBox(this.userName, msg);
         }
 
         private void InsertMessageInChatBox(string user, string message)
@@ -49,7 +41,7 @@ namespace ErisSystem.WpfClient.Windows
                 var msg = this.ChatTxtBox.Text;
                 if (msg.Length != 0)
                 {
-                    this.InsertMessageInChatBox("SomeGuy", msg);
+                    this.InsertMessageInChatBox(this.userName, msg);
                 }
             }
         }
