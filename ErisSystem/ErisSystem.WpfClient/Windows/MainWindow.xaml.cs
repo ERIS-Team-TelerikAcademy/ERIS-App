@@ -17,7 +17,7 @@
 
         private void OnRegisterButtonClick(object sender, RoutedEventArgs e)
         {
-
+            // Be lazy and just open the website ? :D
         }
 
         private void OnLoginButtonClick(object sender, RoutedEventArgs e)
@@ -25,18 +25,6 @@
             var chatWindow = new ChatWindow(this.UserName.Text);
             chatWindow.Show();
             this.Close();
-        }
-
-        private void Field_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var field = sender as TextBox;
-            field.Text = "";
-        }
-
-        private void Password_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var field = sender as TextBox;
-            field.Text = "";
         }
     }
 }
