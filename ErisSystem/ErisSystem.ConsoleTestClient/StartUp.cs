@@ -8,6 +8,7 @@
 
     using ErisSystem.Data;
     using System.Data.Entity.Migrations;
+    using Data.Repositories;
 
     class StartUp
     {
@@ -15,54 +16,52 @@
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Configuration>());
             var db = new ErisSystemContext();
+
             var date = new DateTime(1991, 01, 01);
-
-
-            var city = new City();
-            city.Name = "Detroit";
-
-            db.Cities.AddOrUpdate(city);
 
             var country = new Country();
             country.Name = "USA";
 
             db.Countries.AddOrUpdate(country);
+            db.SaveChanges();
 
-            var location = new Location();
-            location.Country = country;
-            location.City = city;
-            location.Street = "1st";
 
-            db.Locations.AddOrUpdate(location);
+            var hitman = new Hitman();
+            hitman.AboutMe = "Thug life";
+            hitman.NickName = "Killa";
+            hitman.DateOfBirth = date;
+            hitman.CountriesOfOperation.Add(country);
+           
 
-            var user = new User();
-            user.AboutMe = "Thug life";
-            user.FirstName = "Ice P";
-            user.LastName = "3OG";
-            user.Location = location;
-            user.DateOfBirth = date;
+            db.Hitmen.AddOrUpdate(hitman);
+            db.SaveChanges();
 
-            db.Users.AddOrUpdate(user);
+            var client = new Client();
+            client.NickName = "SomeGuy";
+            db.Clients.AddOrUpdate(client);
+            db.SaveChanges();
 
-            var user2 = new User();
-            user2.AboutMe = "Gangsta Gangsta";
-            user2.FirstName = "Ice T";
-            user2.LastName = "3OG";
-            user2.Location = location;
-            user2.DateOfBirth = date;
+            var connection = new Contract();
+            connection.Hitman = hitman;
+            connection.Client = client;
+            connection.DeadLine = new DateTime(2015,12,12);
 
-            db.Users.AddOrUpdate(user2);
-
-            var testFirendship = new Friendship();
-
-            testFirendship.FirstUser = user;
-            testFirendship.SecondUser = user2;
-            testFirendship.IsApproved = true;
-
-            db.Friendships.AddOrUpdate(testFirendship);
-
+            db.Contracts.AddOrUpdate(connection);
 
             db.SaveChanges();
+
+
+            var repositoryTest = new EfGenericRepository<Hitman>(db);
+
+            var hitmen = repositoryTest.All();
+
+            foreach (var x in hitmen)
+            {
+                Console.WriteLine(x.NickName);
+                Console.WriteLine(x.Gender);
+                Console.WriteLine(x.AboutMe);
+                Console.WriteLine(x.DateOfBirth);
+            }
         }
     }
 }

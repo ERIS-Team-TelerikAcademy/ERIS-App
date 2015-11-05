@@ -49,13 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="City.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Country.cs" />
-    <Compile Include="Friendship.cs" />
+    <Compile Include="Enumerators\ConnectionStatus.cs" />
+    <Compile Include="Enumerators\Genders.cs" />
+    <Compile Include="Contract.cs" />
+    <Compile Include="Enumerators\HitStatus.cs" />
     <Compile Include="Image.cs" />
-    <Compile Include="Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Hitman.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

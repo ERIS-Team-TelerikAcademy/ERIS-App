@@ -14,17 +14,15 @@
 
         }
 
-        public IDbSet<City> Cities { get; set; }
+        public IDbSet<Country> Countries { get; set; }
 
-        public IDbSet<Country> Countries { get; set; } 
+        public IDbSet<Client> Clients { get; set; }
 
-        public IDbSet<Friendship> Friendships { get; set; }
+        public IDbSet<Hitman> Hitmen { get; set; }
+
+        public IDbSet<Contract> Contracts { get; set; }
 
         public IDbSet<Image> Images { get; set; }
-
-        public IDbSet<Location> Locations { get; set; }
-
-        public IDbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
