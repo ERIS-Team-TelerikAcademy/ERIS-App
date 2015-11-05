@@ -5,10 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Connection
+    public class Contract
     {
 
-        public Connection()
+        public Contract()
         {
             this.Status = ConnectionStatus.Pending;
             this.HitStatus = HitStatus.Pending;
@@ -31,11 +31,5 @@
 
         [Column(TypeName = "datetime2")]
         public DateTime DeadLine { get; set; }
-
-        public int LocationId { get; set; }
-
-        public virtual Location Location { get; set; }
-
-        public string TargetName { get; set; }
     }
 }

@@ -22,25 +22,13 @@
             var country = new Country();
             country.Name = "USA";
 
-            var city = new City();
-            city.Name = "Detroit";
-            city.Country = country;
-
-            db.Cities.AddOrUpdate(city);
             db.Countries.AddOrUpdate(country);
             db.SaveChanges();
 
-            var location = new Location();
-            location.Country = country;
-            location.City = city;
-            location.Street = "1st";
-            db.Locations.AddOrUpdate(location);
-            db.SaveChanges();
 
             var hitman = new Hitman();
             hitman.AboutMe = "Thug life";
             hitman.NickName = "Killa";
-            hitman.Location = location;
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
            
@@ -53,14 +41,12 @@
             db.Clients.AddOrUpdate(client);
             db.SaveChanges();
 
-            var connection = new Connection();
+            var connection = new Contract();
             connection.Hitman = hitman;
             connection.Client = client;
             connection.DeadLine = new DateTime(2015,12,12);
-            connection.Location = location;
-            connection.TargetName = "John";
 
-            db.Connections.AddOrUpdate(connection);
+            db.Contracts.AddOrUpdate(connection);
 
             db.SaveChanges();
 
@@ -75,7 +61,6 @@
                 Console.WriteLine(x.Gender);
                 Console.WriteLine(x.AboutMe);
                 Console.WriteLine(x.DateOfBirth);
-                Console.WriteLine(x.Location.City.Name + " " + x.Location.Country.Name);
             }
         }
     }

@@ -33,10 +33,6 @@
 
         public Genders Gender { get; set; }
 
-        public int LocationId { get; set; }
-
-        public virtual Location Location { get; set; }
-
         public virtual ICollection<Image> Images
         {
             get { return this.images; }

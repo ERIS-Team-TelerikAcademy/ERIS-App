@@ -8,13 +8,9 @@
     {
         IDbSet<Hitman> Hitmen { get; set; }
 
-        IDbSet<Connection> Connections { get; set; }
-
-        IDbSet<Location> Locations { get; set; }
+        IDbSet<Contract> Contracts { get; set; }
 
         IDbSet<Country> Countries { get; set; }
-
-        IDbSet<City> Cities { get; set; }
 
         IDbSet<Image> Images { get; set; }
 
