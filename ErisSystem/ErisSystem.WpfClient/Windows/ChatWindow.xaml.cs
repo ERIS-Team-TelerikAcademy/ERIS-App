@@ -21,6 +21,7 @@ namespace ErisSystem.WpfClient.Windows
     {
         public ChatWindow()
         {
+            this.KeyDown += HandleKeyDown;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             InitializeComponent();
         }
@@ -38,6 +39,19 @@ namespace ErisSystem.WpfClient.Windows
             itm.FontSize = 26;
             itm.Content = user + ": " + message;
             this.ChatMessages.Items.Add(itm);
+            this.ChatTxtBox.Text = "";
+        }
+
+        private void HandleKeyDown(object sender, KeyEventArgs args)
+        {
+            if (args.Key == Key.Enter)
+            {
+                var msg = this.ChatTxtBox.Text;
+                if (msg.Length != 0)
+                {
+                    this.InsertMessageInChatBox("SomeGuy", msg);
+                }
+            }
         }
     }
 }
