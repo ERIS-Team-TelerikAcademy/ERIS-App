@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:ErisSystem.WpfClient"
              StartupUri="Windows/MainWindow.xaml" ShutdownMode="OnLastWindowClose">
     <Application.Resources>
-         
+        <Style x:Key="MyWindowStyle" TargetType="Window">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="Black" />
+            
+        </Style>
     </Application.Resources>
 </Application>

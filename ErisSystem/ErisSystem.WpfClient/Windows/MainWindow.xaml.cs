@@ -2,8 +2,6 @@
 {
     using Windows;
     using System.Windows;
-    using System.Windows.Input;
-    using System.Windows.Controls;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -11,8 +9,9 @@
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
+        {         
             InitializeComponent();
+            Loaded += new RoutedEventHandler(MainWindow_Loaded);
         }
 
         private void OnRegisterButtonClick(object sender, RoutedEventArgs e)
@@ -25,6 +24,15 @@
             var chatWindow = new ChatWindow(this.UserName.Text);
             chatWindow.Show();
             this.Close();
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Style _style = null;
+
+                _style = (Style)Resources["GadgetStyle"];
+       
+            this.Style = _style;
         }
     }
 }

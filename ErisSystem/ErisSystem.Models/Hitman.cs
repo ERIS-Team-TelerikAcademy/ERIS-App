@@ -12,10 +12,13 @@
 
         private ICollection<Country> countriesOfOperation;
 
+        private DateTime registrationDate;
+
         public Hitman()
         {
             this.images = new HashSet<Image>();
             this.countriesOfOperation = new HashSet<Country>();
+            this.RegistrationDate = DateTime.Now;
         }
 
         [Key]
@@ -27,6 +30,9 @@
 
         [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime RegistrationDate { get; set; }
 
         [MaxLength(250)]
         public string AboutMe { get; set; }
@@ -41,7 +47,7 @@
 
         public virtual ICollection<Country> CountriesOfOperation
         {
-            get { return this.countriesOfOperation;}
+            get { return this.countriesOfOperation; }
             set { this.countriesOfOperation = value; }
         }
     }
