@@ -27,6 +27,7 @@
             var hitman = new Hitman();
             hitman.AboutMe = "Thug life";
             hitman.NickName = "Killa";
+            hitman.Password = "ASFADSFDEFE@#@$@$@ASDFAS";
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
            
@@ -36,6 +37,7 @@
 
             var client = new Client();
             client.NickName = "SomeGuy";
+            client.Password = "asjdfiubdfjabfjaasdfasd ";
             db.Clients.AddOrUpdate(client);
             db.SaveChanges();
 
