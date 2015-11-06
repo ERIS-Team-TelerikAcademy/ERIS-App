@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ClientsServices.cs" />
     <Compile Include="Contracts\IClientServices.cs" />
     <Compile Include="Contracts\IContractsService.cs" />
     <Compile Include="Contracts\ICountriesService.cs" />

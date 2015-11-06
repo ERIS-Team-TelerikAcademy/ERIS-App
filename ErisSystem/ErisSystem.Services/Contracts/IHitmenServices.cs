@@ -15,5 +15,7 @@
                                                  //Gender as string ?
         int Add(string nickName, string aboutMe, Genders gender, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
 
+        void Delete(Hitman hitman);
+
     }
 }

@@ -1,6 +1,17 @@
-﻿namespace ErisSystem.Services.Contracts
+﻿using ErisSystem.Models;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ErisSystem.Services.Contracts
 {
-    interface IClientServices
+    public interface IClientServices
     {
+        IQueryable<Client> GetAll();
+
+        Client GetById(int id);
+
+        int Add(string nickName);
+
+        void Delete(Client client);
     }
 }

@@ -28,6 +28,10 @@
         [MaxLength(20)]
         public string NickName { get; set; }
 
+        [Required]
+        [MaxLength(128)]
+        public string Password { get; set; }
+
         [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
 

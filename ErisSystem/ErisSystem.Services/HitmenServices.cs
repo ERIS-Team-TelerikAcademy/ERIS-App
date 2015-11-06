@@ -44,6 +44,12 @@
             return this.hitmen.SaveChanges();
         }
 
+        public void Delete(Hitman hitman)
+        {
+            this.hitmen.Delete(hitman);
+            this.hitmen.SaveChanges();
+        }
+
         public IQueryable<Hitman> GetAll()
         {
             var result = this.hitmen.All();
@@ -57,7 +63,5 @@
 
             return result;
         }
-
-
     }
 }
