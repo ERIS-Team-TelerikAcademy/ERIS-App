@@ -10,9 +10,11 @@
     public partial class ChatWindow : Window
     {
         private string userName;
+
         public ChatWindow(string userName)
         {
             this.KeyDown += HandleKeyDown;
+            this.Loaded += ChatWindow_OnLoad;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.userName = userName;
             InitializeComponent();
@@ -21,8 +23,11 @@
         private void ChatButtonSend_Click(object sender, RoutedEventArgs e)
         {
             var msg = this.ChatTxtBox.Text;
+            if (msg.Length != 0)
+            {
+                InsertMessageInChatBox(this.userName, msg);
+            }
 
-            InsertMessageInChatBox(this.userName, msg);
         }
 
         private void InsertMessageInChatBox(string user, string message)
@@ -43,7 +48,15 @@
                 {
                     this.InsertMessageInChatBox(this.userName, msg);
                 }
+
             }
         }
+
+        private void ChatWindow_OnLoad(object sender, RoutedEventArgs e)
+        {
+            var test = new ChatHub();
+            test.Connect(this.userName);
+        }
+
     }
 }
