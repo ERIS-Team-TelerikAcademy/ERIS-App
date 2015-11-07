@@ -1,8 +1,6 @@
 # ERIS-App
 A Telerik Academy team proejct
 
-Web Chat Application
-
 Description: 
 It's a social network for "special" services. The webpage will offer two types of users: Hitman and Client.
 
