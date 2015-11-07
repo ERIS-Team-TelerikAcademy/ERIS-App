@@ -32,6 +32,6 @@
 
         [Required]
         [Column(TypeName = "datetime2")]
-        public DateTime DeadLine { get; set; }
+        public DateTime Deadline { get; set; }
     }
 }

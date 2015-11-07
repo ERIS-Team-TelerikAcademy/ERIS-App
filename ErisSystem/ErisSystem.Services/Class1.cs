@@ -13,8 +13,10 @@ namespace ErisSystem.Services
     {
         static void Main()
         {
-            //var db = new EfGenericRepository<Hitman>(new ErisSystemContext());
-            //var test = new HitmenServices(db);
+            var ctx = new ErisSystemContext();
+
+            var hitmenDb = new EfGenericRepository<Hitman>(ctx);
+            var hitmen = new HitmenServices(hitmenDb);
 
             ///test.Add("OG OG OG ", "TERANCE DJAKONS", Models.Enumerators.Genders.Male, null, null);
 
@@ -25,8 +27,7 @@ namespace ErisSystem.Services
             //    Console.WriteLine(item.NickName + item.RegistrationDate);
             //}
 
-            var ctx = new ErisSystemContext();
-            var clientDb = new EfGenericRepository<Client>(new ErisSystemContext());
+            var clientDb = new EfGenericRepository<Client>(ctx);
 
             var clients = new ClientsServices(clientDb);
 
@@ -62,17 +63,27 @@ namespace ErisSystem.Services
             //foreach (var item in countries.GetAll())
             //{
             //    Console.WriteLine(item.Name);
-                
+
             //}
 
-            var ratingDb = new EfGenericRepository<HitmanRating>(new ErisSystemContext());
+            //var ratingDb = new EfGenericRepository<HitmanRating>(new ErisSystemContext());
 
-            var ratings = new HitmenRatingServices(ratingDb);
+            //var ratings = new HitmenRatingServices(ratingDb);
+
+            //foreach (var item in ratings.GetAll())
+            //{
+            //    Console.WriteLine(item.Rating + " " + item.HitmanId);
+            //}
+
+            var contractsDb = new EfGenericRepository<Contract>(new ErisSystemContext());
+
+
+
+            var ratings = new ContractsService(contractsDb, clientDb, hitmenDb);
 
             foreach (var item in ratings.GetAll())
             {
-                Console.WriteLine(item.Rating);
-
+                Console.WriteLine(item.Deadline);
             }
         }
     }
