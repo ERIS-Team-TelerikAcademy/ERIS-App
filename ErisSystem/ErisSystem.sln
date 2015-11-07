@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisSystem.Services", "Eris
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisSystem.WpfClient", "ErisSystem.WpfClient\ErisSystem.WpfClient.csproj", "{CCD00B43-B5C8-4596-9B70-EC15B1F1FFC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErisSystem.Api", "ErisSystem.Api\ErisSystem.Api.csproj", "{3A84FFF0-F784-4F00-B558-78435F8E2672}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CCD00B43-B5C8-4596-9B70-EC15B1F1FFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCD00B43-B5C8-4596-9B70-EC15B1F1FFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD00B43-B5C8-4596-9B70-EC15B1F1FFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A84FFF0-F784-4F00-B558-78435F8E2672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A84FFF0-F784-4F00-B558-78435F8E2672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A84FFF0-F784-4F00-B558-78435F8E2672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A84FFF0-F784-4F00-B558-78435F8E2672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
