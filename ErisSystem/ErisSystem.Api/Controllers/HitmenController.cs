@@ -26,7 +26,7 @@
             this.hitmen = hitmenServices;
         }
 
-        [Route("/{id}")]
+        [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetHitmanById(int id)
         {
@@ -41,7 +41,7 @@
             return this.Ok(result);
         }
 
-        [Route("/all")]
+        [Route("all")]
         [HttpGet]
         public IHttpActionResult Get()
         {
