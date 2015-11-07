@@ -26,17 +26,17 @@
             this.hitmen = hitmen;
         }
 
-        public int Add(string hitmanNickname, string clientNickname, ConnectionStatus connectionStatus, HitStatus hitStatus, DateTime deadline)
+        public int Add(string hitmanNickname, string clientNickname, DateTime deadline)
         {
-            var hitman = this.hitmen
+            var hitmanFromDb = this.hitmen
                 .All()
-                .Where(x => x.NickName == hitmanNickname)
+                .Where(x => x.Nickname == hitmanNickname)
                 .FirstOrDefault();
             var client = this.clients
                 .All()
-                .Where(x => x.NickName == clientNickname)
+                .Where(x => x.Nickname == clientNickname)
                 .FirstOrDefault();
-            if (hitman == null)
+            if (hitmanFromDb == null)
             {
                 throw new ArgumentException("Invalid hitman nickname!");
             }
@@ -47,9 +47,7 @@
 
             var contract = new Contract();
             contract.Client = client;
-            contract.Hitman = hitman;
-            contract.Status = connectionStatus;
-            contract.HitStatus = hitStatus;
+            contract.Hitman = hitmanFromDb;
             contract.Deadline = deadline;
 
             this.contracts.Add(contract);

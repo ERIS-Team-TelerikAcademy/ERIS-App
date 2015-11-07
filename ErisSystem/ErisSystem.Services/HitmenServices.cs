@@ -34,7 +34,7 @@
             }
 
             var hitman = new Hitman();
-            hitman.NickName = nickName;
+            hitman.Nickname = nickName;
             hitman.AboutMe = aboutMe;
             hitman.Gender = gender;
             hitman.Images = images;

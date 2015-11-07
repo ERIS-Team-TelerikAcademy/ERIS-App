@@ -26,7 +26,7 @@
             }
 
             var client = new Client();
-            client.NickName = nickName;
+            client.Nickname = nickName;
 
             this.clients.Add(client);
 
