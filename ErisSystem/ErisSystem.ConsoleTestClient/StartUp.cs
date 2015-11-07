@@ -44,7 +44,7 @@
             var connection = new Contract();
             connection.Hitman = hitman;
             connection.Client = client;
-            connection.DeadLine = new DateTime(2015,12,12);
+            connection.Deadline = new DateTime(2015,12,12);
 
             db.Contracts.AddOrUpdate(connection);
 
