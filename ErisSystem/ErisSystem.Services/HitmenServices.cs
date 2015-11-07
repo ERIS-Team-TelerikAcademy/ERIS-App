@@ -10,7 +10,7 @@
     using ErisSystem.Services.Contracts;
     using Data;
 
-    class HitmenServices : IHitmenServices
+    public class HitmenServices : IHitmenServices
     {
         private readonly IRepository<Hitman> hitmen;
 
