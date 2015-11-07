@@ -1,6 +1,11 @@
 ﻿namespace ErisSystem.Services.Contracts
 {
-    interface ICountriesService
+    using System.Linq;
+
+    using ErisSystem.Models;
+
+    public interface ICountriesService
     {
+        IQueryable<Country> GetAll();
     }
 }
