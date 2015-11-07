@@ -14,7 +14,6 @@ namespace ErisSystem.Services
         static void Main()
         {
             var ctx = new ErisSystemContext();
-
             var hitmenDb = new EfGenericRepository<Hitman>(ctx);
             var hitmen = new HitmenServices(hitmenDb);
 
@@ -75,16 +74,15 @@ namespace ErisSystem.Services
             //    Console.WriteLine(item.Rating + " " + item.HitmanId);
             //}
 
-            var contractsDb = new EfGenericRepository<Contract>(new ErisSystemContext());
+            var contractsDb = new EfGenericRepository<Contract>(ctx);
+            var contracts = new ContractsService(contractsDb, clientDb, hitmenDb);
 
-
-
-            var ratings = new ContractsService(contractsDb, clientDb, hitmenDb);
-
-            foreach (var item in ratings.GetAll())
+            foreach (var item in contracts.GetAll())
             {
                 Console.WriteLine(item.Deadline);
             }
+
+            contracts.Add(hitmen.GetAll().FirstOrDefault().Nickname, clients.GetAll().FirstOrDefault().Nickname, DateTime.Now);
         }
     }
 }

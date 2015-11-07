@@ -26,7 +26,7 @@
 
         [MinLength(3)]
         [MaxLength(20)]
-        public string NickName { get; set; }
+        public string Nickname { get; set; }
 
         [Required]
         [MaxLength(128)]

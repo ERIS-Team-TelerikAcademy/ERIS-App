@@ -26,7 +26,7 @@
 
             var hitman = new Hitman();
             hitman.AboutMe = "Thug life";
-            hitman.NickName = "Killa";
+            hitman.Nickname = "Killa";
             hitman.Password = "ASFADSFDEFE@#@$@$@ASDFAS";
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
@@ -36,7 +36,7 @@
             db.SaveChanges();
 
             var client = new Client();
-            client.NickName = "SomeGuy";
+            client.Nickname = "SomeGuy";
             client.Password = "asjdfiubdfjabfjaasdfasd ";
             db.Clients.AddOrUpdate(client);
             db.SaveChanges();
@@ -64,7 +64,7 @@
 
             foreach (var x in hitmen)
             {
-                Console.WriteLine(x.NickName);
+                Console.WriteLine(x.Nickname);
                 Console.WriteLine(x.Gender);
                 Console.WriteLine(x.AboutMe);
                 Console.WriteLine(x.DateOfBirth);
