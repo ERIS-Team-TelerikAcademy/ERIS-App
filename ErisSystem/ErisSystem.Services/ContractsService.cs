@@ -8,7 +8,7 @@
     using ErisSystem.Services.Contracts;
     using Data;
 
-    class ContractsService : IContractsService
+    public class ContractsService : IContractsService
     {
         private readonly IRepository<Contract> contracts;
 
