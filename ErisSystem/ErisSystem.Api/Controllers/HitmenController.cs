@@ -71,7 +71,6 @@
         [HttpPut]
         public IHttpActionResult Put(HitmanResponseModel model)
         {
-
             return this.InternalServerError(new System.NotImplementedException());
         }
     }
