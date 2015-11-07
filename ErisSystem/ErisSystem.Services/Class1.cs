@@ -54,6 +54,26 @@ namespace ErisSystem.Services
 
             //var clients1 = new ClientsServices(clientDb);
             //clients1.Delete(testetst);
+
+            //var countryDb = new EfGenericRepository<Country>(new ErisSystemContext());
+
+            //var countries = new CountriesServices(countryDb);
+
+            //foreach (var item in countries.GetAll())
+            //{
+            //    Console.WriteLine(item.Name);
+                
+            //}
+
+            var ratingDb = new EfGenericRepository<HitmanRating>(new ErisSystemContext());
+
+            var ratings = new HitmenRatingServices(ratingDb);
+
+            foreach (var item in ratings.GetAll())
+            {
+                Console.WriteLine(item.Rating);
+
+            }
         }
     }
 }
