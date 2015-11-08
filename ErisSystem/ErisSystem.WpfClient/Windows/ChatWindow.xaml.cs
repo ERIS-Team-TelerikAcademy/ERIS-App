@@ -7,7 +7,6 @@
     using System.Net.Sockets;
     using System.Threading;
     using System.Text;
-    using System.Reflection;
     using System.Windows.Media;
 
     /// <summary>
@@ -16,20 +15,20 @@
     public partial class ChatWindow : Window
     {
         private string userName;
-        const int port = 54545;
 
-        const string broadcastAddress = "255.255.255.255";
-        UdpClient receivingClient;
-        UdpClient sendingClient;
-        Thread receivingThread;
-        delegate void AddMessage(string message);
-       
+        private const int port = 54545;
+
+        private const string broadcastAddress = "130.204.136.229";
+
+        private Thread receivingThread;
+
+        private delegate void AddMessage(string message);
+
         public ChatWindow(string userName)
         {
             this.KeyDown += HandleKeyDown;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.userName = userName;
-            this.InitializeSender();
             this.InitializeReceiver();
             InitializeComponent();
             this.UserNameLabel.Content = userName;
@@ -60,7 +59,25 @@
 
                 string toSend = messageData;
                 byte[] data = Encoding.ASCII.GetBytes(toSend);
-                sendingClient.Send(data, data.Length);
+
+                var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
+                var endpoint = new IPEndPoint(ipAddress, port);
+                var sender = (EndPoint)endpoint;
+
+                var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                if (!socket.Connected)
+                {
+                    socket.Connect(sender);
+                }
+
+                try
+                {
+                    socket.SendTo(data, SocketFlags.None, endpoint);
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -73,18 +90,9 @@
             this.ChatMessages.Items.Add(item);
             this.ChatTxtBox.Text = "";
         }
-        
-        //Sends the msg to a given recever 
-        private void InitializeSender()
-        {
-            sendingClient = new UdpClient(broadcastAddress, port);
-            sendingClient.EnableBroadcast = true;
-        }
 
-        //Receves a msg from a given send... this is pointless
         private void InitializeReceiver()
         {
-            receivingClient = new UdpClient(port);
             ThreadStart start = new ThreadStart(Receiver);
             receivingThread = new Thread(start);
             receivingThread.SetApartmentState(ApartmentState.STA);
@@ -94,12 +102,22 @@
 
         private void Receiver()
         {
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
             AddMessage messageDelegate = MessageReceived;
+
+            var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
+            IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
+            var sender = (EndPoint)endPoint;
+
+            var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.Bind(endPoint);
+            socket.Listen(500);
+
+            var data = new byte[2000];
             while (true)
             {
-                byte[] data = receivingClient.Receive(ref endPoint);
-                string message = Encoding.ASCII.GetString(data);
+                var connector = socket.Accept();
+                var dataLength = connector.Receive(data);
+                string message = Encoding.ASCII.GetString(data, 0, dataLength);
                 Dispatcher.Invoke(messageDelegate, message);
             }
         }
