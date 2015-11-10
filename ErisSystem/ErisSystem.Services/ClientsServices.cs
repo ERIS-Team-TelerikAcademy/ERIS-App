@@ -16,7 +16,7 @@
             this.clients = clients;
         }
 
-        public int Add(string nickName)
+        public int Add(string nickName, string password, DateTime registrationDate)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
 
@@ -27,6 +27,8 @@
 
             var client = new Client();
             client.Nickname = nickName;
+            client.Password = password;
+            client.RegistrationDate = registrationDate;
 
             this.clients.Add(client);
 
