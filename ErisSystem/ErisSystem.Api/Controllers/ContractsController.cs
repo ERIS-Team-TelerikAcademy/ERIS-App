@@ -9,6 +9,7 @@
     using AutoMapper;
     using Models.ResponseModels;
     using AutoMapper.QueryableExtensions;
+    using ErisSystem.Models.Enumerators;
 
     [RoutePrefix("api/Contracts")]
     public class ContractsController : ApiController
@@ -28,8 +29,7 @@
                 new EfGenericRepository<Hitman>(new ErisSystemContext())))
         {
         }
-
-
+            
         [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetClientById(int id)
@@ -64,8 +64,22 @@
                 return this.BadRequest(this.ModelState);
             }
 
+            //var contract = new Contract
+            //{
+            //    ClientId = model.ClientId,
+            //    HitmanId = model.HitmanId,
+            //    HitStatus = (HitStatus)model.HitStatus,
+            //    Status = (ConnectionStatus)model.Status,
+            //    Deadline = model.Deadline
+            //};
+
+            var newContractId = this.contracts.Add(
+                model.HitmanId, 
+                model.ClientId, 
+                model.Deadline);
+
             // TODO: Figure this out - either change the Add service or add dependencies.
-            return this.InternalServerError(new System.NotImplementedException());
+            return this.Created(this.Url.ToString(), newContractId);
         }
 
         [HttpPut]

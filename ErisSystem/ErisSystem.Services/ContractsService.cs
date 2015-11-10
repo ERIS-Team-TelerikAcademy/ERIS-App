@@ -26,15 +26,15 @@
             this.hitmen = hitmen;
         }
 
-        public int Add(string hitmanNickname, string clientNickname, DateTime deadline)
+        public int Add(int hitmanId, int clientId, DateTime deadline)
         {
             var hitmanFromDb = this.hitmen
                 .All()
-                .Where(x => x.Nickname == hitmanNickname)
+                .Where(x => x.Id == hitmanId)
                 .FirstOrDefault();
             var client = this.clients
                 .All()
-                .Where(x => x.Nickname == clientNickname)
+                .Where(x => x.Id == clientId)
                 .FirstOrDefault();
             if (hitmanFromDb == null)
             {

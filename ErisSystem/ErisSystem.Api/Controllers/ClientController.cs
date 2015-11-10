@@ -53,8 +53,9 @@
             return this.Ok(result);
         }
 
+        [Route("register")]
         [HttpPost]
-        public IHttpActionResult Post(ClientResponseModel model)
+        public IHttpActionResult Post([FromBody]ClientResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -62,7 +63,7 @@
             }
 
             // TODO: Improve client registration
-            var newClientId = this.clients.Add(model.Nickname);
+            var newClientId = this.clients.Add(model.Nickname, model.Password, model.RegistrationDate);
 
             return this.Created(this.Url.ToString(), newClientId);
         }

@@ -12,6 +12,6 @@
 
         Contract GetById(int id);
 
-        int Add(string hitmanNickname, string clientNickname, DateTime deadLine);
+        int Add(int hitmanId, int clientId, DateTime deadLine);
     }
 }
