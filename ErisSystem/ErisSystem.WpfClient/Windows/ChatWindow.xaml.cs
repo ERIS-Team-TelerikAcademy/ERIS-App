@@ -8,6 +8,10 @@
     using System.Threading;
     using System.Text;
     using System.Windows.Media;
+    using System.Collections;
+    using IronMQ;
+    using System;
+    using IronMQ.Data;
 
     /// <summary>
     /// Interaction logic for ChatWindow.xaml
@@ -18,7 +22,7 @@
 
         private const int port = 54545;
 
-        private const string broadcastAddress = "130.204.136.229";
+        private const string broadcastAddress = "mq-aws-eu-west-1-1.iron.io";
 
         private Thread receivingThread;
 
@@ -31,6 +35,7 @@
             this.userName = userName;
             this.InitializeReceiver();
             InitializeComponent();
+            this.SendingTest("Hello there");
             this.UserNameLabel.Content = userName;
         }
 
@@ -57,27 +62,29 @@
 
                 this.InsertMessageInChatBox(messageData, messageBackgroundColor);
 
-                string toSend = messageData;
-                byte[] data = Encoding.ASCII.GetBytes(toSend);
+                SendingTest(messageData);
 
-                var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
-                var endpoint = new IPEndPoint(ipAddress, port);
-                var sender = (EndPoint)endpoint;
+                //string toSend = messageData;
+                //byte[] data = Encoding.ASCII.GetBytes(toSend);
 
-                var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                if (!socket.Connected)
-                {
-                    socket.Connect(sender);
-                }
+                //var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
 
-                try
-                {
-                    socket.SendTo(data, SocketFlags.None, endpoint);
-                }
-                catch (SocketException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                //var endpoint = new IPEndPoint(IPAddress.Parse(broadcastAddress), port);
+                //var sender = (EndPoint)endpoint;
+                //var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                //if (!socket.Connected)
+                //{
+                //    socket.Connect(sender);
+                //}
+
+                //try
+                //{
+                //    socket.Send(data);
+                //}
+                //catch (SocketException ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //}
             }
         }
 
@@ -100,32 +107,69 @@
             receivingThread.Start();
         }
 
-        private void Receiver()
-        {
-            AddMessage messageDelegate = MessageReceived;
+        //private void Receiver()
+        //{
+        //    AddMessage messageDelegate = MessageReceived;
 
-            var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
-            IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
-            var sender = (EndPoint)endPoint;
+        //    var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
+        //    IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
+        //    var sender = (EndPoint)endPoint;
 
-            var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Bind(endPoint);
-            socket.Listen(500);
-
-            var data = new byte[2000];
-            while (true)
-            {
-                var connector = socket.Accept();
-                var dataLength = connector.Receive(data);
-                string message = Encoding.ASCII.GetString(data, 0, dataLength);
-                Dispatcher.Invoke(messageDelegate, message);
-            }
-        }
+        //    var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        //    socket.Bind(endPoint);
+        //    socket.Listen(500);
+        //    var data = new byte[2000];
+        //    while (true)
+        //    {
+        //        var connector = socket.Accept();
+        //        var dataLength = connector.Receive(data);
+        //        string message = Encoding.ASCII.GetString(data, 0, dataLength);
+        //        Dispatcher.Invoke(messageDelegate, message);
+        //    }
+        //}
 
         private void MessageReceived(string message)
         {
             var messageBackgroundColor = Brushes.LightSkyBlue;
             this.InsertMessageInChatBox(message, messageBackgroundColor);
+        }
+
+        private void SendingTest(string messageToSend)
+        {
+            Client client = new Client(
+                              "56420b6f9195a800080000b6",
+                              "ANgrGMpOtkzSxbTIlWbk"
+                              );
+            IronMQ.Queue queue = client.Queue("Some");
+
+            queue.Push(messageToSend);
+        }
+
+
+        private void Receiver()
+        {
+            AddMessage messageDelegate = MessageReceived;
+
+            Client client = new Client(
+                              "56420b6f9195a800080000b6",
+                              "ANgrGMpOtkzSxbTIlWbk"
+                              );
+
+            IronMQ.Queue queue = client.Queue("Some");
+            while (true)
+            {
+                Message msg = queue.Get();
+                if (msg != null)
+                {
+                    queue.DeleteMessage(msg);
+                    if(msg.Body.Split(':')[0] != this.userName)  //Fixes self spaming 
+                    {
+                        Dispatcher.Invoke(messageDelegate, msg.Body);
+                    }
+
+                }
+                Thread.Sleep(300);
+            }
         }
     }
 }
