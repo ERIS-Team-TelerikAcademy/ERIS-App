@@ -52,8 +52,9 @@
             return this.Ok(result);
         }
 
+        [Route("register")]
         [HttpPost]
-        public IHttpActionResult Post(HitmanResponseModel model)
+        public IHttpActionResult Post([FromBody]HitmanResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -63,13 +64,14 @@
             var newHitmanId = this.hitmen.Add(
                 model.Nickname,
                 model.AboutMe,
-                (Genders)model.Gender);
+                (Genders)model.Gender,
+                model.Password);
 
             return this.Created(this.Url.ToString(), newHitmanId);
         }
 
         [HttpPut]
-        public IHttpActionResult Put(HitmanResponseModel model)
+        public IHttpActionResult Put([FromBody]HitmanResponseModel model)
         {
             return this.InternalServerError(new System.NotImplementedException());
         }

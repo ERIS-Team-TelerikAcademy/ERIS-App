@@ -19,7 +19,7 @@
             this.hitmen = hitmen;
         }
 
-        public int Add(string nickName, string aboutMe, Genders gender, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
+        public int Add(string nickName, string aboutMe, Genders gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
             var isValidAboutMe = Validator.ValidateStringLenght(0, 250, aboutMe);
@@ -38,6 +38,7 @@
             hitman.AboutMe = aboutMe;
             hitman.Gender = gender;
             hitman.Images = images;
+            hitman.Password = password;
             hitman.CountriesOfOperation = countriesOfOperation;
 
             this.hitmen.Add(hitman);
