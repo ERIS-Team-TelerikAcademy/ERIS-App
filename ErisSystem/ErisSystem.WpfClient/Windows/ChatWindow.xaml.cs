@@ -27,6 +27,7 @@
             this.chatService = new ChatServices();
             this.InitializeReceiver();
             InitializeComponent();
+            this.ChatUsers.PreviewMouseDown += HandleClickOnName;
             this.UserNameLabel.Content = userName;
             this.PopulateChatRoomContainer();
         }
@@ -42,6 +43,14 @@
             {
                 this.BuildSendRequest();
             }
+        }
+
+        private void HandleClickOnName(object sender, RoutedEventArgs e)
+        {
+            var room = ItemsControl.ContainerFromElement(this.ChatUsers, e.OriginalSource as DependencyObject) as ListBoxItem;
+            var roomName = room.Content.ToString();
+            this.chatService.SwitchRoom(roomName);
+            this.ChatMessages.Items.Clear();
         }
 
         private void PopulateChatRoomContainer()
@@ -82,8 +91,6 @@
                 var messageBackgroundColor = Brushes.LightGray;
                 var messageData = this.userName + ": " + msg;
 
-                this.InsertMessageInChatBox(messageData, messageBackgroundColor);
-
                 SendMessage(messageData);
             }
         }
@@ -106,7 +113,16 @@
 
         private void MessageReceived(string message)
         {
-            var messageBackgroundColor = Brushes.LightSkyBlue;
+            var messageBackgroundColor = new SolidColorBrush();
+            if(message.Split(':')[0] == this.userName)
+            {
+                messageBackgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FB6653"));
+            }
+            else
+            {
+                messageBackgroundColor = Brushes.LightGray;
+            }
+
             this.InsertMessageInChatBox(message, messageBackgroundColor);
         }
 
@@ -121,14 +137,10 @@
 
             while (true)
             {
-               var msg = this.chatService.Receve();
+                var msg = this.chatService.Receve();
                 if (msg != null)
                 {
-                    if (msg.Body.Split(':')[0] != this.userName)  //Fixes self spaming 
-                    {
-                        Dispatcher.Invoke(messageDelegate, msg.Body);
-                    }
-
+                    Dispatcher.Invoke(messageDelegate, msg.Body);
                 }
 
             }
