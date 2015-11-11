@@ -48,9 +48,13 @@
         private void HandleClickOnName(object sender, RoutedEventArgs e)
         {
             var room = ItemsControl.ContainerFromElement(this.ChatUsers, e.OriginalSource as DependencyObject) as ListBoxItem;
-            var roomName = room.Content.ToString();
-            this.chatService.SwitchRoom(roomName);
-            this.ChatMessages.Items.Clear();
+            if (room != null)
+            {
+                var roomName = room.Content.ToString();
+                this.chatService.SwitchRoom(roomName);
+                this.ChatMessages.Items.Clear();
+            }
+
         }
 
         private void PopulateChatRoomContainer()
