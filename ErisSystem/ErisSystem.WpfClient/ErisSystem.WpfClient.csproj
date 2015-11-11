@@ -40,8 +40,20 @@
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="IronMQ.NET, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronMQ.NET.1.1.0\lib\net40\IronMQ.NET.dll</HintPath>
+    <Reference Include="IronSharp.Core, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iron.IronCore.1.0.6\lib\IronSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IronSharp.IronCache, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iron.IronCache.1.0.3\lib\IronSharp.IronCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IronSharp.IronMQ, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iron.IronMQ.1.0.6\lib\IronSharp.IronMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IronSharp.IronWorker, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iron.IronWorker.1.0.3\lib\IronSharp.IronWorker.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -125,6 +137,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChatServices.cs" />
     <Compile Include="Windows\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>
@@ -151,6 +164,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="iron.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

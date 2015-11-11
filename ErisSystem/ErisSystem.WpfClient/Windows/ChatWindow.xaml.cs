@@ -3,15 +3,8 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using System.Net;
-    using System.Net.Sockets;
     using System.Threading;
-    using System.Text;
     using System.Windows.Media;
-    using System.Collections;
-    using IronMQ;
-    using System;
-    using IronMQ.Data;
 
     /// <summary>
     /// Interaction logic for ChatWindow.xaml
@@ -20,23 +13,22 @@
     {
         private string userName;
 
-        private const int port = 54545;
-
-        private const string broadcastAddress = "mq-aws-eu-west-1-1.iron.io";
-
         private Thread receivingThread;
 
         private delegate void AddMessage(string message);
+
+        private ChatServices chatService;
 
         public ChatWindow(string userName)
         {
             this.KeyDown += HandleKeyDown;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.userName = userName;
+            this.chatService = new ChatServices();
             this.InitializeReceiver();
             InitializeComponent();
-            this.SendingTest("Hello there");
             this.UserNameLabel.Content = userName;
+            this.PopulateChatRoomContainer();
         }
 
         private void ChatButtonSend_Click(object sender, RoutedEventArgs e)
@@ -52,40 +44,22 @@
             }
         }
 
-        private void BuildSendRequest() //Bad name but who cares
+        private void PopulateChatRoomContainer()
         {
-            var msg = this.ChatTxtBox.Text;
-            if (msg.Length != 0)
+            var chatRooms = this.chatService.GetAllRooms();
+
+            foreach (var room in chatRooms)
             {
-                var messageBackgroundColor = Brushes.LightGray;
-                var messageData = this.userName + ": " + msg;
-
-                this.InsertMessageInChatBox(messageData, messageBackgroundColor);
-
-                SendingTest(messageData);
-
-                //string toSend = messageData;
-                //byte[] data = Encoding.ASCII.GetBytes(toSend);
-
-                //var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
-
-                //var endpoint = new IPEndPoint(IPAddress.Parse(broadcastAddress), port);
-                //var sender = (EndPoint)endpoint;
-                //var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                //if (!socket.Connected)
-                //{
-                //    socket.Connect(sender);
-                //}
-
-                //try
-                //{
-                //    socket.Send(data);
-                //}
-                //catch (SocketException ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
+                this.InsertNameInRooms(room.Name);
             }
+        }
+
+        private void InsertNameInRooms(string name) // will it be chat "rooms" idk
+        {
+            ListBoxItem item = new ListBoxItem();
+            item.FontSize = 26;
+            item.Content = name;
+            this.ChatUsers.Items.Add(item);
         }
 
         private void InsertMessageInChatBox(string message, SolidColorBrush brush)
@@ -98,6 +72,29 @@
             this.ChatTxtBox.Text = "";
         }
 
+        //Handling sending messages
+
+        private void BuildSendRequest() //Bad name but who cares
+        {
+            var msg = this.ChatTxtBox.Text;
+            if (msg.Length != 0)
+            {
+                var messageBackgroundColor = Brushes.LightGray;
+                var messageData = this.userName + ": " + msg;
+
+                this.InsertMessageInChatBox(messageData, messageBackgroundColor);
+
+                SendMessage(messageData);
+            }
+        }
+
+        private void SendMessage(string messageToSend)
+        {
+            this.chatService.Send(messageToSend);
+        }
+
+        // Handling message receiving 
+
         private void InitializeReceiver()
         {
             ThreadStart start = new ThreadStart(Receiver);
@@ -107,68 +104,33 @@
             receivingThread.Start();
         }
 
-        //private void Receiver()
-        //{
-        //    AddMessage messageDelegate = MessageReceived;
-
-        //    var ipAddress = Dns.GetHostEntry("localhost").AddressList[1];
-        //    IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
-        //    var sender = (EndPoint)endPoint;
-
-        //    var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        //    socket.Bind(endPoint);
-        //    socket.Listen(500);
-        //    var data = new byte[2000];
-        //    while (true)
-        //    {
-        //        var connector = socket.Accept();
-        //        var dataLength = connector.Receive(data);
-        //        string message = Encoding.ASCII.GetString(data, 0, dataLength);
-        //        Dispatcher.Invoke(messageDelegate, message);
-        //    }
-        //}
-
         private void MessageReceived(string message)
         {
             var messageBackgroundColor = Brushes.LightSkyBlue;
             this.InsertMessageInChatBox(message, messageBackgroundColor);
         }
 
-        private void SendingTest(string messageToSend)
-        {
-            Client client = new Client(
-                              "56420b6f9195a800080000b6",
-                              "ANgrGMpOtkzSxbTIlWbk"
-                              );
-            IronMQ.Queue queue = client.Queue("Some");
-
-            queue.Push(messageToSend);
-        }
-
-
         private void Receiver()
         {
             AddMessage messageDelegate = MessageReceived;
+            var messageCollection = this.chatService.ReceveAll();
+            foreach (var message in messageCollection.Messages) //Get all the messages (turbo)
+            {
+                Dispatcher.Invoke(messageDelegate, message.Body);
+            }
 
-            Client client = new Client(
-                              "56420b6f9195a800080000b6",
-                              "ANgrGMpOtkzSxbTIlWbk"
-                              );
-
-            IronMQ.Queue queue = client.Queue("Some");
             while (true)
             {
-                Message msg = queue.Get();
+               var msg = this.chatService.Receve();
                 if (msg != null)
                 {
-                    queue.DeleteMessage(msg);
-                    if(msg.Body.Split(':')[0] != this.userName)  //Fixes self spaming 
+                    if (msg.Body.Split(':')[0] != this.userName)  //Fixes self spaming 
                     {
                         Dispatcher.Invoke(messageDelegate, msg.Body);
                     }
 
                 }
-                Thread.Sleep(300);
+
             }
         }
     }
