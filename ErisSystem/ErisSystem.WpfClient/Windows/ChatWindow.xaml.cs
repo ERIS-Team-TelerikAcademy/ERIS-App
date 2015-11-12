@@ -53,14 +53,26 @@
             if (room != null)
             {
                 var roomName = room.Content.ToString();
-                this.chatService.SwitchRoom(roomName);
-                this.ChatMessages.Items.Clear();
+                if (roomName == "Create Room")
+                {
+                    this.CreateNewRoom();
+                }
+                else
+                {
+                    this.chatService.SwitchRoom(roomName);
+                    this.ChatMessages.Items.Clear();
+                }
+
             }
-            else
+        }
+
+        private void CreateNewRoom()
+        {
+            var roomCreateWindow = new CreateRoomWindow();
+            roomCreateWindow.ShowDialog();
+            var a = roomCreateWindow.RoomName;
+            if (a.Length != 0)
             {
-                var roomCreateWindow = new CreateRoomWindow();
-                roomCreateWindow.ShowDialog();
-                var a = roomCreateWindow.RoomName;
                 this.chatService.SwitchRoom(a);
                 this.ChatUsers.Items.Clear();
                 this.PopulateChatRoomContainer();
@@ -71,17 +83,19 @@
         private void PopulateChatRoomContainer()
         {
             var chatRooms = this.chatService.GetAllRooms();
-
             foreach (var room in chatRooms)
             {
-                this.InsertNameInRooms(room.Name);
+                this.InsertNameInRooms(room.Name, Brushes.White);
             }
+
+            this.InsertNameInRooms("Create Room", Brushes.Red);
         }
 
-        private void InsertNameInRooms(string name) // will it be chat "rooms" idk
+        private void InsertNameInRooms(string name, SolidColorBrush brush) // will it be chat "rooms" idk
         {
             ListBoxItem item = new ListBoxItem();
-            item.FontSize = 26;
+            item.FontSize = 20;
+            item.Background = brush;
             item.Content = name;
             this.ChatUsers.Items.Add(item);
         }
@@ -98,7 +112,7 @@
 
         //Handling sending messages
 
-        private void SendMessageData() 
+        private void SendMessageData()
         {
             var msg = this.ChatTxtBox.Text;
             if (msg.Length != 0)
@@ -122,7 +136,7 @@
         private void MessageReceived(string message)
         {
             var messageBackgroundColor = new SolidColorBrush();
-            if(message.Split(':')[0] == this.userName)
+            if (message.Split(':')[0] == this.userName)
             {
                 messageBackgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FB6653"));
             }

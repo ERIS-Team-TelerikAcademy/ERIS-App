@@ -22,6 +22,7 @@ namespace ErisSystem.WpfClient.Windows
         public CreateRoomWindow()
         {
             InitializeComponent();
+            this.RoomName = string.Empty;
         }
 
         public string RoomName { get; set; }
