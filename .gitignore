@@ -140,6 +140,10 @@ publish/
 **/packages/*
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
+!**/packages/Iron.IronCache.1.0.3
+!**/packages/Iron.IronCore.1.0.6
+!**/packages/Iron.IronMQ.1.0.6
+!**/packages/Iron.IronWorker.1.0.3
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
 
