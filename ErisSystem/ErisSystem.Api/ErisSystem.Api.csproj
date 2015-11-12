@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -175,6 +179,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ContractsController.cs" />
+    <Compile Include="Controllers\HitmenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +198,14 @@
     <Compile Include="Models\Account\ViewModels\ManageInfoViewModel.cs" />
     <Compile Include="Models\Account\ViewModels\UserInfoViewModel.cs" />
     <Compile Include="Models\Account\ViewModels\UserLoginInfoViewModel.cs" />
+    <Compile Include="Models\ResponseModels\ClientResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\ContractResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\CountryResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\HitmanRatingResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\HitmanResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\ImageResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\IResponseModelFactory.cs" />
+    <Compile Include="Models\ResponseModels\ResponseModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -206,7 +221,20 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ErisSystem.Data\ErisSystem.Data.csproj">
+      <Project>{aa67e41e-f175-4841-9294-ffd962700a14}</Project>
+      <Name>ErisSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ErisSystem.Models\ErisSystem.Models.csproj">
+      <Project>{35a3a4ab-0067-4399-9d43-411029dd9854}</Project>
+      <Name>ErisSystem.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ErisSystem.Services\ErisSystem.Services.csproj">
+      <Project>{e6f2b52a-301b-451d-bd5b-95ab5cc5ec00}</Project>
+      <Name>ErisSystem.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
