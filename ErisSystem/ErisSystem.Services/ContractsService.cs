@@ -67,5 +67,45 @@
 
             return result;
         }
+
+        public int UpdateConnectionStatus(int id, HitStatus hitStatus, ConnectionStatus connectionStatus)
+        {
+            var contract = this.contracts.GetById(id);
+            if(contract != null)
+            {
+                contract.Status = connectionStatus;
+                contract.HitStatus = hitStatus;
+                this.contracts.Update(contract);
+            }
+
+            return this.contracts.SaveChanges();
+        }
+
+        //Made sense to have two methods for updating
+        //(otherwise you have to know value the status that you wont be changing to prevent overriding it)
+        //Two put methods in contoller...
+        public int UpdateConnectionStatus(int id, ConnectionStatus connectionStatus)
+        {
+            var contract = this.contracts.GetById(id);
+            if (contract != null)
+            {
+                contract.Status = connectionStatus;
+                this.contracts.Update(contract);
+            }
+
+            return this.contracts.SaveChanges();
+        }
+
+        public int UpdateHitStatus(int id, HitStatus hitStatus)
+        {
+            var contract = this.contracts.GetById(id);
+            if (contract != null)
+            {
+                contract.HitStatus = hitStatus;
+                this.contracts.Update(contract);
+            }
+
+            return this.contracts.SaveChanges();
+        }
     }
 }
