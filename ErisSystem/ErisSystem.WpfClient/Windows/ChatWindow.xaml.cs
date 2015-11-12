@@ -17,6 +17,8 @@
 
         private delegate void AddMessage(string message);
 
+        private delegate void AwaitServerResponse();
+
         private ChatServices chatService;
 
         public ChatWindow(string userName)
@@ -34,14 +36,14 @@
 
         private void ChatButtonSend_Click(object sender, RoutedEventArgs e)
         {
-            this.BuildSendRequest();
+            this.SendMessageData();
         }
 
         private void HandleKeyDown(object sender, KeyEventArgs args)
         {
             if (args.Key == Key.Enter)
             {
-                this.BuildSendRequest();
+                this.SendMessageData();
             }
         }
 
@@ -53,6 +55,15 @@
                 var roomName = room.Content.ToString();
                 this.chatService.SwitchRoom(roomName);
                 this.ChatMessages.Items.Clear();
+            }
+            else
+            {
+                var roomCreateWindow = new CreateRoomWindow();
+                roomCreateWindow.ShowDialog();
+                var a = roomCreateWindow.RoomName;
+                this.chatService.SwitchRoom(a);
+                this.ChatUsers.Items.Clear();
+                this.PopulateChatRoomContainer();
             }
 
         }
@@ -87,21 +98,14 @@
 
         //Handling sending messages
 
-        private void BuildSendRequest() //Bad name but who cares
+        private void SendMessageData() 
         {
             var msg = this.ChatTxtBox.Text;
             if (msg.Length != 0)
             {
-                var messageBackgroundColor = Brushes.LightGray;
                 var messageData = this.userName + ": " + msg;
-
-                SendMessage(messageData);
+                this.chatService.Send(messageData);
             }
-        }
-
-        private void SendMessage(string messageToSend)
-        {
-            this.chatService.Send(messageToSend);
         }
 
         // Handling message receiving 
@@ -133,11 +137,11 @@
         private void Receiver()
         {
             AddMessage messageDelegate = MessageReceived;
-            var messageCollection = this.chatService.ReceveAll();
-            foreach (var message in messageCollection.Messages) //Get all the messages (turbo)
-            {
-                Dispatcher.Invoke(messageDelegate, message.Body);
-            }
+            //var messageCollection = this.chatService.ReceveAll();
+            //foreach (var message in messageCollection.Messages) //Get all the messages (turbo)
+            //{
+            //    Dispatcher.Invoke(messageDelegate, message.Body);
+            //}
 
             while (true)
             {

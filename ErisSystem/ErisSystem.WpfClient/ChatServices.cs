@@ -25,7 +25,7 @@
                     ApiVersion = 3
                 });
 
-            this.currentQueue = this.ironMq.Queue("Some");
+            this.currentQueue = this.ironMq.Queue("Global");
         }
         public void Send(string message)
         {
@@ -34,10 +34,9 @@
 
         public QueueMessage Receve()
         {
-            var messages = this.currentQueue.Reserve(1, 0, 0);
-            if (messages.Messages.Count != 0)
+            var msg = this.currentQueue.Next(new TimeSpan(0, 0, 30));
+            if (msg != null)
             {
-                var msg = messages.Messages[0];
                 if (!this.msgCache.Contains(msg.Id))
                 {
                     msgCache.Add(msg.Id);
@@ -57,7 +56,7 @@
         {
             var queueInfo = this.currentQueue.Info();
             var msgCount = queueInfo.TotalMessages;
-            var msges = this.currentQueue.Reserve(msgCount, new TimeSpan(0, 0, 10));
+            var msges = this.currentQueue.Reserve(msgCount, new TimeSpan(0, 0, 30));
 
             return msges;
         }
@@ -66,6 +65,16 @@
         {
             this.msgCache.Clear();
             this.currentQueue = this.ironMq.Queue(roomName);
+            if(currentQueue != null)
+            {
+                var isNewRoom = currentQueue.Info() == null;
+                if (isNewRoom)
+                {
+                    this.Send("Hello");
+                }
+
+                return;
+            }
         }
 
         public IEnumerable<QueueInfo> GetAllRooms()
