@@ -71,19 +71,20 @@
         public int UpdateConnectionStatus(int id, HitStatus hitStatus, ConnectionStatus connectionStatus)
         {
             var contract = this.contracts.GetById(id);
-            if(contract != null)
+
+            if (contract == null)
             {
-                contract.Status = connectionStatus;
-                contract.HitStatus = hitStatus;
-                this.contracts.Update(contract);
+                return -1;
             }
+
+
+            contract.Status = connectionStatus;
+            contract.HitStatus = hitStatus;
+            this.contracts.Update(contract);
 
             return this.contracts.SaveChanges();
         }
 
-        //Made sense to have two methods for updating
-        //(otherwise you have to know value the status that you wont be changing to prevent overriding it)
-        //Two put methods in contoller...
         public int UpdateConnectionStatus(int id, ConnectionStatus connectionStatus)
         {
             var contract = this.contracts.GetById(id);

@@ -11,7 +11,7 @@
 
         Client GetById(int id);
 
-        int Add(string nickName, string password, DateTime registrationDate);
+        int Add(string nickName, string password);
 
         void Delete(Client client);
     }

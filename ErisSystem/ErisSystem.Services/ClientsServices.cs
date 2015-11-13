@@ -16,7 +16,7 @@
             this.clients = clients;
         }
 
-        public int Add(string nickName, string password, DateTime registrationDate)
+        public int Add(string nickName, string password)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
 
@@ -25,10 +25,12 @@
                 throw new ArgumentOutOfRangeException("Invalid user name length");
             }
 
-            var client = new Client();
-            client.Nickname = nickName;
-            client.Password = password;
-            client.RegistrationDate = registrationDate;
+            var client = new Client
+            {
+                Nickname = nickName,
+                Password = password,
+                RegistrationDate = DateTime.Now
+            };
 
             this.clients.Add(client);
 

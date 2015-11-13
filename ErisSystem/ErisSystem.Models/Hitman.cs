@@ -41,7 +41,7 @@
         [MaxLength(250)]
         public string AboutMe { get; set; }
 
-        public Genders Gender { get; set; }
+        public bool Gender { get; set; }
 
         public virtual ICollection<Image> Images
         {

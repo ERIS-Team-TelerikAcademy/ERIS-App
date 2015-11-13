@@ -2,7 +2,6 @@
 {
     using System.Web;
     using System.Web.Http;
-    using AutoMapper;
     using Models.ResponseModels;
     using ErisSystem.Models;
 

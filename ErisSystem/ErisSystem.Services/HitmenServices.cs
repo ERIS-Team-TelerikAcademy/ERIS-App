@@ -19,7 +19,7 @@
             this.hitmen = hitmen;
         }
 
-        public int Add(string nickName, string aboutMe, Genders gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
+        public int Add(string nickName, string aboutMe, bool gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
             var isValidAboutMe = Validator.ValidateStringLenght(0, 250, aboutMe);
@@ -33,13 +33,16 @@
                 throw new ArgumentOutOfRangeException("Invalid about me name length");
             }
 
-            var hitman = new Hitman();
-            hitman.Nickname = nickName;
-            hitman.AboutMe = aboutMe;
-            hitman.Gender = gender;
-            hitman.Images = images;
-            hitman.Password = password;
-            hitman.CountriesOfOperation = countriesOfOperation;
+            var hitman = new Hitman
+            {
+                Nickname = nickName,
+                AboutMe = aboutMe,
+                Gender = gender,
+                Images = images,
+                Password = password,
+                CountriesOfOperation = countriesOfOperation,
+                RegistrationDate = DateTime.Now
+            };
 
             this.hitmen.Add(hitman);
             return this.hitmen.SaveChanges();

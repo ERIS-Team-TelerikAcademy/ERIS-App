@@ -13,7 +13,7 @@
 
         Hitman GetById(int id);
                                                  //Gender as string ? hmmm parse it to Genders in Rest api maybe
-        int Add(string nickName, string aboutMe, Genders gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
+        int Add(string nickName, string aboutMe, bool gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
 
         void Delete(Hitman hitman);
 
