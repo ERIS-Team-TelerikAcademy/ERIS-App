@@ -14,6 +14,8 @@
 
         int Add(int hitmanId, int clientId, DateTime deadLine);
 
-        Contract Update(int id, ConnectionStatus status, HitStatus hitStatus);
+        int UpdateConnectionStatus(int id, ConnectionStatus connectionStatus);
+
+        int UpdateHitStatus(int id, HitStatus hitStatus);
     }
 }

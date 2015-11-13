@@ -45,12 +45,10 @@
                 throw new ArgumentException("Invalid client nickname!");
             }
 
-            var contract = new Contract
-            {
-                Client = client,
-                Hitman = hitmanFromDb,
-                Deadline = deadline
-            };
+            var contract = new Contract();
+            contract.Client = client;
+            contract.Hitman = hitmanFromDb;
+            contract.Deadline = deadline;
 
             this.contracts.Add(contract);
             return this.contracts.SaveChanges();
@@ -70,16 +68,44 @@
             return result;
         }
 
-        public Contract Update(int id, ConnectionStatus status, HitStatus hitStatus)
+        public int UpdateConnectionStatus(int id, HitStatus hitStatus, ConnectionStatus connectionStatus)
         {
-            var toUpdate = this.GetById(id);
+            var contract = this.contracts.GetById(id);
+            if(contract != null)
+            {
+                contract.Status = connectionStatus;
+                contract.HitStatus = hitStatus;
+                this.contracts.Update(contract);
+            }
 
-            toUpdate.HitStatus = hitStatus;
-            toUpdate.Status = status;
+            return this.contracts.SaveChanges();
+        }
 
-            this.contracts.Update(toUpdate);
+        //Made sense to have two methods for updating
+        //(otherwise you have to know value the status that you wont be changing to prevent overriding it)
+        //Two put methods in contoller...
+        public int UpdateConnectionStatus(int id, ConnectionStatus connectionStatus)
+        {
+            var contract = this.contracts.GetById(id);
+            if (contract != null)
+            {
+                contract.Status = connectionStatus;
+                this.contracts.Update(contract);
+            }
 
-            return toUpdate;
+            return this.contracts.SaveChanges();
+        }
+
+        public int UpdateHitStatus(int id, HitStatus hitStatus)
+        {
+            var contract = this.contracts.GetById(id);
+            if (contract != null)
+            {
+                contract.HitStatus = hitStatus;
+                this.contracts.Update(contract);
+            }
+
+            return this.contracts.SaveChanges();
         }
     }
 }

@@ -40,8 +40,18 @@
 
         <Style x:Key="windowHeader" TargetType="Label">
             <Setter Property="Background" Value="White" />
-            <Setter Property="Width" Value="300" />
-            <Setter Property="Height" Value="60" />
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontFamily" Value="San Serif" />
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style x:Key="userNamebox" TargetType="Label">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="40" />
             <Setter Property="FontFamily" Value="San Serif" />
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="Foreground" Value="White" />
@@ -73,7 +83,8 @@
             <ColumnDefinition Width="600"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="CoginLabelTitle" Style="{StaticResource windowHeader}" Grid.Row="0" >Eris</Label>
+        <Label x:Name="LabelTitle" Style="{StaticResource windowHeader}" Grid.Row="0" Margin="10,6,531,5" >Eris</Label>
+        <Label x:Name="UserNameLabel" Style="{StaticResource userNamebox}" Grid.Row="0" Margin="44,0,-193,11" Grid.Column="1" ></Label>
         <ListBox x:Name="ChatMessages" Style="{StaticResource chatMsgs}" Grid.Row="1" Grid.Column="0" />
         <ListBox x:Name="ChatUsers" Style="{StaticResource usersList}" Grid.Row="1" Grid.Column="1" Margin="0,1,-193,0"  />
         <TextBox x:Name="ChatTxtBox" Style="{StaticResource text}" Grid.Row="2" Grid.Column="0" />

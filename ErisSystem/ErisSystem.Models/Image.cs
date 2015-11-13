@@ -16,6 +16,10 @@
         public byte[] ImageData { get; set; }
 
         [Required]
+        [MaxLength(6)]
+        public string ImageExtention { get; set; }
+
+        [Required]
         public int UserId { get; set; }
 
         public virtual Hitman User { get; set; }
