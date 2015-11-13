@@ -8,6 +8,11 @@ app.config(function ($routeProvider) {
     templateUrl: "views/home.html"
   });
 
+  $routeProvider.when("/signup", {
+    controller: "signupController",
+    templateUrl: "views/signup.html"
+  });
+
   $routeProvider.otherwise({ redirectTo: "/home" });
 });
 
