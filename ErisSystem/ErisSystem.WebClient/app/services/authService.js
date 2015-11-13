@@ -4,6 +4,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService',
     function ($http, $q, localStorageService) {
 
         var serviceBase = 'http://localhost:28499/';
+
         var authServiceFactory = {};
 
         var  authentication = {
