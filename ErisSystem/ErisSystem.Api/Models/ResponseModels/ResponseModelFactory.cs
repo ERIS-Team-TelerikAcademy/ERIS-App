@@ -1,5 +1,7 @@
 ﻿namespace ErisSystem.Api.Models.ResponseModels
 {
+    using System;
+    using System.Linq.Expressions;
     using AutoMapper;
 
     public class ResponseModelFactory : IResponseModelFactory
@@ -15,9 +17,9 @@
             Mapper.CreateMap<D, S>();
         }
 
-        public R Get<R>(object model)
+        public void MapCustom<S, D>(Expression<Func<S, object>> destination,  Action<IMemberConfigurationExpression<D>> action)
         {
-            return Mapper.Map<R>(model);
+            Mapper.CreateMap<D, S>().ForMember(destination, action);
         }
     }
 }

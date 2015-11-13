@@ -9,7 +9,6 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Models.ResponseModels;
-    using ErisSystem.Models.Enumerators;
 
     [RoutePrefix("api/Hitmen")]
     public class HitmenController : ApiController
@@ -32,6 +31,7 @@
         {
             var result = Mapper.Map<HitmanResponseModel>(this.hitmen
                 .GetById(id));
+
 
             if (result == null)
             {
@@ -64,12 +64,13 @@
             var newHitmanId = this.hitmen.Add(
                 model.Nickname,
                 model.AboutMe,
-                (Genders)model.Gender,
+                model.Gender,
                 model.Password);
 
             return this.Created(this.Url.ToString(), newHitmanId);
         }
 
+        [Route("profile")]
         [HttpPut]
         public IHttpActionResult Put([FromBody]HitmanResponseModel model)
         {

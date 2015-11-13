@@ -21,7 +21,6 @@
             this.contracts = contractsServices;
         }
 
-        // TODO: Ninject or some other form of dependency inversion, this is getting ridiculous.
         public ContractsController()
             :this(new ContractsService(
                 new EfGenericRepository<Contract>(new ErisSystemContext()), 
@@ -56,22 +55,23 @@
             return this.Ok(result);
         }
 
+        [Route("new-contract")]
         [HttpPost]
-        public IHttpActionResult Post(ContractResponseModel model)
+        public IHttpActionResult Post([FromBody]ContractResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            //var contract = new Contract
-            //{
-            //    ClientId = model.ClientId,
-            //    HitmanId = model.HitmanId,
-            //    HitStatus = (HitStatus)model.HitStatus,
-            //    Status = (ConnectionStatus)model.Status,
-            //    Deadline = model.Deadline
-            //};
+            // var contract = new Contract
+            // {
+            //     ClientId = model.ClientId,
+            //     HitmanId = model.HitmanId,
+            //     HitStatus = (HitStatus)model.HitStatus,
+            //     Status = (ConnectionStatus)model.Status,
+            //     Deadline = model.Deadline
+            // };
 
             var newContractId = this.contracts.Add(
                 model.HitmanId, 
@@ -82,10 +82,23 @@
             return this.Created(this.Url.ToString(), newContractId);
         }
 
+        [Route("update-contract")]
         [HttpPut]
         public IHttpActionResult Put(ContractResponseModel model)
         {
-            return this.InternalServerError(new System.NotImplementedException());
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var updated = this.contracts.Update(model.Id, (ConnectionStatus)model.Status, (HitStatus)model.HitStatus);
+
+            if (updated == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.Ok(updated);
         }
     }
 }

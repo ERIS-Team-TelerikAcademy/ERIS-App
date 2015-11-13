@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using ErisSystem.Api.Migrations;
+using ErisSystem.Data;
 using Microsoft.Owin;
 using Owin;
 
@@ -12,6 +15,8 @@ namespace ErisSystem.Api
     {
         public void Configuration(IAppBuilder app)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Configuration>());
+
             ConfigureAuth(app);
         }
     }

@@ -45,10 +45,12 @@
                 throw new ArgumentException("Invalid client nickname!");
             }
 
-            var contract = new Contract();
-            contract.Client = client;
-            contract.Hitman = hitmanFromDb;
-            contract.Deadline = deadline;
+            var contract = new Contract
+            {
+                Client = client,
+                Hitman = hitmanFromDb,
+                Deadline = deadline
+            };
 
             this.contracts.Add(contract);
             return this.contracts.SaveChanges();
@@ -66,6 +68,18 @@
             var result = this.contracts.GetById(id);
 
             return result;
+        }
+
+        public Contract Update(int id, ConnectionStatus status, HitStatus hitStatus)
+        {
+            var toUpdate = this.GetById(id);
+
+            toUpdate.HitStatus = hitStatus;
+            toUpdate.Status = status;
+
+            this.contracts.Update(toUpdate);
+
+            return toUpdate;
         }
     }
 }

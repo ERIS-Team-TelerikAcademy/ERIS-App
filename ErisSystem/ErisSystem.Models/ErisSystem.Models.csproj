@@ -52,7 +52,6 @@
     <Compile Include="Client.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Enumerators\ConnectionStatus.cs" />
-    <Compile Include="Enumerators\Genders.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="Enumerators\HitStatus.cs" />
     <Compile Include="Image.cs" />

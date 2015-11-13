@@ -63,11 +63,13 @@
             }
 
             // TODO: Improve client registration
-            var newClientId = this.clients.Add(model.Nickname, model.Password, model.RegistrationDate);
+            var newClientId = this.clients.Add(model.Nickname, model.Password);
 
             return this.Created(this.Url.ToString(), newClientId);
         }
 
+        // I really have nothing to update here for now.
+        [Route("update")]
         [HttpPut]
         public IHttpActionResult Put(ClientResponseModel model)
         {
