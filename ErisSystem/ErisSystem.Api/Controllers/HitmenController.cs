@@ -25,6 +25,11 @@
             this.hitmen = hitmenServices;
         }
 
+        /// <summary>
+        /// Gets a hitman by id
+        /// </summary>
+        /// <param name="id">the id to search for in the db</param>
+        /// <returns>the response model of the queried hitman</returns>
         [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetHitmanById(int id)
@@ -41,6 +46,10 @@
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// Gets all hitmen in the db
+        /// </summary>
+        /// <returns>IQueryable of all the hitmen</returns>
         [Route("all")]
         [HttpGet]
         public IHttpActionResult Get()
@@ -52,6 +61,11 @@
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// Adds a new hitman to the DB
+        /// </summary>
+        /// <param name="model">A hitman response model from the body of the query</param>
+        /// <returns>the ID of the added hitman</returns>
         [Route("register")]
         [HttpPost]
         public IHttpActionResult Post([FromBody]HitmanResponseModel model)
@@ -70,6 +84,11 @@
             return this.Created(this.Url.ToString(), newHitmanId);
         }
 
+        /// <summary>
+        /// Not sure what to do here.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("profile")]
         [HttpPut]
         public IHttpActionResult Put([FromBody]HitmanResponseModel model)
