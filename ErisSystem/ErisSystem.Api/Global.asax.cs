@@ -19,18 +19,6 @@
             modelFactory.MapBothWays<HitmanRating, HitmanRatingResponseModel>();
             modelFactory.MapBothWays<Image, ImageResponseModel>();
             modelFactory.MapBothWays<Hitman, HitmanResponseModel>();
-
-            //modelFactory.MapCustom<Contract, ContractResponseModel>(dest => dest,
-            //                                                      opts => opts.MapFrom(
-            //                                                          src => new ContractResponseModel
-            //                                                          {
-            //                                                              Id = src.Id,
-            //                                                              ClientId = src.ClientId,
-            //                                                              Deadline = src.Deadline,
-            //                                                              HitmanId = src.HitmanId,
-            //                                                              HitStatus = (int)src.HitStatus,
-            //                                                              Status = (int)src.Status
-            //                                                          }));
         }
     }
 }
