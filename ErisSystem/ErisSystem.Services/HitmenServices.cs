@@ -9,10 +9,16 @@
     using Models.Enumerators;
     using ErisSystem.Services.Contracts;
     using Data;
+    using Data.Repositories;
 
     public class HitmenServices : IHitmenServices
     {
         private readonly IRepository<Hitman> hitmen;
+
+        public HitmenServices()
+        {
+            this.hitmen = new EfGenericRepository<Hitman>(new ErisSystemContext());
+        }
 
         public HitmenServices(IRepository<Hitman> hitmen)
         {

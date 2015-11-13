@@ -6,10 +6,16 @@
     using Models;
     using ErisSystem.Services.Contracts;
     using Data;
+    using Data.Repositories;
 
     public class ClientsServices : IClientServices
     {
         IRepository<Client> clients;
+
+        public ClientsServices()
+        {
+            this.clients = new EfGenericRepository<Client>(new ErisSystemContext());
+        }
 
         public ClientsServices(IRepository<Client> clients)
         {

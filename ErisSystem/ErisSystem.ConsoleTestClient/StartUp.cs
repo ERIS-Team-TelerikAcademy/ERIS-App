@@ -26,8 +26,8 @@
 
             var hitman = new Hitman();
             hitman.AboutMe = "Thug life";
-            hitman.Nickname = "Killa";
-            hitman.Password = "ASFADSFDEFE@#@$@$@ASDFAS";
+            hitman.Nickname = "BaiIvan";
+            hitman.Password = "Guest";
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
            
