@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html data-ng-app="ErisSystemApp">
+<head>
+  <title>Eris Systeml</title>
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="contents/css/bootstrap-theme.css" rel="stylesheet" />
+  <link href="bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet" />
+  <link href="contents/css/app.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="page-header text-center">
+      <h1></h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div data-ng-view="">
+  </div>
+</div>
+<hr />
+<div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="text-muted">Created by: ERIS Team
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 3rd party libraries -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- Load app main script -->
+<script src="app.js"></script>
+<!-- Load services -->
+
+<!-- Load controllers -->
+<script src="controllers/homeController.js"></script>
+</body>
+</html>
