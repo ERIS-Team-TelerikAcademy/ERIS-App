@@ -14,7 +14,7 @@
     {
         static void Main()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Data.Migrations.EfConfiguration>());
 
             Importer.ImportCountries();
 
