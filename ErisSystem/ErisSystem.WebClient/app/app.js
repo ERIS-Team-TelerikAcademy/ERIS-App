@@ -13,6 +13,11 @@ app.config(function ($routeProvider) {
     templateUrl: "views/signup.html"
   });
 
+  $routeProvider.when("/login", {
+    controller: "loginController",
+    templateUrl: "views/login.html"
+  });
+
   $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

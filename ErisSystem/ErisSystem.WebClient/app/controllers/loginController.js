@@ -1,5 +1,5 @@
 'use strict';
-app.controller('signupController', ['$scope',
+app.controller('loginController', ['$scope',
     function ($scope) {
         $scope.message = '';
     }]);
