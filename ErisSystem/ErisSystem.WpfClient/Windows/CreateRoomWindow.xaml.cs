@@ -30,7 +30,17 @@ namespace ErisSystem.WpfClient.Windows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.RoomName = this.TextBox.Text;
-            this.Close();
+            if(0 >= this.RoomName.Length || this.RoomName.Length > 18)
+            {
+                var messageBox = new CustomMessageBox("Invalid name length(max 18)");
+                messageBox.ShowDialog();
+
+            }
+            else
+            {
+                this.Close();
+            }
+
         }
     }
 }
