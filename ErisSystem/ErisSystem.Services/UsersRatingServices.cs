@@ -15,7 +15,7 @@
             this.userRating = hitmenRating;
         }
 
-        public int Add(double ratingScore, User hitman, User client)
+        public int Add(int ratingScore, User hitman, User client)
         {
             var rating = new UserRating();
             rating.Rating = ratingScore;
@@ -27,7 +27,7 @@
             return this.userRating.SaveChanges();
         }
 
-        public IQueryable<UserRating> GetAll() // Will we need it idk for now it stays
+        public IQueryable<UserRating> GetAll() 
         {
             var result = this.userRating.All();
 

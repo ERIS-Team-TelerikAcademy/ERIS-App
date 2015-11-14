@@ -13,7 +13,7 @@
 
         User GetById(int id);
                                                
-        int Add(string nickName, string aboutMe, bool gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
+        int Add(string nickName, string aboutMe, bool gender, bool isWorking, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
 
         void Delete(User hitman);
 

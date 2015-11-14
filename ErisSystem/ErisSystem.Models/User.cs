@@ -43,6 +43,8 @@
 
         public bool Gender { get; set; }
 
+        public bool IsWorking { get; set; }
+
         public virtual ICollection<Image> Images
         {
             get { return this.images; }
