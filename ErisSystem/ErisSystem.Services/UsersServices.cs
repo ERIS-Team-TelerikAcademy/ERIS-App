@@ -10,11 +10,11 @@
     using ErisSystem.Services.Contracts;
     using Data;
 
-    public class HitmenServices : IHitmenServices
+    public class UsersServices : IUsersServices
     {
-        private readonly IRepository<Hitman> hitmen;
+        private readonly IRepository<User> hitmen;
 
-        public HitmenServices(IRepository<Hitman> hitmen)
+        public UsersServices(IRepository<User> hitmen)
         {
             this.hitmen = hitmen;
         }
@@ -33,7 +33,7 @@
                 throw new ArgumentOutOfRangeException("Invalid about me name length");
             }
 
-            var hitman = new Hitman
+            var hitman = new User
             {
                 Nickname = nickName,
                 AboutMe = aboutMe,
@@ -48,20 +48,20 @@
             return this.hitmen.SaveChanges();
         }
 
-        public void Delete(Hitman hitman)
+        public void Delete(User hitman)
         {
             this.hitmen.Delete(hitman);
             this.hitmen.SaveChanges();
         }
 
-        public IQueryable<Hitman> GetAll()
+        public IQueryable<User> GetAll()
         {
             var result = this.hitmen.All();
 
             return result;
         }
 
-        public Hitman GetById(int id)
+        public User GetById(int id)
         {
             var result = this.hitmen.GetById(id);
 

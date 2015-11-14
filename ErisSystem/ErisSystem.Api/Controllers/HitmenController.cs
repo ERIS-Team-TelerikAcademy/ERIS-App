@@ -13,14 +13,14 @@
     [RoutePrefix("api/Hitmen")]
     public class HitmenController : ApiController
     {
-        private readonly IHitmenServices hitmen;
+        private readonly IUsersServices hitmen;
 
         public HitmenController()
-            : this(new HitmenServices(new EfGenericRepository<Hitman>(new ErisSystemContext())))
+            : this(new UsersServices(new EfGenericRepository<User>(new ErisSystemContext())))
         {
         }
 
-        public HitmenController(IHitmenServices hitmenServices)
+        public HitmenController(IUsersServices hitmenServices)
         {
             this.hitmen = hitmenServices;
         }

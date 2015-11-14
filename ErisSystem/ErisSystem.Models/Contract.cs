@@ -19,12 +19,12 @@
         [Required]
         public int HitmanId { get; set; }
 
-        public virtual Hitman Hitman { get; set; }
+        public virtual User Hitman { get; set; }
 
         [Required]
         public int ClientId { get; set; }
 
-        public virtual Client Client{ get; set; }
+        public virtual User Client{ get; set; }
 
         public ConnectionStatus Status { get; set; }
 

@@ -7,15 +7,15 @@
     using ErisSystem.Models;
     using Models.Enumerators;
 
-    public interface IHitmenServices
+    public interface IUsersServices
     {
-        IQueryable<Hitman> GetAll();
+        IQueryable<User> GetAll();
 
-        Hitman GetById(int id);
+        User GetById(int id);
                                                  //Gender as string ? hmmm parse it to Genders in Rest api maybe
         int Add(string nickName, string aboutMe, bool gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
 
-        void Delete(Hitman hitman);
+        void Delete(User hitman);
 
     }
 }

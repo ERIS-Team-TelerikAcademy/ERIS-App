@@ -25,7 +25,7 @@
             :this(new ContractsService(
                 new EfGenericRepository<Contract>(new ErisSystemContext()), 
                 new EfGenericRepository<Client>(new ErisSystemContext()),
-                new EfGenericRepository<Hitman>(new ErisSystemContext())))
+                new EfGenericRepository<User>(new ErisSystemContext())))
         {
         }
         

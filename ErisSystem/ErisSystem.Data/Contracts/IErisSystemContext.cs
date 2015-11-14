@@ -6,7 +6,7 @@
 
     public interface IErisSystemContext
     {
-        IDbSet<Hitman> Hitmen { get; set; }
+        IDbSet<User> Users { get; set; }
 
         IDbSet<Contract> Contracts { get; set; }
 
@@ -14,9 +14,7 @@
 
         IDbSet<Image> Images { get; set; }
 
-        IDbSet<Client> Clients { get; set; }
-
-        IDbSet<HitmanRating> HitmanRatings { get; set; }
+        IDbSet<UserRating> HitmanRatings { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

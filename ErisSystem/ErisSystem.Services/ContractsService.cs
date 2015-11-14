@@ -12,27 +12,23 @@
     {
         private readonly IRepository<Contract> contracts;
 
-        private readonly IRepository<Client> clients;
-
-        private readonly IRepository<Hitman> hitmen;
+        private readonly IRepository<User> users;
 
         public ContractsService(
             IRepository<Contract> contracts,
-            IRepository<Client> clients,
-            IRepository<Hitman> hitmen)
+            IRepository<User> hitmen)
         {
             this.contracts = contracts;
-            this.clients = clients;
-            this.hitmen = hitmen;
+            this.users = hitmen;
         }
 
         public int Add(int hitmanId, int clientId, DateTime deadline)
         {
-            var hitmanFromDb = this.hitmen
+            var hitmanFromDb = this.users
                 .All()
                 .Where(x => x.Id == hitmanId)
                 .FirstOrDefault();
-            var client = this.clients
+            var client = this.users
                 .All()
                 .Where(x => x.Id == clientId)
                 .FirstOrDefault();

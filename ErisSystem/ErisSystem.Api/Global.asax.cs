@@ -16,9 +16,9 @@
             modelFactory.MapBothWays<Client, ClientResponseModel>();
             modelFactory.MapBothWays<Contract, ContractResponseModel>();
             modelFactory.MapBothWays<Country, CountryResponseModel>();
-            modelFactory.MapBothWays<HitmanRating, HitmanRatingResponseModel>();
+            modelFactory.MapBothWays<UserRating, HitmanRatingResponseModel>();
             modelFactory.MapBothWays<Image, ImageResponseModel>();
-            modelFactory.MapBothWays<Hitman, HitmanResponseModel>();
+            modelFactory.MapBothWays<User, HitmanResponseModel>();
         }
     }
 }
