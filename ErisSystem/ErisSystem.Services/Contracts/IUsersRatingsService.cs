@@ -4,13 +4,13 @@
 
     using ErisSystem.Models;
 
-    public interface IHitmenRatingsService
+    public interface IUsersRatingsService
     {
-        IQueryable<HitmanRating> GetAll();
+        IQueryable<UserRating> GetAll();
 
-        IQueryable<HitmanRating> GetAllForHitman(int id);
+        IQueryable<UserRating> GetAllForHitman(int id);
 
                                 // Or take ids? damn i rly dont know how this will work with the webpage
-        int Add(double rating, Hitman hitman, Client client);
+        int Add(double rating, User hitman, Client client);
     }
 }

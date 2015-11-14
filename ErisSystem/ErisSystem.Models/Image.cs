@@ -22,6 +22,6 @@
         [Required]
         public int UserId { get; set; }
 
-        public virtual Hitman User { get; set; }
+        public virtual User User { get; set; }
     }
 }

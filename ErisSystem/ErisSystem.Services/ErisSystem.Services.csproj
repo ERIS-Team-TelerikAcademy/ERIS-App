@@ -52,16 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientsServices.cs" />
     <Compile Include="ContractsService.cs" />
-    <Compile Include="Contracts\IClientServices.cs" />
     <Compile Include="Contracts\IContractsService.cs" />
     <Compile Include="Contracts\ICountriesService.cs" />
-    <Compile Include="Contracts\IHitmenRatingsService.cs" />
-    <Compile Include="Contracts\IHitmenServices.cs" />
+    <Compile Include="Contracts\IUsersRatingsService.cs" />
+    <Compile Include="Contracts\IUsersServices.cs" />
     <Compile Include="CountriesServices.cs" />
-    <Compile Include="HitmenRatingServices.cs" />
-    <Compile Include="HitmenServices.cs" />
+    <Compile Include="UsersRatingServices.cs" />
+    <Compile Include="UsersServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validator.cs" />
   </ItemGroup>
