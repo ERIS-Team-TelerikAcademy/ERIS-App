@@ -2,9 +2,9 @@
 {
     using System.Data.Entity.Migrations;
 
-    public class Configuration : DbMigrationsConfiguration<ErisSystemContext>
+    public class EfConfiguration : DbMigrationsConfiguration<ErisSystemContext>
     {           
-        public Configuration()
+        public EfConfiguration()
         {
             this.AutomaticMigrationsEnabled = true;
             this.AutomaticMigrationDataLossAllowed = true;

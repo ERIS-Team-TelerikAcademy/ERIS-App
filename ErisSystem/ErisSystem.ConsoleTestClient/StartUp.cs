@@ -14,7 +14,7 @@
     {
         static void Main()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Data.Migrations.EfConfiguration>());
 
             Importer.ImportCountries();
 
@@ -24,41 +24,19 @@
 
             var country = db.Countries.Find(3);
 
-            var hitman = new Hitman();
+            var hitman = new User();
             hitman.AboutMe = "Thug life";
-            hitman.Nickname = "Killa";
+            hitman.Nickname = "Bono";
             hitman.Password = "ASFADSFDEFE@#@$@$@ASDFAS";
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
            
 
-            db.Hitmen.AddOrUpdate(hitman);
-            db.SaveChanges();
-
-            var client = new Client();
-            client.Nickname = "SomeGuy";
-            client.Password = "asjdfiubdfjabfjaasdfasd ";
-            db.Clients.AddOrUpdate(client);
-            db.SaveChanges();
-
-            var connection = new Contract();
-            connection.Hitman = hitman;
-            connection.Client = client;
-            connection.Deadline = new DateTime(2015,12,12);
-
-            db.Contracts.AddOrUpdate(connection);
-
-            var rating = new HitmanRating();
-            rating.Client = client;
-            rating.Hitman = hitman;
-            rating.Rating = 4;
-
-            db.HitmanRatings.AddOrUpdate(rating);
-
+            db.Users.AddOrUpdate(hitman);
             db.SaveChanges();
 
 
-            var repositoryTest = new EfGenericRepository<Hitman>(db);
+            var repositoryTest = new EfGenericRepository<User>(db);
 
             var hitmen = repositoryTest.All();
 

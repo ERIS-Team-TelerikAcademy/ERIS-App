@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ErisSystem.WpfClient.Windows"
         mc:Ignorable="d"
-        Height="550" Width="834" MaxHeight="550" MaxWidth="834" MinHeight="550" MinWidth="834">
+        Height="550" Width="850" MaxHeight="550" MaxWidth="850" MinHeight="550" MinWidth="850">
 
     <Window.Resources>
         <Style x:Key="buttonStyle" TargetType="Button">
@@ -24,7 +24,7 @@
 
         <Style x:Key="usersList" TargetType="ListBox">
             <Setter Property="Background" Value="White" />
-            <Setter Property="Width" Value="150" />
+            <Setter Property="Width" Value="175" />
             <Setter Property="Height" Value="400" />
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="BorderThickness" Value="1" />

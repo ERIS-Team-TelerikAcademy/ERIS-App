@@ -1,12 +1,11 @@
 ﻿namespace ErisSystem.Models
 {
-    using Enumerators;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Hitman
+    public class User
     {
         private ICollection<Image> images;
 
@@ -14,7 +13,7 @@
 
         private DateTime registrationDate;
 
-        public Hitman()
+        public User()
         {
             this.images = new HashSet<Image>();
             this.countriesOfOperation = new HashSet<Country>();
@@ -24,6 +23,7 @@
         [Key]
         public int Id { get; set; }
 
+        [Index(IsUnique = true)]
         [MinLength(3)]
         [MaxLength(20)]
         public string Nickname { get; set; }
@@ -41,7 +41,9 @@
         [MaxLength(250)]
         public string AboutMe { get; set; }
 
-        public Genders Gender { get; set; }
+        public bool Gender { get; set; }
+
+        public bool IsWorking { get; set; }
 
         public virtual ICollection<Image> Images
         {

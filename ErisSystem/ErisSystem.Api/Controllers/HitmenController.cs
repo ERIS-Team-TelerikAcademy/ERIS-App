@@ -9,29 +9,34 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Models.ResponseModels;
-    using ErisSystem.Models.Enumerators;
 
     [RoutePrefix("api/Hitmen")]
     public class HitmenController : ApiController
     {
-        private readonly IHitmenServices hitmen;
+        private readonly IUsersServices hitmen;
 
         public HitmenController()
-            : this(new HitmenServices(new EfGenericRepository<Hitman>(new ErisSystemContext())))
+            : this(new UsersServices(new EfGenericRepository<User>(new ErisSystemContext())))
         {
         }
 
-        public HitmenController(IHitmenServices hitmenServices)
+        public HitmenController(IUsersServices hitmenServices)
         {
             this.hitmen = hitmenServices;
         }
 
+        /// <summary>
+        /// Gets a hitman by id
+        /// </summary>
+        /// <param name="id">the id to search for in the db</param>
+        /// <returns>the response model of the queried hitman</returns>
         [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetHitmanById(int id)
         {
             var result = Mapper.Map<HitmanResponseModel>(this.hitmen
                 .GetById(id));
+
 
             if (result == null)
             {
@@ -41,6 +46,10 @@
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// Gets all hitmen in the db
+        /// </summary>
+        /// <returns>IQueryable of all the hitmen</returns>
         [Route("all")]
         [HttpGet]
         public IHttpActionResult Get()
@@ -52,6 +61,11 @@
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// Adds a new hitman to the DB
+        /// </summary>
+        /// <param name="model">A hitman response model from the body of the query</param>
+        /// <returns>the ID of the added hitman</returns>
         [Route("register")]
         [HttpPost]
         public IHttpActionResult Post([FromBody]HitmanResponseModel model)
@@ -64,12 +78,18 @@
             var newHitmanId = this.hitmen.Add(
                 model.Nickname,
                 model.AboutMe,
-                (Genders)model.Gender,
+                model.Gender,
                 model.Password);
 
             return this.Created(this.Url.ToString(), newHitmanId);
         }
 
+        /// <summary>
+        /// Not sure what to do here.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Route("profile")]
         [HttpPut]
         public IHttpActionResult Put([FromBody]HitmanResponseModel model)
         {

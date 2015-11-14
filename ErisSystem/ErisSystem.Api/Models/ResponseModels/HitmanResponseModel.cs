@@ -12,12 +12,8 @@
 
         public DateTime DateOfBirth { get; set; }
 
-        public DateTime RegistrationDate { get; set; }
-
         public string AboutMe { get; set; }
 
-        public int Gender { get; set; }
-
-
+        public bool Gender { get; set; }
     }
 }

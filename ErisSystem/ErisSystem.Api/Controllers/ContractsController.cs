@@ -21,18 +21,23 @@
             this.contracts = contractsServices;
         }
 
-        // TODO: Ninject or some other form of dependency inversion, this is getting ridiculous.
         public ContractsController()
             :this(new ContractsService(
                 new EfGenericRepository<Contract>(new ErisSystemContext()), 
                 new EfGenericRepository<Client>(new ErisSystemContext()),
-                new EfGenericRepository<Hitman>(new ErisSystemContext())))
+                new EfGenericRepository<User>(new ErisSystemContext())))
         {
         }
-            
+        
+
+        /// <summary>
+        /// Gets the contract with id == id
+        /// </summary>
+        /// <param name="id">The id for searching the DB</param>
+        /// <returns>A client response model for the client side.</returns>
         [Route("{id}")]
         [HttpGet]
-        public IHttpActionResult GetClientById(int id)
+        public IHttpActionResult GetContractById(int id)
         {
             var result = Mapper.Map<ContractResponseModel>(this.contracts
                 .GetById(id));
@@ -45,6 +50,10 @@
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// An endpoint for aquiring all contracts in the DB
+        /// </summary>
+        /// <returns>IQueryable of all the contracts</returns>
         [Route("all")]
         [HttpGet]
         public IHttpActionResult Get()
@@ -56,22 +65,28 @@
             return this.Ok(result);
         }
 
+        /// <summary>
+        /// Endpoint for registering a new contract
+        /// </summary>
+        /// <param name="model">Gets a response model from the client side</param>
+        /// <returns>an HttpActionResult with the id of the created contract</returns>
+        [Route("new-contract")]
         [HttpPost]
-        public IHttpActionResult Post(ContractResponseModel model)
+        public IHttpActionResult Post([FromBody]ContractResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            //var contract = new Contract
-            //{
-            //    ClientId = model.ClientId,
-            //    HitmanId = model.HitmanId,
-            //    HitStatus = (HitStatus)model.HitStatus,
-            //    Status = (ConnectionStatus)model.Status,
-            //    Deadline = model.Deadline
-            //};
+            // var contract = new Contract
+            // {
+            //     ClientId = model.ClientId,
+            //     HitmanId = model.HitmanId,
+            //     HitStatus = (HitStatus)model.HitStatus,
+            //     Status = (ConnectionStatus)model.Status,
+            //     Deadline = model.Deadline
+            // };
 
             var newContractId = this.contracts.Add(
                 model.HitmanId, 
@@ -82,10 +97,28 @@
             return this.Created(this.Url.ToString(), newContractId);
         }
 
+        /// <summary>
+        /// An endpoint for updating the info on a contract
+        /// </summary>
+        /// <param name="model">Gets a contract model with the new info</param>
+        /// <returns>ID of the updated contract</returns>
+        [Route("update-contract")]
         [HttpPut]
         public IHttpActionResult Put(ContractResponseModel model)
         {
-            return this.InternalServerError(new System.NotImplementedException());
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var updated = this.contracts.UpdateConnectionStatus(model.Id, (HitStatus)model.Status, (ConnectionStatus)model.HitStatus);
+
+            if (updated == -1)
+            {
+                return this.NotFound();
+            }
+
+            return this.Ok(updated);
         }
     }
 }

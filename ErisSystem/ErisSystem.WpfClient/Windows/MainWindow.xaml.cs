@@ -21,9 +21,17 @@
 
         private void OnLoginButtonClick(object sender, RoutedEventArgs e)
         {
-            var chatWindow = new ChatWindow(this.UserName.Text);
-            chatWindow.Show();
-            this.Close();
+            if (true)
+            {
+                var chatWindow = new ChatWindow(this.UserName.Text);
+                chatWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                var messageBox = new CustomMessageBox("Invalid user name or password");
+                messageBox.ShowDialog();
+            }
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)

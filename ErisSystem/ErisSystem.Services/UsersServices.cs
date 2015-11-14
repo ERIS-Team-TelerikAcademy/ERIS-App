@@ -10,16 +10,16 @@
     using ErisSystem.Services.Contracts;
     using Data;
 
-    public class HitmenServices : IHitmenServices
+    public class UsersServices : IUsersServices
     {
-        private readonly IRepository<Hitman> hitmen;
+        private readonly IRepository<User> hitmen;
 
-        public HitmenServices(IRepository<Hitman> hitmen)
+        public UsersServices(IRepository<User> hitmen)
         {
             this.hitmen = hitmen;
         }
 
-        public int Add(string nickName, string aboutMe, Genders gender, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
+        public int Add(string nickName, string aboutMe, bool gender, bool isWorking, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
             var isValidAboutMe = Validator.ValidateStringLenght(0, 250, aboutMe);
@@ -33,32 +33,36 @@
                 throw new ArgumentOutOfRangeException("Invalid about me name length");
             }
 
-            var hitman = new Hitman();
-            hitman.Nickname = nickName;
-            hitman.AboutMe = aboutMe;
-            hitman.Gender = gender;
-            hitman.Images = images;
-            hitman.Password = password;
-            hitman.CountriesOfOperation = countriesOfOperation;
+            var hitman = new User
+            {
+                Nickname = nickName,
+                AboutMe = aboutMe,
+                Gender = gender,
+                IsWorking = isWorking,
+                Images = images,
+                Password = password,
+                CountriesOfOperation = countriesOfOperation,
+                RegistrationDate = DateTime.Now
+            };
 
             this.hitmen.Add(hitman);
             return this.hitmen.SaveChanges();
         }
 
-        public void Delete(Hitman hitman)
+        public void Delete(User hitman)
         {
             this.hitmen.Delete(hitman);
             this.hitmen.SaveChanges();
         }
 
-        public IQueryable<Hitman> GetAll()
+        public IQueryable<User> GetAll()
         {
             var result = this.hitmen.All();
 
             return result;
         }
 
-        public Hitman GetById(int id)
+        public User GetById(int id)
         {
             var result = this.hitmen.GetById(id);
 
