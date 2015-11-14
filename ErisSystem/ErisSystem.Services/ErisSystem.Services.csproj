@@ -52,9 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientsServices.cs" />
     <Compile Include="ContractsService.cs" />
-    <Compile Include="Contracts\IClientServices.cs" />
     <Compile Include="Contracts\IContractsService.cs" />
     <Compile Include="Contracts\ICountriesService.cs" />
     <Compile Include="Contracts\IUsersRatingsService.cs" />

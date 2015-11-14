@@ -15,7 +15,7 @@
             this.userRating = hitmenRating;
         }
 
-        public int Add(double ratingScore, User hitman, Client client)
+        public int Add(double ratingScore, User hitman, User client)
         {
             var rating = new UserRating();
             rating.Rating = ratingScore;

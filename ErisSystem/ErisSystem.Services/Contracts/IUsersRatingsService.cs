@@ -10,7 +10,7 @@
 
         IQueryable<UserRating> GetAllForHitman(int id);
 
-                                // Or take ids? damn i rly dont know how this will work with the webpage
-        int Add(double rating, User hitman, Client client);
+                                
+        int Add(double rating, User hitman, User client);
     }
 }
