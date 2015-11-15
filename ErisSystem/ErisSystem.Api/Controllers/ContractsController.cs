@@ -21,15 +21,6 @@
             this.contracts = contractsServices;
         }
 
-        public ContractsController()
-            :this(new ContractsService(
-                new EfGenericRepository<Contract>(new ErisSystemContext()), 
-                new EfGenericRepository<Client>(new ErisSystemContext()),
-                new EfGenericRepository<User>(new ErisSystemContext())))
-        {
-        }
-        
-
         /// <summary>
         /// Gets the contract with id == id
         /// </summary>

@@ -13,11 +13,8 @@
         public string Name { get; set; }
 
         [Required]
-        public byte[] ImageData { get; set; }
-
-        [Required]
         [MaxLength(6)]
-        public string ImageExtention { get; set; }
+        public string Extension { get; set; }
 
         [Required]
         public int UserId { get; set; }

@@ -2,11 +2,9 @@
 {
     public class ImageResponseModel
     {
-        public int Id { get; set; }
+        public byte[] Data { get; set; }
 
-        public string Name { get; set; }
-
-        public byte[] ImageData { get; set; }
+        public string Extension { get; set; }
 
         public int UserId { get; set; }
     }
