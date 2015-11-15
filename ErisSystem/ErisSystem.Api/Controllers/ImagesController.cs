@@ -22,16 +22,6 @@
     {
         private readonly IImagesService images;
 
-        // Beautiful
-        public ImagesController()
-            : this(
-                  new ImagesService(
-                      new EfGenericRepository<Image>(new ErisSystemContext()),
-                      new EfGenericRepository<User>(new ErisSystemContext()),
-                      new DropboxClient("11KXkFS93BAAAAAAAAAAB9G5M6Yq6AHEsIHUjL8MJF5w_oaph2IbtlJu4VzgIyTH")))
-        {
-        }
-
         public ImagesController(IImagesService imagesService)
         {
             this.images = imagesService;

@@ -1,4 +1,5 @@
-﻿namespace ErisSystem.Api.Controllers
+﻿/*
+namespace ErisSystem.Api.Controllers
 {
     using System.Web.Http;
     using Data.Repositories;
@@ -21,7 +22,7 @@
         }
 
         public ClientController()
-            :this(new ClientsServices(new EfGenericRepository<Client>(new ErisSystemContext())))
+            : this(new ClientsServices(new EfGenericRepository<Client>(new ErisSystemContext())))
         {
 
         }
@@ -93,4 +94,4 @@
             return this.InternalServerError(new System.NotImplementedException());
         }
     }
-}
+}*/

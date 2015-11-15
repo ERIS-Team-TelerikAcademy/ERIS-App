@@ -15,10 +15,10 @@
     {
         private readonly IUsersServices hitmen;
 
-        public HitmenController()
-            : this(new UsersServices(new EfGenericRepository<User>(new ErisSystemContext())))
-        {
-        }
+        //public HitmenController()
+        //    : this(new UsersServices(new EfGenericRepository<User>(new ErisSystemContext())))
+        //{
+        //}
 
         public HitmenController(IUsersServices hitmenServices)
         {

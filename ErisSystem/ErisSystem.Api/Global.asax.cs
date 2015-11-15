@@ -13,7 +13,7 @@
 
             var modelFactory = new ResponseModelFactory();
 
-            modelFactory.MapBothWays<Client, ClientResponseModel>();
+            //modelFactory.MapBothWays<Client, ClientResponseModel>();
             modelFactory.MapBothWays<Contract, ContractResponseModel>();
             modelFactory.MapBothWays<Country, CountryResponseModel>();
             modelFactory.MapBothWays<UserRating, HitmanRatingResponseModel>();

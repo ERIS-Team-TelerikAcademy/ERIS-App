@@ -19,7 +19,7 @@
             this.hitmen = hitmen;
         }
 
-        public int Add(string nickName, string aboutMe, bool gender, bool isWorking, string password, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
+        public int Add(string nickName, string aboutMe, bool gender, string password, bool isWorking = false, ICollection < Image> images = null, ICollection<Country> countriesOfOperation = null)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
             var isValidAboutMe = Validator.ValidateStringLenght(0, 250, aboutMe);

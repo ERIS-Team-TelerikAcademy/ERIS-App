@@ -52,14 +52,14 @@
             }
         }
 
-        public MessageCollection ReceveAll()
-        {
-            var queueInfo = this.currentQueue.Info();
-            var msgCount = queueInfo.TotalMessages;
-            var msges = this.currentQueue.Reserve(msgCount, new TimeSpan(0, 0, 30));
+        //public MessageCollection ReceveAll()
+        //{
+        //    var queueInfo = this.currentQueue.Info();
+        //    var msgCount = queueInfo.TotalMessages;
+        //    var msges = this.currentQueue.Reserve(msgCount, new TimeSpan(0, 0, 30));
 
-            return msges;
-        }
+        //    return msges;
+        //}
 
         public void SwitchRoom(string roomName) // if queue name isnt in server it autocreates it
         {
