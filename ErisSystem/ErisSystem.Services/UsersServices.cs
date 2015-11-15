@@ -1,22 +1,20 @@
 ﻿namespace ErisSystem.Services
 {
     using System;
-    using System.Collections;
     using System.Linq;
     using System.Collections.Generic;
 
     using Models;
-    using Models.Enumerators;
-    using ErisSystem.Services.Contracts;
+    using Contracts;
     using Data;
 
     public class UsersServices : IUsersServices
     {
-        private readonly IRepository<User> hitmen;
+        private readonly IRepository<User> user;
 
-        public UsersServices(IRepository<User> hitmen)
+        public UsersServices(IRepository<User> user)
         {
-            this.hitmen = hitmen;
+            this.user = user;
         }
 
         public int Add(string nickName, string aboutMe, bool gender, string password, bool isWorking = false, ICollection < Image> images = null, ICollection<Country> countriesOfOperation = null)
@@ -45,26 +43,26 @@
                 RegistrationDate = DateTime.Now
             };
 
-            this.hitmen.Add(hitman);
-            return this.hitmen.SaveChanges();
+            this.user.Add(hitman);
+            return this.user.SaveChanges();
         }
 
         public void Delete(User hitman)
         {
-            this.hitmen.Delete(hitman);
-            this.hitmen.SaveChanges();
+            this.user.Delete(hitman);
+            this.user.SaveChanges();
         }
 
         public IQueryable<User> GetAll()
         {
-            var result = this.hitmen.All();
+            var result = this.user.All();
 
             return result;
         }
 
         public User GetById(int id)
         {
-            var result = this.hitmen.GetById(id);
+            var result = this.user.GetById(id);
 
             return result;
         }

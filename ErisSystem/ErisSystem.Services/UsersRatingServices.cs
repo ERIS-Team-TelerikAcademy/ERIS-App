@@ -1,9 +1,8 @@
 ﻿namespace ErisSystem.Services
 {
-    using System;
     using System.Linq;
     using Models;
-    using ErisSystem.Services.Contracts;
+    using Contracts;
     using Data;
 
     public class UsersRatingServices : IUsersRatingsService
@@ -15,12 +14,12 @@
             this.userRating = hitmenRating;
         }
 
-        public int Add(int ratingScore, User hitman, User client)
+        public int Add(int ratingScore, int hitmanId, int clientId)
         {
             var rating = new UserRating();
             rating.Rating = ratingScore;
-            rating.Hitman = hitman;
-            rating.Client = client;
+            rating.HitmanId = hitmanId;
+            rating.ClientId = clientId;
 
             this.userRating.Add(rating);
 
