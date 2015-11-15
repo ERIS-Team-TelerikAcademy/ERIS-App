@@ -84,11 +84,13 @@
         public int UpdateConnectionStatus(int id, ConnectionStatus connectionStatus)
         {
             var contract = this.contracts.GetById(id);
-            if (contract != null)
+            if (contract == null)
             {
-                contract.Status = connectionStatus;
-                this.contracts.Update(contract);
+                return -1;
             }
+
+            contract.Status = connectionStatus;
+            this.contracts.Update(contract);
 
             return this.contracts.SaveChanges();
         }
@@ -96,11 +98,14 @@
         public int UpdateHitStatus(int id, HitStatus hitStatus)
         {
             var contract = this.contracts.GetById(id);
-            if (contract != null)
+
+            if (contract == null)
             {
-                contract.HitStatus = hitStatus;
-                this.contracts.Update(contract);
+                return -1;
             }
+
+            contract.HitStatus = hitStatus;
+            this.contracts.Update(contract);
 
             return this.contracts.SaveChanges();
         }

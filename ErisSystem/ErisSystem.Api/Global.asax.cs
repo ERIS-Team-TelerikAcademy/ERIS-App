@@ -18,7 +18,7 @@
             modelFactory.MapBothWays<Country, CountryResponseModel>();
             modelFactory.MapBothWays<UserRating, HitmanRatingResponseModel>();
             modelFactory.MapBothWays<Image, ImageResponseModel>();
-            modelFactory.MapBothWays<User, HitmanResponseModel>();
+            modelFactory.MapBothWays<User, UserResponseModel>();
         }
     }
 }

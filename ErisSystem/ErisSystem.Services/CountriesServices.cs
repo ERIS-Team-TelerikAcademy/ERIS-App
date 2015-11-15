@@ -1,10 +1,9 @@
 ﻿namespace ErisSystem.Services
 {
-    using System;
     using System.Linq;
 
     using Models;
-    using ErisSystem.Services.Contracts;
+    using Contracts;
     using Data;
 
     public class CountriesServices : ICountriesService
