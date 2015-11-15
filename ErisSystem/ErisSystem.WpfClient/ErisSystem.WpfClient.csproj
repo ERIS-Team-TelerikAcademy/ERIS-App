@@ -41,28 +41,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="IronSharp.Core, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iron.IronCore.1.0.6\lib\IronSharp.Core.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronMqLibs\Iron.IronCore.1.0.6\lib\IronSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="IronSharp.IronCache, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iron.IronCache.1.0.3\lib\IronSharp.IronCache.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronMqLibs\Iron.IronCache.1.0.3\lib\IronSharp.IronCache.dll</HintPath>
     </Reference>
     <Reference Include="IronSharp.IronMQ, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iron.IronMQ.1.0.6\lib\IronSharp.IronMQ.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronMqLibs\Iron.IronMQ.1.0.6\lib\IronSharp.IronMQ.dll</HintPath>
     </Reference>
     <Reference Include="IronSharp.IronWorker, Version=2013.11.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iron.IronWorker.1.0.3\lib\IronSharp.IronWorker.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IronMqLibs\Iron.IronWorker.1.0.3\lib\IronSharp.IronWorker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
