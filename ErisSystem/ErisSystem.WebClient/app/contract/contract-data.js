@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('contractData', ['$http', '$q', 'data'
+app.factory('contractData', ['$http', '$q', 'data',
 function($http, $q, data){
 var baseUrl = 'api/Contracts/'
         var contractData = {};

@@ -18,6 +18,11 @@ app.config(function ($routeProvider) {
     templateUrl: "views/login.html"
   });
 
+  $routeProvider.when("/contract", {
+    controller: "contractController",
+    templateUrl: "contract/contract-view.html"
+  });
+
   $routeProvider.otherwise({ redirectTo: "/home" });
 });
 
