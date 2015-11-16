@@ -31,7 +31,7 @@
         {
             var currentUser = this.users
                     .All()
-                    .FirstOrDefault(u => u.Id == forUserId);
+                    .FirstOrDefault(u => u.Id == forUserId.ToString());
 
             if (currentUser == null)
             {
@@ -41,12 +41,12 @@
             // Change to Nickname to UserName when integrated with built-in auth
             var image = new Image()
             {
-                Name = currentUser.Nickname,
+                Name = currentUser.UserName,
                 Extension = extension,
                 UserId = forUserId
             };
 
-            await UploadImageForUser(currentUser.Nickname, imageData, extension);
+            await UploadImageForUser(currentUser.UserName, imageData, extension);
 
             this.images.Add(image);
             this.images.SaveChanges();

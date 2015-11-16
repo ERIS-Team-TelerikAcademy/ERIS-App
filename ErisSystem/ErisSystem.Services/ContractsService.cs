@@ -26,11 +26,11 @@
         {
             var hitmanFromDb = this.users
                 .All()
-                .Where(x => x.Id == hitmanId)
+                .Where(x => x.Id == hitmanId.ToString())
                 .FirstOrDefault();
             var client = this.users
                 .All()
-                .Where(x => x.Id == clientId)
+                .Where(x => x.Id == clientId.ToString())
                 .FirstOrDefault();
             if (hitmanFromDb == null)
             {

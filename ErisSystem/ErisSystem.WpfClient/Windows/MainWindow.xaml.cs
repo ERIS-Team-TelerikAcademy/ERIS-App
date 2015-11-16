@@ -11,7 +11,6 @@
         public MainWindow()
         {         
             InitializeComponent();
-            Loaded += new RoutedEventHandler(MainWindow_Loaded);
         }
 
         private void OnRegisterButtonClick(object sender, RoutedEventArgs e)
@@ -21,6 +20,7 @@
 
         private void OnLoginButtonClick(object sender, RoutedEventArgs e)
         {
+            //Rest api consumption goes here
             if (true)
             {
                 var chatWindow = new ChatWindow(this.UserName.Text);
@@ -32,15 +32,6 @@
                 var messageBox = new CustomMessageBox("Invalid user name or password");
                 messageBox.ShowDialog();
             }
-        }
-
-        void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            Style _style = null;
-
-                _style = (Style)Resources["GadgetStyle"];
-       
-            this.Style = _style;
         }
     }
 }

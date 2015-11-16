@@ -33,12 +33,12 @@
 
             var hitman = new User
             {
-                Nickname = nickName,
+                UserName = nickName,
                 AboutMe = aboutMe,
                 Gender = gender,
                 IsWorking = isWorking,
                 Images = images,
-                Password = password,
+
                 CountriesOfOperation = countriesOfOperation,
                 RegistrationDate = DateTime.Now
             };

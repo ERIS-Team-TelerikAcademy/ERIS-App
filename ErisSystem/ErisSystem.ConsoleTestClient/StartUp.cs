@@ -26,9 +26,11 @@
 
             var hitman = new User();
             hitman.AboutMe = "Thug life";
-            hitman.Nickname = "Bono";
-            hitman.Password = "ASFADSFDEFE@#@$@$@ASDFAS";
+            hitman.UserName = "JAJAJ";
+            //hitman.Password = "asdasd10123";
+            hitman.PasswordHash = "asdasdasdasdasdasdasdasdasdasdasdasd";
             hitman.DateOfBirth = date;
+
             hitman.CountriesOfOperation.Add(country);
            
 
@@ -42,18 +44,18 @@
 
             foreach (var x in hitmen)
             {
-                Console.WriteLine(x.Nickname);
+                Console.WriteLine(x.UserName);
                 Console.WriteLine(x.Gender);
                 Console.WriteLine(x.AboutMe);
                 Console.WriteLine(x.DateOfBirth);
             }
 
-            var ratingOfHitman = db.HitmanRatings.Where(x => x.HitmanId == hitman.Id).ToList();
+            //var ratingOfHitman = db.HitmanRatings.Where(x => x.HitmanId == hitman.Id).ToList();
 
-            foreach (var rate in ratingOfHitman)
-            {
-                Console.WriteLine(rate.Rating);
-            }
+            //foreach (var rate in ratingOfHitman)
+            //{
+            //    Console.WriteLine(rate.Rating);
+            //}
         }
     }
 }
