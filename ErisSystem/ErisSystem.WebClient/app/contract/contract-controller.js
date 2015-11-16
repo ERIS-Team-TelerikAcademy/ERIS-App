@@ -1,4 +1,4 @@
 'use strict';
-app.controller('contractController', ['$scope', function ($scope) {
+app.controller('contractController', ['$scope', 'contractData', function ($scope, contractData) {
 
 }]);
