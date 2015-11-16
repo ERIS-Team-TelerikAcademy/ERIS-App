@@ -9,64 +9,13 @@
     <link href="contents/css/app.css" rel="stylesheet"/>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-                 data-ng-controller="indexController">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#/">Home</a>
-                    </div>
-                    <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li data-ng-hide="!authentication.isAuth">
-                                <a href="#">Welcome {{authentication.userName}}</a></li>
-                            <li data-ng-hide="!authentication.isAuth">
-                                <a href="#/pesho">some auth controller </a></li>
-                            <li data-ng-hide="!authentication.isAuth">
-                                <a href="" data-ng-click="logOut()">Logout</a></li>
-                            <li data-ng-hide="authentication.isAuth">
-                                <a href="#/login">Login</a></li>
-                            <li data-ng-hide="authentication.isAuth">
-                                <a href="#/signup">Sign Up</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-<div class="jumbotron">
-    <div class="container">
-        <div class="page-header text-center">
-            <h1></h1>
-        </div>
-    </div>
-</div>
+<div nav-bar></div>
 <div class="container">
     <div data-ng-view="">
     </div>
 </div>
 <hr/>
-<div id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <p class="text-muted">Created by: ERIS Team
-            </div>
-            <div class="col-md-6">
-            </div>
-        </div>
-    </div>
-</div>
+<div footer></div>
 <!-- 3rd party libraries -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
@@ -77,12 +26,20 @@
 <!-- Load app main script -->
 <script src="app.js"></script>
 <!-- Load services -->
-<script src="services/authService.js"></script>
-<script src="services/authInterceptorService.js"></script>
+<script src="identity/auth-data.js"></script>
+<script src="identity/authInterceptorService.js"></script>
+<script src="common/base-data.js"></script>
+<script src="contract-page/contract-data.js"></script>
+<script src="images-page/image-data.js"></script>
+<!--Load Directives-->
+<script src="common/nav-bar-directive.js"></script>
+<script src="common/footer-directive.js"></script>
 <!-- Load controllers -->
-<script src="controllers/indexController.js"></script>
-<script src="controllers/homeController.js"></script>
-<script src="controllers/signupController.js"></script>
-<script src="controllers/loginController.js"></script>
+<script src="home-page/home-controller.js"></script>
+<script src="identity/signup-controller.js"></script>
+<script src="identity/login-controller.js"></script>
+<script src="controllers/index-controller.js"></script>
+<script src="contract-page/contract-controller.js"></script>
+<script src="images-page/image-controller.js"></script>
 </body>
 </html>

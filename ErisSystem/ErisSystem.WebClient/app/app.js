@@ -3,28 +3,38 @@ var app = angular.module('ErisSystemApp',
 
 app.config(function ($routeProvider) {
 
-  $routeProvider.when("/home", {
-    controller: "homeController",
-    templateUrl: "views/home.html"
-  });
+    $routeProvider.when("/home-page", {
+        controller: "homeController",
+        templateUrl: "home-page/home.html"
+    });
 
-  $routeProvider.when("/signup", {
-    controller: "signupController",
-    templateUrl: "views/signup.html"
-  });
+    $routeProvider.when("/signup", {
+        controller: "signupController",
+        templateUrl: "identity/signup.html"
+    });
 
-  $routeProvider.when("/login", {
-    controller: "loginController",
-    templateUrl: "views/login.html"
-  });
+    $routeProvider.when("/login", {
+        controller: "loginController",
+        templateUrl: "identity/login.html"
+    });
 
-  $routeProvider.otherwise({ redirectTo: "/home" });
+    $routeProvider.when("/contract-page", {
+        controller: "contractController",
+        templateUrl: "contract-page/contract-view.html"
+    });
+
+    $routeProvider.when("/image", {
+        controller: "imageController",
+        templateUrl: "images-page/image-view.html"
+    });
+
+    $routeProvider.otherwise({redirectTo: "/home-page"});
 });
 
 app.config(function ($httpProvider) {
-  $httpProvider.interceptors.push('authInterceptorService');
+    $httpProvider.interceptors.push('authInterceptorService');
 });
 
-app.run(['authService', function (authService) {
-  authService.fillAuthData();
+app.run(['authData', function (authService) {
+    authService.fillAuthData();
 }]);
