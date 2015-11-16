@@ -1,6 +1,6 @@
 'use strict';
-app.controller('loginController', ['$scope', '$location', 'authService',
-    function ($scope, $location, authService) {
+app.controller('loginController', ['$scope', '$location', 'authData',
+    function ($scope, $location, authData) {
 
         $scope.loginData = {
             userName: "",
@@ -10,8 +10,8 @@ app.controller('loginController', ['$scope', '$location', 'authService',
         $scope.message = "";
 
         $scope.login = function () {
-            authService.login($scope.loginData).then(function (response) {
-                    $location.path('/home');
+            authData.login($scope.loginData).then(function (response) {
+                    $location.path('/home-page');
                 },
                 function (err) {
                     $scope.message = err.error_description;
