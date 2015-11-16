@@ -14,21 +14,23 @@ namespace ErisSystem.Api.App_Start
     using Data;
     using Data.Repositories;
     using Common.Constants;
+    using Services;
+    using Services.Contracts;
 
-    public static class NinjectConfig 
+    public static class NinjectConfig
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -36,7 +38,7 @@ namespace ErisSystem.Api.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -72,9 +74,12 @@ namespace ErisSystem.Api.App_Start
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
 
-            kernel.Bind(b => b.From(Assemblies.DataServices)
-            .SelectAllClasses()
-            .BindDefaultInterface());
-        }        
+            kernel.Bind(x =>
+            {
+                x.From(Assemblies.DataServices)
+                 .SelectAllClasses()
+                 .BindSingleInterface();
+            });
+        }
     }
 }

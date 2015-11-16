@@ -5,11 +5,11 @@
     using Contracts;
     using Data;
 
-    public class UsersRatingServices : IUsersRatingsService
+    public class UsersRatingService : IUsersRatingsService
     {
         private readonly IRepository<UserRating> userRating;
 
-        public UsersRatingServices(IRepository<UserRating> hitmenRating)
+        public UsersRatingService(IRepository<UserRating> hitmenRating)
         {
             this.userRating = hitmenRating;
         }

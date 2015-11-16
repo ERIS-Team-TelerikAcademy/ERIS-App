@@ -7,7 +7,7 @@
     using ErisSystem.Models;
     using Models.Enumerators;
 
-    public interface IUsersServices
+    public interface IUsersService
     {
         IQueryable<User> GetAll();
 

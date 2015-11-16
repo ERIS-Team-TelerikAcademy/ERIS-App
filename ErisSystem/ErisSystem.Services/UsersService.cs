@@ -8,11 +8,11 @@
     using Contracts;
     using Data;
 
-    public class UsersServices : IUsersServices
+    public class UsersService : IUsersService
     {
         private readonly IRepository<User> user;
 
-        public UsersServices(IRepository<User> user)
+        public UsersService(IRepository<User> user)
         {
             this.user = user;
         }

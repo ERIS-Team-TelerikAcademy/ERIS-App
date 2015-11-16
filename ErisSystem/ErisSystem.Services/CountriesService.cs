@@ -6,11 +6,11 @@
     using Contracts;
     using Data;
 
-    public class CountriesServices : ICountriesService
+    public class CountriesService : ICountriesService
     {
         private readonly IRepository<Country> countries;
 
-        public CountriesServices(IRepository<Country> countries)
+        public CountriesService(IRepository<Country> countries)
         {
             this.countries = countries;
         }
