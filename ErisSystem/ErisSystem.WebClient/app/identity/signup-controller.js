@@ -1,6 +1,6 @@
 'use strict';
 app.controller('signupController', ['$scope', '$location',
-    '$timeout', 'authService', function ($scope, $location, $timeout, authService) {
+    '$timeout', 'authData', function ($scope, $location, $timeout, authData) {
 
         $scope.savedSuccessfully = false;
         $scope.message = "";
@@ -13,13 +13,12 @@ app.controller('signupController', ['$scope', '$location',
 
         $scope.signUp = function () {
 
-            authService.saveRegistration($scope.registration).then(function (response) {
-
+            authData.saveRegistration($scope.registration)
+                .then(function (response) {
                     $scope.savedSuccessfully = true;
                     $scope.message = 'User has been registered successfully,' +
                         'you will be redirected to login page in 2 seconds.';
                     startTimer();
-
                 },
                 function (response) {
                     var errors = [];

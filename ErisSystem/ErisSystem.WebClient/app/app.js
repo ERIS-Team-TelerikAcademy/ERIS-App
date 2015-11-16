@@ -3,38 +3,38 @@ var app = angular.module('ErisSystemApp',
 
 app.config(function ($routeProvider) {
 
-    $routeProvider.when("/home", {
+    $routeProvider.when("/home-page", {
         controller: "homeController",
-        templateUrl: "views/home.html"
+        templateUrl: "home-page/home.html"
     });
 
     $routeProvider.when("/signup", {
         controller: "signupController",
-        templateUrl: "views/signup.html"
+        templateUrl: "identity/signup.html"
     });
 
     $routeProvider.when("/login", {
         controller: "loginController",
-        templateUrl: "views/login.html"
+        templateUrl: "identity/login.html"
     });
 
-    $routeProvider.when("/contract", {
+    $routeProvider.when("/contract-page", {
         controller: "contractController",
-        templateUrl: "contract/contract-view.html"
+        templateUrl: "contract-page/contract-view.html"
     });
 
     $routeProvider.when("/image", {
         controller: "imageController",
-        templateUrl: "images/image-view.html"
+        templateUrl: "images-page/image-view.html"
     });
 
-    $routeProvider.otherwise({redirectTo: "/home"});
+    $routeProvider.otherwise({redirectTo: "/home-page"});
 });
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
 
-app.run(['authService', function (authService) {
+app.run(['authData', function (authService) {
     authService.fillAuthData();
 }]);

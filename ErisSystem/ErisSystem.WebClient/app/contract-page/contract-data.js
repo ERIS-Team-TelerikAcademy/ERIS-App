@@ -14,7 +14,7 @@ app.factory('contractData', ['$http', '$q', 'data',
         }
 
         function createContract(postData) {
-            return data.post(baseUrl + 'new-contract', postData);
+            return data.post(baseUrl + 'new-contract-page', postData);
         }
 
         //TODO: http put
