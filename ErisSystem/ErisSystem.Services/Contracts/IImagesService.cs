@@ -6,8 +6,10 @@
 
     public interface IImagesService
     {
-        Task<int> Add(byte[] imageData, string extension, int forUserId);
+        Task<int> Add(byte[] imageData, string extension, int userId);
 
         IQueryable<Image> GetAll();
+
+        Task<byte[]> GetUserImage(int userId);
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ImageResponseModel
     {
-        public byte[] Data { get; set; }
+        public string Data { get; set; }
 
         public string Extension { get; set; }
 
