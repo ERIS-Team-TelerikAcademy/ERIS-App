@@ -1,0 +1,19 @@
+﻿using ErisSystem.Data;
+using ErisSystem.Data.Migrations;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+
+namespace ErisSystem.Api
+{
+    public static class DatabaseConfig
+    {
+        public static void Initialize()
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, EfConfiguration>());
+            ErisSystemContext.Create().Database.Initialize(true);
+        }
+    }
+}

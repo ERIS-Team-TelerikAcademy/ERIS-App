@@ -9,7 +9,7 @@
     public class ErisSystemContext : DbContext, IErisSystemContext
     {
         public ErisSystemContext()
-            :base("name=ErisSystemContext")
+            :base("ErisSystemContext")
         {
 
         }
@@ -23,6 +23,11 @@
         public IDbSet<Image> Images { get; set; }
 
         public IDbSet<UserRating> HitmanRatings { get; set; }
+
+        public static ErisSystemContext Create()
+        {
+            return new ErisSystemContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -9,6 +9,7 @@
     {
         protected void Application_Start()
         {
+            DatabaseConfig.Initialize();
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
             var modelFactory = new ResponseModelFactory();

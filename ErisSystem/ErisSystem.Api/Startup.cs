@@ -16,8 +16,6 @@ namespace ErisSystem.Api
     {
         public void Configuration(IAppBuilder app)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, EfConfiguration>());
-
             ConfigureAuth(app);
         }
     }
