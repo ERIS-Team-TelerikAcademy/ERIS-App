@@ -327,14 +327,22 @@
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        public async Task<IHttpActionResult> Register(RegisterBindingModel model)   
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new User() { UserName = model.Email, Email = model.Email };
+            var user = new User()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                DateOfBirth = model.DateOfBirth,
+                Gender = model.Gender,
+                AboutMe = model.AboutMe,
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
