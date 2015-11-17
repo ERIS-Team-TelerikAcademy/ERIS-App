@@ -38,7 +38,7 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
                     $http.get(serviceBase + 'api/hitmen/' + loginData.userName)
                         .success(function (userResponse) {
                             localStorageService.set('authorizationData',
-                                {token: response.access_token, userName: loginData.userName, userId : userResponse.Id});
+                                {token: response.access_token, userName: loginData.userName, userId: userResponse.Id});
 
                             authentication.isAuth = true;
                             authentication.userName = loginData.userName;
@@ -63,7 +63,8 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
             localStorageService.remove('authorizationData');
 
             authentication.isAuth = false;
-            authentication.userName = "";
+            authentication.userName = '';
+            authentication.userId = '';
         };
 
         var fillAuthData = function () {
@@ -72,6 +73,7 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
             if (authData) {
                 authentication.isAuth = true;
                 authentication.userName = authData.userName;
+                authentication.userId = authData.userId;
             }
         };
 

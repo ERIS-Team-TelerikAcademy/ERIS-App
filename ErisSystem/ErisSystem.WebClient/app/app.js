@@ -1,5 +1,5 @@
 var app = angular.module('ErisSystemApp',
-    ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+    ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'naif.base64']);
 
 app.config(function ($routeProvider) {
 
