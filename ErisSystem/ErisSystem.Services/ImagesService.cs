@@ -14,7 +14,8 @@
 
     public class ImagesService : IImagesService
     {
-        private const string DropboxImageLocationPathFormat = "/images/{0}.{1}";
+        private const string DropboxImagesFolderName = "/images";
+        private const string DropboxAuthKey = "11KXkFS93BAAAAAAAAAAB9G5M6Yq6AHEsIHUjL8MJF5w_oaph2IbtlJu4VzgIyTH";
 
         private readonly IRepository<Image> images;
         private readonly IRepository<User> users;
@@ -27,23 +28,22 @@
             this.dropboxClient = dropboxClient;
         }
 
-        public async Task<int> Add(byte[] imageData, string extension, string forUserId)
+        public async Task<int> Add(byte[] imageData, string extension, string userId)
         {
             var currentUser = this.users
                     .All()
-                    .FirstOrDefault(u => u.Id == forUserId.ToString());
+                    .FirstOrDefault(u => u.Id == userId);
 
             if (currentUser == null)
             {
                 throw new ArgumentException("Invalid user!");
             }
 
-            // Change to Nickname to UserName when integrated with built-in auth
             var image = new Image()
             {
                 Name = currentUser.UserName,
                 Extension = extension,
-                UserId = forUserId
+                UserId = userId
             };
 
             await UploadImageForUser(currentUser.UserName, imageData, extension);
@@ -59,20 +59,42 @@
             return this.images.All();
         }
 
+        public async Task<byte[]> GetUserImage(string userId)
+        {
+            var currentUser = this.users
+                    .All()
+                    .FirstOrDefault(u => u.Id == userId);
+
+            if (currentUser == null)
+            {
+                throw new ArgumentException("Invalid user!");
+            }
+
+            return await DownloadImageForUser(currentUser.UserName);
+        }
+
         private async Task UploadImageForUser(string username, byte[] image, string extension)
         {
             using (MemoryStream memStream = new MemoryStream(image))
             {
                 await this.dropboxClient.Files.UploadAsync(
-                    string.Format(DropboxImageLocationPathFormat, username, extension),
+                    string.Format("{0}/{1}.{2}", DropboxImagesFolderName, username, extension),
                     WriteMode.Overwrite.Instance,
                     body: memStream);
             }
         }
 
-        public Task<byte[]> GetUserImage(string userId)
+        private async Task<byte[]> DownloadImageForUser(string username)
         {
-            throw new NotImplementedException();
+            var fileList = await this.dropboxClient.Files.ListFolderAsync(DropboxImagesFolderName);
+            var fileItem = fileList.Entries.Where(i => i.IsFile &&
+                                i.Name.Substring(0, i.Name.LastIndexOf('.')) == username)
+                                .SingleOrDefault();
+
+            using (var response = await this.dropboxClient.Files.DownloadAsync(string.Format("{0}/{1}", DropboxImagesFolderName, fileItem.Name)))
+            {
+                return await response.GetContentAsByteArrayAsync();
+            }
         }
     }
 }
