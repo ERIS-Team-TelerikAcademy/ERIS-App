@@ -35,7 +35,7 @@ TODO
   - Services
 - Ivaylo Rankov ([GitHub](https://github.com/Ivorankov), [TelerikAcademy](http://telerikacademy.com/Users/ivo.rankov.7))
   - WPF client
-  - Datebase
+  - Database
   - Web API user management
   - Services
 - Stella Valcheva ([GitHub](https://github.com/stellaval), [TelerikAcademy](http://telerikacademy.com/Users/stellaval))
