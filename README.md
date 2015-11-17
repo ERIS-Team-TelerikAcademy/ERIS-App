@@ -28,10 +28,15 @@ TODO
 - Boris Stoyanov ([GitHub](https://github.com/TemplarRei), [TelerikAcademy](http://telerikacademy.com/Users/borisstoyanovv))
   - Web API controllers
   - Automapper integration
+  - Services
 - Ivaylo Arnaudov ([GitHub](https://github.com/arnaudoff), [TelerikAcademy](http://telerikacademy.com/Users/ivaylo.arnaudov))
   - Cloud storage (a service and controller for uploading and downloading Dropbox images)
+  - Services
 - Ivaylo Rankov ([GitHub](https://github.com/Ivorankov), [TelerikAcademy](http://telerikacademy.com/Users/ivo.rankov.7))
   - WPF client
+  - Datebase
+  - Web API user management
+  - Services
 - Stella Valcheva ([GitHub](https://github.com/stellaval), [TelerikAcademy](http://telerikacademy.com/Users/stellaval))
   - Azure deployment
   - Ninject integration
