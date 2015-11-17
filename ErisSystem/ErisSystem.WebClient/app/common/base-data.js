@@ -8,12 +8,12 @@ app.factory('data', ['$http', '$q',
         var data = {};
 
         function get(url, options) {
-            var headers = options.headers || header;
+         //   var headers = options.headers || header;
             var deferred = $q.defer();
 
             var URL = serverPath + url;
 
-            $http.get(URL, headers)
+            $http.get(URL, header)
                 .success(function (data) {
                     deferred.resolve(data);
                 })
@@ -27,9 +27,9 @@ app.factory('data', ['$http', '$q',
         function getOdata(url, options) {
             var deferred = $q.defer();
             var URL = odataServerPath + url;
-            var headers = options.headers || header;
+          //  var headers = options.headers || header;
 
-            $http.get(URL, headers)
+            $http.get(URL, header)
                 .success(function (data) {
                     deferred.resolve(data);
                 })
@@ -43,10 +43,10 @@ app.factory('data', ['$http', '$q',
         function post(url, data, options) {
             var deferred = $q.defer();
 
-            var URL = appSettings.serverPath + url;
-            var headers = options.headers || header;
+            var URL = serverPath + url;
+          //  var headers = options.headers || header;
 
-            $http.post(URL, data, headers)
+            $http.post(URL, data, header)
                 .success(function (data) {
                     deferred.resolve(data);
                 })

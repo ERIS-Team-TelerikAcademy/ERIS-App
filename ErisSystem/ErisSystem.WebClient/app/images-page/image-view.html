@@ -1,1 +1,22 @@
-<h1>Images</h1>
+<form name="form">
+    <h3>Upload Image</h3>
+
+    <div class="input-group">
+        <label for="file">Select File</label>
+        <input type="file" ng-model="file" name="file" base-sixty-four-input required maxsize="500" accept="image/*">
+    </div>
+    <button class="btn btn-lg btn-info btn-block"
+            type="submit" data-ng-click="uploadFiles()">Submit</button>
+</form>
+<div>
+    <img data-ng-src="data:{{file.filetype}};base64,{{file.base64}}" data-err-src="images/png/avatar.png"/>
+</div>
+<div>
+    <button class="btn btn-sm btn-warning "
+            type="submit" data-ng-click="getMyImages()">My Images</button>
+    <button class="btn btn-sm btn-danger"
+            type="submit" data-ng-click="getImages()">all Images</button>
+</div>
+<div ng-repeat="image in data">
+    <img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>
+</div>
