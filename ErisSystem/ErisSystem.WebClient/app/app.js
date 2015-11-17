@@ -1,5 +1,5 @@
 var app = angular.module('ErisSystemApp',
-    ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+    ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'naif.base64']);
 
 app.config(function ($routeProvider) {
 
@@ -37,5 +37,4 @@ app.config(function ($httpProvider) {
 
 app.run(['authData', function (authData) {
     authData.fillAuthData();
-    console.log(authData);
 }]);
