@@ -1,42 +1,39 @@
 # ERIS-App
-A Telerik Academy team proejct
+Teamwork project for the course "Web services & cloud" 2015 @ TelerikAcademy.
 
-Description: 
-It's a social network for "special" services. The webpage will offer two types of users: Hitman and Client.
+## Description 
+The idea behind our application is to server as a social network for "special" services. The network has two types of user: a hitman or a client.
 
-Hitmen offer theyr services to clients via Contract (Client chooses a hitman and sends a contract offer).
+- Hitmen offer their services to clients via *contracts*.
+- Client chooses a hitman and sends a contract offer.
+- Once the hitman approves the contract the additional information is discussed in chat.
+- When the contract is successful (or not), the client will be given the opportunity to rate the respective hitman.
 
-Once the hitman approves the contract the additional information is discussed in chat.
+## Documentation
 
-There is a wpf application that will serve for chatting (and maybe we'll integrate the chat in the website as well).
+### Endpoints table
 
-When the contract is successfull(or not) the client will be given the ability to rate the hitman.
+| Endpoint   | Location                                | Method | Parameters                                                   | Explanation                                                                         | Response format |
+|------------|-----------------------------------------|--------|--------------------------------------------------------------|-------------------------------------------------------------------------------------|-----------------|
+| api/Images | http://{url}:{port}/api/Images          | GET    | –                                                            | Returns a list of images with an id for the respective user.                        | XML/JSON        |
+| api/Images | http://{url}:{port}/api/Images/{userId} | GET    | `userId` - the id of the user whose image is to be retrieved | Returns a base64-encoded string which is the image for the   user with id `userId`. | XML/JSON        |
+| api/Images | http://{url}:{port}/api/Images/{userId} | POST   | `userId` - the id of the user whose image is to be uploaded  | Saves an `ImageResponseModel` object to Dropbox, linking it to   SQL server.          | XML/JSON        |
 
-Also the hitman profile will offer a greater functionallity then the Client -> will have gallery of picures and whatever more we can think of.
+### Class diagrams
 
+TODO
 
-Requirements for the RESTful API
+### Participants
 
-1.Use **ASP.NET WebAPI**
-2.Provide a RESTful API: CRUD operations: **POST, GET, PUT and DELETE**
-3.Use **Azure**
-4.Use a file storage cloud API: Dropbox, Google Drive
-5.Use a cloud-based database: **MS SQL**
-6.Implement notifications functionality or message queues: PubNub
-7.Add Unit and/or integration tests
-
-Requirements for the client application
-
-*Web SPA application using JavaScript
-*Windows desktop application using WPF, Windows Forms or the console
-
-Additional Requirements
-
-  Follow the best practices for OO design and High-quality code
-  Use a GitHub for source control system
-  
-Deliverables
-  ZIP archive: source code, documentation
-  
-Demonstrate:
-  The application, class diagram, source code, commits
+- Boris Stoyanov ([GitHub](https://github.com/TemplarRei), [TelerikAcademy](http://telerikacademy.com/Users/borisstoyanovv))
+  - Web API controllers
+  - Automapper integration
+- Ivaylo Arnaudov ([GitHub](https://github.com/arnaudoff), [TelerikAcademy](http://telerikacademy.com/Users/ivaylo.arnaudov))
+  - Cloud storage (a service and controller for uploading and downloading Dropbox images)
+- Ivaylo Rankov ([GitHub](https://github.com/Ivorankov), [TelerikAcademy](http://telerikacademy.com/Users/ivo.rankov.7))
+  - WPF client
+- Stella Valcheva ([GitHub](https://github.com/stellaval), [TelerikAcademy](http://telerikacademy.com/Users/stellaval))
+  - Azure deployment
+  - Ninject integration
+- Toma Nikolov ([GitHub](https://github.com/TomaNikolov), [TelerikAcademy](http://telerikacademy.com/Users/tomasaa))
+  - JavaScript web client
