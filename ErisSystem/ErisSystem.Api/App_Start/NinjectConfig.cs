@@ -16,6 +16,7 @@ namespace ErisSystem.Api.App_Start
     using Common.Constants;
     using Services;
     using Services.Contracts;
+    using Dropbox.Api;
 
     public static class NinjectConfig
     {
@@ -73,13 +74,16 @@ namespace ErisSystem.Api.App_Start
                 .InRequestScope();
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
-
             kernel.Bind(x =>
             {
                 x.From(Assemblies.DataServices)
                  .SelectAllClasses()
                  .BindSingleInterface();
             });
+
+            kernel
+                .Bind<DropboxClient>()
+                .ToMethod(x => new DropboxClient(GlobalConstants.DropboxAuthKey));
         }
     }
 }
