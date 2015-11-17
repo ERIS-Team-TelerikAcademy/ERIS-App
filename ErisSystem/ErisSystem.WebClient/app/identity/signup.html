@@ -8,7 +8,7 @@
            placeholder="Password" data-ng-model="registration.password" required>
     <input type="password" class="form-control"
            placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
-    <button class="btn btn-lg btn-info btn-block"
+    <button class="btn btn-lg btn-danger btn-block"
             type="submit" data-ng-click="signUp()">Submit</button>
     <div data-ng-hide="message == ''"
          data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
