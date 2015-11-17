@@ -5,7 +5,7 @@ app.factory('imageData', ['$http', '$q', 'data',
         var imageData = {};
 
         function getAll() {
-            return data.get(baseUrl + 'all');
+            return data.get(baseUrl);
         }
 
         function getById(id) {

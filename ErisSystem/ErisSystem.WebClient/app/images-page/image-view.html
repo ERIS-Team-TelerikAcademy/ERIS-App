@@ -1,46 +1,22 @@
 <form name="form">
-    <h3>Single File Selection</h3>
+    <h3>Upload Image</h3>
 
     <div class="input-group">
         <label for="file">Select File</label>
         <input type="file" ng-model="file" name="file" base-sixty-four-input required maxsize="500" accept="image/*">
-        <span class="help-block">
-          <ul>
-              <li>required</li>
-              <li>maxsize = 500</li>
-              <li>accept = image/*</li>
-          </ul>
-        </span>
     </div>
-    <div class="alert" ng-class="{'alert-danger': form.file.$invalid, 'alert-success': form.file.$valid}">
-        form.file.$error: {{form.file.$error}}<br>
-        form.file.$dirty: {{form.file.$dirty}}<br>
-        form.file.$pristine: {{form.file.$pristine}}<br>
-    </div>
-    <b>Model Value:</b>
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>filename</th>
-            <th>filetype</th>
-            <th>filesize (<i>
-                <small>KB</small>
-            </i>)
-            </th>
-            <th>base64</th>
-        </tr>
-        <tr ng-show="file">
-            <td>{{file.filename}}</td>
-            <td>{{file.filetype}}</td>
-            <td>{{file.filesize / 1000}}</td>
-            <td>{{file.base64.substring(0, 30)}}...</td>
-        </tr>
-        <tr>
-            <td colspan="4" ng-show="!file">
-                <small><i>No file selected.</i></small>
-            </td>
-        </tr>
-    </table>
-
     <button class="btn btn-lg btn-info btn-block"
             type="submit" data-ng-click="uploadFiles()">Submit</button>
 </form>
+<div>
+    <img data-ng-src="data:{{file.filetype}};base64,{{file.base64}}" data-err-src="images/png/avatar.png"/>
+</div>
+<div>
+    <button class="btn btn-sm btn-warning "
+            type="submit" data-ng-click="getMyImages()">My Images</button>
+    <button class="btn btn-sm btn-danger"
+            type="submit" data-ng-click="getImages()">all Images</button>
+</div>
+<div ng-repeat="image in data">
+    <img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>
+</div>

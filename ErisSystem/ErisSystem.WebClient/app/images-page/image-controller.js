@@ -1,6 +1,7 @@
 'use strict';
 app.controller('imageController', ['$scope', 'imageData', 'authData',
     function ($scope, imageData, authData) {
+        var userId = authData.authentication.userId;
         $scope.file = {};
 
         $scope.uploadFiles = function () {
@@ -11,7 +12,7 @@ app.controller('imageController', ['$scope', 'imageData', 'authData',
                 data: file.base64,
                 extension: file.filetype,
                 fileName: file.filename,
-                userId: authData.authentication.userId
+                userId:userId
             };
 
             imageData.upload(uploadFile)
@@ -19,4 +20,18 @@ app.controller('imageController', ['$scope', 'imageData', 'authData',
                     console.log(res);
                 });
         };
+
+     $scope.getMyImages =  function (){
+           imageData.getById(userId).
+               then(function(response) {
+                   $scope.data = response.data
+               });
+       };
+
+         $scope.getImages = function(){
+            imageData.getAll().
+                then(function(response) {
+                    $scope.data = response.data
+                });
+        }
     }]);
