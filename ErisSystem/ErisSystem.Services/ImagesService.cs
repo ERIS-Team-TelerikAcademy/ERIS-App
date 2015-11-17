@@ -27,7 +27,7 @@
             this.dropboxClient = dropboxClient;
         }
 
-        public async Task<int> Add(byte[] imageData, string extension, int forUserId)
+        public async Task<int> Add(byte[] imageData, string extension, string forUserId)
         {
             var currentUser = this.users
                     .All()
@@ -70,7 +70,7 @@
             }
         }
 
-        public Task<byte[]> GetUserImage(int userId)
+        public Task<byte[]> GetUserImage(string userId)
         {
             throw new NotImplementedException();
         }

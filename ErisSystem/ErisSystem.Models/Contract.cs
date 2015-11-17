@@ -17,12 +17,12 @@
         public int Id { get; set; }
 
         [Required]
-        public int HitmanId { get; set; }
+        public string HitmanId { get; set; }
 
         public virtual User Hitman { get; set; }
 
         [Required]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
         public virtual User Client{ get; set; }
 

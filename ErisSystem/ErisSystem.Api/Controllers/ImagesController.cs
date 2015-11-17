@@ -40,7 +40,7 @@
         /// <returns></returns>
         [Route("{userId}")]
         [HttpGet]
-        public async Task<IHttpActionResult> Get(int userId)
+        public async Task<IHttpActionResult> Get(string userId)
         {
             byte[] imageData = await this.images.GetUserImage(userId);
 

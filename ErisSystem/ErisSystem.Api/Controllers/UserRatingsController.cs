@@ -22,7 +22,7 @@
         /// <returns>A collection of UserRatings</returns>
         [Route("{id}")]
         [HttpGet]
-        public IHttpActionResult GetRatingsForUser(int id)
+        public IHttpActionResult GetRatingsForUser(string id)
         {
             var result = this.ratings.GetAllForHitman(id).ProjectTo<UserRatingResponseModel>();
 

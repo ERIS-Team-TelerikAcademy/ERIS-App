@@ -8,9 +8,9 @@
     {
         IQueryable<UserRating> GetAll();
 
-        IQueryable<UserRating> GetAllForHitman(int id);
+        IQueryable<UserRating> GetAllForHitman(string id);
 
                                 
-        int Add(int rating, int hitmanId, int clientId);
+        int Add(int rating, string hitmanId, string clientId);
     }
 }

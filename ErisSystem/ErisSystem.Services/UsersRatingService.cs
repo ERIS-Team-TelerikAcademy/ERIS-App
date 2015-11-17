@@ -14,7 +14,7 @@
             this.userRating = hitmenRating;
         }
 
-        public int Add(int ratingScore, int hitmanId, int clientId)
+        public int Add(int ratingScore, string hitmanId, string clientId)
         {
             var rating = new UserRating();
             rating.Rating = ratingScore;
@@ -33,7 +33,7 @@
             return result;
         }
 
-        public IQueryable<UserRating> GetAllForHitman(int id)
+        public IQueryable<UserRating> GetAllForHitman(string id)
         {
             var result = this.userRating
                 .All()
