@@ -22,7 +22,7 @@
             this.users = hitmen;
         }
 
-        public int Add(int hitmanId, int clientId, DateTime deadline)
+        public int Add(string hitmanId, string clientId, DateTime deadline)
         {
             var hitmanFromDb = this.users
                 .All()

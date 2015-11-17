@@ -5,8 +5,9 @@
 
     using ErisSystem.Models;
     using System.Data.Entity.ModelConfiguration.Conventions;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class ErisSystemContext : DbContext, IErisSystemContext
+    public class ErisSystemContext : IdentityDbContext<User>, IErisSystemContext
     {
         public ErisSystemContext()
             :base("ErisSystemContext")
@@ -15,8 +16,6 @@
         }
 
         public IDbSet<Country> Countries { get; set; }
-
-        public IDbSet<User> Users { get; set; }
 
         public IDbSet<Contract> Contracts { get; set; }
 

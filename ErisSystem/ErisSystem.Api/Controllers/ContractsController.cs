@@ -71,8 +71,8 @@
             }
 
             var newContractId = this.contracts.Add(
-                model.HitmanId,
-                model.ClientId,
+                model.HitmanId.ToString(),
+                model.ClientId.ToString(),
                 model.Deadline);
             
             return this.Created(this.Url.ToString(), newContractId);

@@ -246,8 +246,6 @@
     <Compile Include="Models\Account\BindingModels\AddExternalLoginBindingModel.cs" />
     <Compile Include="Models\Account\BindingModels\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\Account\ViewModels\ExternalLoginViewModel.cs" />
-    <Compile Include="Models\Account\IdentityModels\ApplicationDbContext.cs" />
-    <Compile Include="Models\Account\IdentityModels\ApplicationUser.cs" />
     <Compile Include="Models\Account\BindingModels\RegisterBindingModel.cs" />
     <Compile Include="Models\Account\BindingModels\RegisterExternalBindingModel.cs" />
     <Compile Include="Models\Account\BindingModels\RemoveLoginBindingModel.cs" />

@@ -12,7 +12,7 @@
 
         Contract GetById(int id);
 
-        int Add(int hitmanId, int clientId, DateTime deadLine);
+        int Add(string hitmanId, string clientId, DateTime deadLine);
 
         int UpdateConnectionStatus(int id, HitStatus hitStatus, ConnectionStatus connectionStatus);
 

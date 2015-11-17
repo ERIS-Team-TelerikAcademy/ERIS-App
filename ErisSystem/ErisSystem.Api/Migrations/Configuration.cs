@@ -1,11 +1,12 @@
 namespace ErisSystem.Api.Migrations
 {
+    using Data;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Models.Account.IdentityModels.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ErisSystemContext>
     {
         public Configuration()
         {
@@ -13,7 +14,7 @@ namespace ErisSystem.Api.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(ErisSystem.Api.Models.Account.IdentityModels.ApplicationDbContext context)
+        protected override void Seed(ErisSystemContext context)
         {
             //  This method will be called after migrating to the latest version.
 
