@@ -27,6 +27,7 @@ TODO
 
 - Boris Stoyanov ([GitHub](https://github.com/TemplarRei), [TelerikAcademy](http://telerikacademy.com/Users/borisstoyanovv))
   - Web API controllers
+  - Web API response models
   - Automapper integration
   - Services
 - Ivaylo Arnaudov ([GitHub](https://github.com/arnaudoff), [TelerikAcademy](http://telerikacademy.com/Users/ivaylo.arnaudov))
