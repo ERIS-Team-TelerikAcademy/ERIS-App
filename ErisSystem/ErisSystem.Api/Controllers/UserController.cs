@@ -65,23 +65,23 @@
         /// </summary>
         /// <param name="model">A hitman response model from the body of the query</param>
         /// <returns>the ID of the added hitman</returns>
-        [Route("register")]
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]UserResponseModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.BadRequest(this.ModelState);
-            }
+        //[Route("register")]
+        //[HttpPost]
+        //public IHttpActionResult Post([FromBody]UserResponseModel model)
+        //{
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //        return this.BadRequest(this.ModelState);
+        //    }
 
-            var newHitmanId = this.hitmen.Add(
-                model.Nickname,
-                model.AboutMe,
-                model.Gender,
-                model.Password);
+        //    var newHitmanId = this.hitmen.Add(
+        //        model.Nickname,
+        //        model.AboutMe,
+        //        model.Gender,
+        //        model.Password);
 
-            return this.Created(this.Url.ToString(), newHitmanId);
-        }
+        //    return this.Created(this.Url.ToString(), newHitmanId);
+        //}
 
         /// <summary>
         /// Not sure what to do here.

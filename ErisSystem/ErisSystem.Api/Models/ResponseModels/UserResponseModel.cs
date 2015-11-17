@@ -4,7 +4,7 @@
 
     public class UserResponseModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Nickname { get; set; }
 

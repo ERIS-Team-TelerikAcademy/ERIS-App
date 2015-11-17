@@ -6,9 +6,9 @@ namespace ErisSystem.Api.Models.ResponseModels
     {
         public int Id { get; set; }
 
-        public int HitmanId { get; set; }
+        public string HitmanId { get; set; }
 
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
         public int Status { get; set; }
 
