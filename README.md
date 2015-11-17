@@ -31,6 +31,8 @@ TODO
   - Automapper integration
   - Services
 - Ivaylo Arnaudov ([GitHub](https://github.com/arnaudoff), [TelerikAcademy](http://telerikacademy.com/Users/ivaylo.arnaudov))
+  - Web API controllers
+  - Web API response models
   - Cloud storage (a service and controller for uploading and downloading Dropbox images)
   - Services
 - Ivaylo Rankov ([GitHub](https://github.com/Ivorankov), [TelerikAcademy](http://telerikacademy.com/Users/ivo.rankov.7))
