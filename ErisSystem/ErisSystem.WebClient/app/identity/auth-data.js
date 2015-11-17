@@ -7,9 +7,10 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
 
         var authServiceFactory = {};
 
-        var  authentication = {
+        var authentication = {
             isAuth: false,
-            userName : ""
+            userName: "",
+            userId: ""
         };
 
         var saveRegistration = function (registration) {
@@ -17,10 +18,10 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
             logOut();
 
             return $http.post(serviceBase + 'api/account/register', registration,
-                { headers: { 'Content-Type': 'application/json' } })
+                {headers: {'Content-Type': 'application/json'}})
                 .then(function (response) {
-                return response;
-            });
+                    return response;
+                });
         };
 
         var login = function (loginData) {
@@ -31,21 +32,28 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
             var deferred = $q.defer();
 
             $http.post(serviceBase + 'token', data,
-                { headers:  { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function (response) {
 
-                localStorageService.set('authorizationData',
-                    { token: response.access_token, userName: loginData.userName });
+                    $http.get(serviceBase + 'api/hitmen/' + loginData.userName)
+                        .success(function (userResponse) {
+                            localStorageService.set('authorizationData',
+                                {token: response.access_token, userName: loginData.userName, userId : userResponse.Id});
 
-                authentication.isAuth = true;
-                authentication.userName = loginData.userName;
+                            authentication.isAuth = true;
+                            authentication.userName = loginData.userName;
+                            authentication.userId = userResponse.Id;
 
-                deferred.resolve(response);
-
-            }).error(function (err, status) {
-                logOut();
-                deferred.reject(err);
-            });
+                            deferred.resolve(response);
+                        })
+                        .error(function (error, status) {
+                            logOut();
+                            deferred.reject(err);
+                        });
+                }).error(function (err, status) {
+                    logOut();
+                    deferred.reject(err);
+                });
 
             return deferred.promise;
         };
@@ -61,8 +69,7 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
         var fillAuthData = function () {
 
             var authData = localStorageService.get('authorizationData');
-            if (authData)
-            {
+            if (authData) {
                 authentication.isAuth = true;
                 authentication.userName = authData.userName;
             }

@@ -37,5 +37,4 @@ app.config(function ($httpProvider) {
 
 app.run(['authData', function (authData) {
     authData.fillAuthData();
-    console.log(authData);
 }]);
