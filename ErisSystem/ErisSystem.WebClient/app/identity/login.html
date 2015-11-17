@@ -4,7 +4,7 @@
            placeholder="Username" data-ng-model="loginData.userName" required autofocus>
     <input type="password" class="form-control"
            placeholder="Password" data-ng-model="loginData.password" required>
-    <button class="btn btn-lg btn-info btn-block"
+    <button class="btn btn-lg btn-danger btn-block"
             type="submit" data-ng-click="login()">Login</button>
     <div data-ng-hide="message == ''" class="alert alert-danger">
         {{message}}
