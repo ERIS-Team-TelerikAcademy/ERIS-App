@@ -8,7 +8,8 @@ app.controller('signupController', ['$scope', '$location',
         $scope.registration = {
             email: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            username: ""
         };
 
         $scope.signUp = function () {

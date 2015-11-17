@@ -3,7 +3,7 @@ var app = angular.module('ErisSystemApp',
 
 app.config(function ($routeProvider) {
 
-    $routeProvider.when("/home-page", {
+    $routeProvider.when("/home", {
         controller: "homeController",
         templateUrl: "home-page/home.html"
     });
@@ -18,7 +18,7 @@ app.config(function ($routeProvider) {
         templateUrl: "identity/login.html"
     });
 
-    $routeProvider.when("/contract-page", {
+    $routeProvider.when("/contract", {
         controller: "contractController",
         templateUrl: "contract-page/contract-view.html"
     });
@@ -28,13 +28,14 @@ app.config(function ($routeProvider) {
         templateUrl: "images-page/image-view.html"
     });
 
-    $routeProvider.otherwise({redirectTo: "/home-page"});
+    $routeProvider.otherwise({redirectTo: "/home"});
 });
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
 
-app.run(['authData', function (authService) {
-    authService.fillAuthData();
+app.run(['authData', function (authData) {
+    authData.fillAuthData();
+    console.log(authData);
 }]);
