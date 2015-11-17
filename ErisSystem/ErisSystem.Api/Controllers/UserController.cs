@@ -25,18 +25,33 @@
             this.hitmen = hitmenServices;
         }
 
-        /// <summary>
-        /// Gets a user by id
-        /// </summary>
-        /// <param name="id">the id to search for in the db</param>
-        /// <returns>the response model of the queried user</returns>
-        [Route("{id}")]
+        ///// <summary>
+        ///// Gets a user by id
+        ///// </summary>
+        ///// <param name="id">the id to search for in the db</param>
+        ///// <returns>the response model of the queried user</returns>
+        //[Route("{id}")]
+        //[HttpGet]
+        //public IHttpActionResult GetHitmanById(int id)
+        //{
+        //    var result = Mapper.Map<UserResponseModel>(this.hitmen
+        //        .GetById(id));
+            
+        //    if (result == null)
+        //    {
+        //        return this.NotFound();
+        //    }
+
+        //    return this.Ok(result);
+        //}
+
+        [Route("{userName}")]
         [HttpGet]
-        public IHttpActionResult GetHitmanById(int id)
+        public IHttpActionResult GetHitmanByUserName(string userName)
         {
             var result = Mapper.Map<UserResponseModel>(this.hitmen
-                .GetById(id));
-            
+                .GetByUserName(userName));
+
             if (result == null)
             {
                 return this.NotFound();

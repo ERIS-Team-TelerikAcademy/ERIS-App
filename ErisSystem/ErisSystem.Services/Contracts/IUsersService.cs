@@ -17,5 +17,7 @@
 
         void Delete(User hitman);
 
+        User GetByUserName(string userName);
+
     }
 }

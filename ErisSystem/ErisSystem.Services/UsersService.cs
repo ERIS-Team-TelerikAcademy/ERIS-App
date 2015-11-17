@@ -65,5 +65,15 @@
 
             return result;
         }
+
+        public User GetByUserName(string userName)
+        {
+            var result = this.user
+                .All()
+                .Where(x => x.UserName == userName)
+                .FirstOrDefault();
+
+            return result;
+        }
     }
 }
