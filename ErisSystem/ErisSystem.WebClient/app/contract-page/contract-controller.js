@@ -23,11 +23,12 @@ app.controller('contractController', ['$scope', 'contractData', function ($scope
 
                 var aprovalBtn = $('<input type="button" class="btn btn-success userSelectionButton" />');
                 var rejectionBtn = $('<input type="button" class="btn btn-danger userSelectionButton" />');
-                rejectionBtn.text('X');
                 contractItem.append(deadline);
-                contractItem.append(aprovalBtn);
 
+                contractItem.append(aprovalBtn);
                 contractItem.append(rejectionBtn);
+                aprovalBtn.text('+');
+                rejectionBtn.text('X');
 
                 if (currentContract.Status == 1) {
                     activeContractsContainer.append(contractItem);
