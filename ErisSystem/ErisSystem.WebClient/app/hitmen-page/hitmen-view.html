@@ -1,0 +1,11 @@
+<div ng-repeat="hitman in data">
+    <img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>
+    <div star-rating ng-model="rating" max="5" on-rating-select="rateFunction(rating)"></div>
+    <div><a ng-href="#/hitman/{{hitman.UserName}}">{{hitman.UserName}}</a></div>
+    <div>{{hitman.Id}}</div>
+    <div>{{hitman.DateOfBirth}}</div>
+    <div>{{hitman.AboutMe}}</div>
+    <div>{{hitman.Gender}}</div>
+</div>
+
+
