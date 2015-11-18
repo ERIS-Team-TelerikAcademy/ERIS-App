@@ -1,7 +1,10 @@
-﻿using System;
-
-namespace ErisSystem.Api.Models.ResponseModels
+﻿namespace ErisSystem.Api.Models.ResponseModels
 {
+    using System;
+    using AutoMapper;
+    using ErisSystem.Models;
+    using ErisSystem.Models.Enumerators;
+
     public class ContractResponseModel
     {
         public int Id { get; set; }

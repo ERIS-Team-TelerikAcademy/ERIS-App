@@ -4,6 +4,7 @@
     using System.Web.Http;
     using Models.ResponseModels;
     using ErisSystem.Models;
+    using AutoMapper;
 
     public class WebApiApplication : HttpApplication
     {
@@ -14,12 +15,16 @@
 
             var modelFactory = new ResponseModelFactory();
 
-            //modelFactory.MapBothWays<Client, ClientResponseModel>();
-            modelFactory.MapBothWays<Contract, ContractResponseModel>();
             modelFactory.MapBothWays<Country, CountryResponseModel>();
             modelFactory.MapBothWays<UserRating, HitmanRatingResponseModel>();
             modelFactory.MapBothWays<Image, ImageResponseModel>();
             modelFactory.MapBothWays<User, UserResponseModel>();
+
+            Mapper.CreateMap<Contract, ContractResponseModel>()
+                .ForMember(c => c.HitmanId, opts => opts.MapFrom(c => c.HitmanId))
+                .ForMember(c => c.ClientId, opts => opts.MapFrom(c => c.ClientId))
+                .ForMember(c => c.Status, opts => opts.MapFrom(c => (int)c.Status))
+                .ForMember(c => c.HitStatus, opts => opts.MapFrom(c => (int)c.HitStatus));
         }
     }
 }
