@@ -34,11 +34,11 @@
                 .FirstOrDefault();
             if (hitmanFromDb == null)
             {
-                throw new ArgumentException("Invalid hitman nickname!");
+                throw new ArgumentException("Invalid hitman!");
             }
             else if (client == null)
             {
-                throw new ArgumentException("Invalid client nickname!");
+                throw new ArgumentException("Invalid client!");
             }
 
             var contract = new Contract();
