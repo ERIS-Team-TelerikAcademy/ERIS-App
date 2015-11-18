@@ -90,6 +90,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ControllerTests\CountryControllerTests.cs" />
+    <Compile Include="ControllerTests\UserRatingControllerTests.cs" />
     <Compile Include="DummyObjects\DummyRepositories.cs" />
     <Compile Include="DummyObjects\DummyServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

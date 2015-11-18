@@ -10,7 +10,7 @@
 
     internal static class DummyRepositories
     {
-        internal const int NumberOfTestCountries = 20;
+        internal const int NumberOfTestObjects = 20;
 
         internal static IRepository<Country> DummyCountriesRepository()
         {
@@ -20,7 +20,7 @@
             {
                 var countries = new List<Country>();
 
-                for (int i = 0; i < NumberOfTestCountries; i++)
+                for (int i = 0; i < NumberOfTestObjects; i++)
                 {
                     countries.Add(new Country
                     {
@@ -30,6 +30,30 @@
                 }
 
                 return countries.AsQueryable();
+            });
+
+            return repo.Object;
+        }
+        internal static IRepository<UserRating> DummyUserRatingsRepository()
+        {
+            var repo = new Mock<IRepository<UserRating>>();
+
+            repo.Setup(r => r.All()).Returns(() =>
+            {
+                var ratings = new List<UserRating>();
+
+                for (int i = 0; i < NumberOfTestObjects; i++)
+                {
+                    ratings.Add(new UserRating
+                    {
+                        Id = i,
+                        ClientId = "TestId" + i,
+                        HitmanId = "TestId" + (i % 2 == 0 ? i : 3),
+                        Rating = i % 6
+                    });
+                }
+
+                return ratings.AsQueryable();
             });
 
             return repo.Object;

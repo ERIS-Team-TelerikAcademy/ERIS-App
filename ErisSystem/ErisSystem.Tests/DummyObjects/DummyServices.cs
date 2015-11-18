@@ -9,5 +9,10 @@
         {
             return new CountriesService(DummyRepositories.DummyCountriesRepository());
         }
+
+        public static IUsersRatingsService GetDummyUserRatingsService()
+        {
+            return new UsersRatingService(DummyRepositories.DummyUserRatingsRepository());
+        }
     }
 }
