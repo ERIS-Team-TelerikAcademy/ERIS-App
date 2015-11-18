@@ -11,10 +11,11 @@ app.controller('imageController', ['$scope', 'imageData', 'authData',
             var uploadFile = {
                 data: file.base64,
                 extension: file.filetype.split("/")[1],
-                fileName: file.filename,
+                Name: file.filename.substr(0, file.filename.lastIndexOf('.')),
                 userId: userId
             };
 
+            console.log(uploadFile);
             imageData.upload(uploadFile)
                 .then(function (res) {
                     console.log(res);
@@ -24,12 +25,7 @@ app.controller('imageController', ['$scope', 'imageData', 'authData',
         $scope.getMyImages = function () {
             imageData.getById(userId).
                 then(function (response) {
-                    var image = {
-                        data: response,
-                        extension: 'image/png'
-                    };
-                    console.log(image);
-                    $scope.data.push(image);
+                    $scope.data = response;
                 });
         };
 
