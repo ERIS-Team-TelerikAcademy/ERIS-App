@@ -1,11 +1,20 @@
 'use strict';
-app.controller('hitmenController', ['$scope', 'hitmenData',
-function ($scope, hitmenData) {
+app.controller('hitmenController', ['$scope', '$rootScope', 'hitmenData',
+    function ($scope, $rootScope, hitmenData) {
 
-    $scope.rating = 2;
+        hitmenData.getAll()
+            .then(function(response){
+                console.log(response);
+                $scope.data = response
+            });
+
+        $scope.userId = function(id){
+            $rootScope.UserId = id
+        };
+
+        $scope.rating = 2;
         $scope.isReadonly = true;
-        $scope.rateFunction = function(rating) {
-         
-      }
+        $scope.rateFunction = function (rating) {
 
-}]);
+        }
+    }]);

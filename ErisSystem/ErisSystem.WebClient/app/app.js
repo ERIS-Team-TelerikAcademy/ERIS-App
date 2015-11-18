@@ -28,9 +28,20 @@ app.config(function ($routeProvider) {
         templateUrl: "images-page/image-view.html"
     });
 
+    $routeProvider.when("/hitman/:name", {
+        controller: "hitmenController",
+        templateUrl: "hitmen-page/hitmen-view.html"
+    });
+
     $routeProvider.when("/hitmen", {
         controller: "hitmenController",
         templateUrl: "hitmen-page/hitmen-view.html"
+    });
+
+
+    $routeProvider.when("/hitman/:name", {
+        controller: "hitmanController",
+        templateUrl: "hitman-page/hitman-view.html"
     });
 
     $routeProvider.otherwise({redirectTo: "/home"});
