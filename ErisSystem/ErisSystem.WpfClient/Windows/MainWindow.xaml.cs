@@ -55,13 +55,13 @@
                 var chatWindow = new ChatWindow(this.UserName.Text);
                 chatWindow.Show();
                 this.Close();
-                this.UserName.Text = "";
-                this.Password.Password = "";
             }
             else
             {
                 var messageBox = new CustomMessageBox("Invalid user name or password");
                 messageBox.ShowDialog();
+                this.UserName.Text = "";
+                this.Password.Password = "";
             }
         }
 
