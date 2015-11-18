@@ -94,6 +94,7 @@
     <Compile Include="DummyObjects\DummyRepositories.cs" />
     <Compile Include="DummyObjects\DummyServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteTests\CountriesControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -106,6 +107,10 @@
     <ProjectReference Include="..\ErisSystem.Api\ErisSystem.Api.csproj">
       <Project>{3a84fff0-f784-4f00-b558-78435f8e2672}</Project>
       <Name>ErisSystem.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ErisSystem.Common\ErisSystem.Common.csproj">
+      <Project>{4aa362ce-e871-4b00-9f83-5c931d360f66}</Project>
+      <Name>ErisSystem.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\ErisSystem.Data\ErisSystem.Data.csproj">
       <Project>{aa67e41e-f175-4841-9294-ffd962700a14}</Project>
