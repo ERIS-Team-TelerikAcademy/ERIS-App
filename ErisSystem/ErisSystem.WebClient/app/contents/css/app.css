@@ -32,8 +32,33 @@ body{
 
 }
 
+.contracts {
+    list-style: none;
+    padding: 5px;
+}
+
+.contracts p{
+    font-size: 16px;
+    font-weight: bolder;
+
+}
+.userSelectionButton{
+    margin: 5px;
+    width:40px;
+    height: 40px;
+}
+.separator {
+    border-left: 3px solid black;
+    padding-left: 10px;
+    height: 700px;
+}
+
 a{
     color: red;
+}
+
+.approvalButton{
+    //for background image
 }
 
 .footer {

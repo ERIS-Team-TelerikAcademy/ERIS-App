@@ -59,7 +59,7 @@
             return result;
         }
 
-        public User GetById(int id)
+        public User GetById(string id)
         {
             var result = this.user.GetById(id);
 
