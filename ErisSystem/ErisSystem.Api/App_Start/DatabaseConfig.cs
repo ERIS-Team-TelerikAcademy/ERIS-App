@@ -12,7 +12,7 @@ namespace ErisSystem.Api
     {
         public static void Initialize()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, EfConfiguration>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<ErisSystemContext>());
             ErisSystemContext.Create().Database.Initialize(true);
         }
     }
