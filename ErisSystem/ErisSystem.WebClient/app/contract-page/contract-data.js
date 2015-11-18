@@ -17,6 +17,10 @@ app.factory('contractData', ['$http', '$q', 'data',
             return data.post(baseUrl + 'new-contract-page', postData);
         }
 
+        function updateAprovalStatus(postData){
+            return data.put();
+        }
+
         //TODO: http put
 
         contractData.getAll = getAll;
