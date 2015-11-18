@@ -58,7 +58,14 @@ a{
 }
 
 .approvalButton{
-    //for background image
+    background-image: url("approvebutton.png");
+    background-color: transparent;
+    background: no-repeat;
+}
+
+.rejectButton{
+    background-image: url("rejectbutton.png");
+    background: no-repeat;
 }
 
 .footer {
