@@ -1,1 +1,28 @@
-<h1>Contracts</h1>
+<div class="row">
+<div class="col-md-5">
+    <h2>Active contracts</h2>
+    <ul  ng-repeat="contract in data" class="contracts">
+
+        <li ng-if="contract.Status == 1">
+            <p>{{contract.UserName}}</p>
+            <p>"Deadline" : {{contract.DeadLine}}</p>
+            <button class="approvalButton userSelectionButton"></button>
+            <button class="rejectButton userSelectionButton"></button>
+        </li>
+    </ul>
+</div>
+    <div class="col-md-2">
+        <div class="separator"></div>
+    </div>
+<div  class="col-md-5">
+    <h2>Pending contracts</h2>
+    <ul ng-repeat="contract in data" id="pendingContracts" class="contracts">
+        <li ng-if="contract.Status == 2">
+        <p>{{contract.UserName}}</p>
+        <p>"Deadline" : {{contract.DeadLine}}</p>
+        <button class="approvalButton userSelectionButton"></button>
+        <button class="rejectButton userSelectionButton"></button>
+        </li>
+    </ul>
+</div>
+</div>

@@ -40,6 +40,21 @@
             return this.Ok(result);
         }
 
+        [Route("byId/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetHitmanById(string id)
+        {
+            var result = Mapper.Map<UserResponseModel>(this.hitmen
+                .GetById(id));
+
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.Ok(result);
+        }
+
         /// <summary>
         /// Gets all hitmen in the db
         /// </summary>
