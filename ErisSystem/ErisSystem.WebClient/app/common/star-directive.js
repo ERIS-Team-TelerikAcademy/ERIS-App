@@ -2,7 +2,7 @@
     app.directive('starRating', function(){
         return {
           restrict: 'EA',
-          templateUrl: 'common/nav-bar-directive.html',
+          templateUrl: 'common/star-directive.html',
           scope: {
             ratingValue: '=ngModel',
             max: '=?', // optional (default is 5)
