@@ -261,6 +261,7 @@
     <Compile Include="Models\Account\ViewModels\ManageInfoViewModel.cs" />
     <Compile Include="Models\Account\ViewModels\UserInfoViewModel.cs" />
     <Compile Include="Models\Account\ViewModels\UserLoginInfoViewModel.cs" />
+    <Compile Include="Models\RequestModels\ImageRequestModel.cs" />
     <Compile Include="Models\ResponseModels\ContractResponseModel.cs" />
     <Compile Include="Models\ResponseModels\CountryResponseModel.cs" />
     <Compile Include="Models\ResponseModels\HitmanRatingResponseModel.cs" />

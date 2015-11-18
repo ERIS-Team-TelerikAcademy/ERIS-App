@@ -1,11 +1,14 @@
 ﻿namespace ErisSystem.Api.Controllers
 {
     using System;
-    using System.Web.Http;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using System.Web.Http;
 
-    using Services.Contracts;
+    using Models.RequestModels;
     using Models.ResponseModels;
+    using Services.Contracts;
 
     using AutoMapper.QueryableExtensions;
 
@@ -19,22 +22,18 @@
             this.images = imagesService;
         }
 
-        /// <summary>
-        /// Retrieves all images for all users. Useful for listing. GET http://url:port/api/Images
-        /// </summary>
-        /// <returns></returns>
         public IHttpActionResult Get()
         {
-            // TODO: Fix to get all from dropbox too.
             var result = this.images
-                .GetAll()
-                .ProjectTo<ImageResponseModel>();
+                .All()
+                .ProjectTo<ImageResponseModel>()
+                .ToList();
                 
             return this.Ok(result);
         }
 
         /// <summary>
-        /// Returns the image for a certain user. GET http://url:port/api/Images/{:id}
+        /// Returns the images for a certain user. GET http://url:port/api/Images/{:id}
         /// </summary>
         /// <param name="userId">The id of the user</param>
         /// <returns></returns>
@@ -42,41 +41,48 @@
         [HttpGet]
         public async Task<IHttpActionResult> Get(string userId)
         {
-            byte[] imageData = await this.images.GetUserImage(userId);
+            var images = await this.images.GetUserImages(userId);
 
-            if (imageData.Length == 0)
+            if (images.Count == 0)
             {
                 return this.BadRequest();
             }
 
-            string imageAsBase64 = Convert.ToBase64String(imageData);
-            return this.Ok(imageAsBase64);
+            var imagesAsBase64 = new List<string>();
+            foreach (var image in images)
+            {
+                imagesAsBase64.Add(Convert.ToBase64String(image));
+            }
+
+            return this.Ok(imagesAsBase64);
         }
 
-        /// <summary>
-        /// Uploads an image. POST http://url:port/api/Images
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public async Task<IHttpActionResult> Post([FromBody]ImageResponseModel sentImage)
+        public async Task<IHttpActionResult> Post([FromBody]ImageRequestModel sentImage)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            byte[] imageByteArray = Convert.FromBase64String(sentImage.Data);
-            int createdImageId = await this.images.Add(imageByteArray, sentImage.Extension, sentImage.UserId);
+            byte[] data = Convert.FromBase64String(sentImage.Data);
+            int createdImageId = await this.images.Add(sentImage.Name, sentImage.Extension, sentImage.UserId, data);
 
             return this.Ok(createdImageId);
         }
 
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id)
         {
+            // Full REST is nice, but "update" an image?
+            return this.BadRequest();
         }
 
-        public void Delete(int id)
+        [Route("{imageId}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(int imageId)
         {
+            await this.images.Delete(imageId);
+
+            return this.Ok();
         }
     }
 }

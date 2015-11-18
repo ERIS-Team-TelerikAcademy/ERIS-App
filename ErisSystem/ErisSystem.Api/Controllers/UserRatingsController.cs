@@ -1,5 +1,6 @@
 ﻿namespace ErisSystem.Api.Controllers
 {
+    using System.Linq;
     using System.Web.Http;
     using AutoMapper.QueryableExtensions;
     using Models.ResponseModels;
@@ -26,7 +27,7 @@
         {
             var result = this.ratings.GetAllForHitman(id).ProjectTo<UserRatingResponseModel>();
 
-            if (result == null)
+            if (result.Count() == 0)
             {
                 return this.NotFound();
             }
