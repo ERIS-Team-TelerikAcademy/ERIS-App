@@ -52,6 +52,14 @@
             <Setter Property="FontSize" Value="20" />
         </Style>
 
+        <Style x:Key="passbox" TargetType="PasswordBox">
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+
         <Style x:Key="menuHeader" TargetType="TextBlock">
             <Setter Property="Background" Value="White" />
             <Setter Property="Padding" Value="5" />
@@ -90,8 +98,8 @@
         <Label Style="{StaticResource lableText}" Grid.Row="1">User name</Label>
         <TextBox x:Name ="UserName" Style="{StaticResource boxes}" Grid.Row="1" />
         <Label Style="{StaticResource lableText}" Grid.Row="2">Password</Label>
-        <TextBox x:Name="Password" Style="{StaticResource boxes}" Grid.Row="2" />
-            <Button Style="{StaticResource loginButton}" Grid.Row="3" Click="OnLoginButtonClick">Login</Button>
+        <PasswordBox x:Name="Password" Style="{StaticResource passbox}" Grid.Row="2" />
+        <Button Style="{StaticResource loginButton}" Grid.Row="3" Click="OnLoginButtonClick">Login</Button>
         <Button Style="{StaticResource registerButton}" Grid.Row="3" Click="OnRegisterButtonClick">Regiser</Button>
 
     </Grid>

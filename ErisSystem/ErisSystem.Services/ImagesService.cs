@@ -1,6 +1,7 @@
 ﻿namespace ErisSystem.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.IO;
@@ -15,7 +16,6 @@
     public class ImagesService : IImagesService
     {
         private const string DropboxImagesFolderName = "/images";
-        private const string DropboxAuthKey = "11KXkFS93BAAAAAAAAAAB9G5M6Yq6AHEsIHUjL8MJF5w_oaph2IbtlJu4VzgIyTH";
 
         private readonly IRepository<Image> images;
         private readonly IRepository<User> users;
@@ -28,7 +28,7 @@
             this.dropboxClient = dropboxClient;
         }
 
-        public async Task<int> Add(byte[] imageData, string extension, string userId)
+        public async Task<int> Add(string name, string extension, string userId, byte[] imageData)
         {
             var currentUser = this.users
                     .All()
@@ -36,30 +36,33 @@
 
             if (currentUser == null)
             {
-                throw new ArgumentException("Invalid user!");
+                throw new ArgumentException("Invalid user specified.");
             }
 
             var image = new Image()
             {
-                Name = currentUser.UserName,
+                Name = name,
                 Extension = extension,
                 UserId = userId
             };
 
-            await UploadImageForUser(currentUser.UserName, imageData, extension);
+            await UploadImageForUser(name, extension, currentUser.UserName, imageData);
 
             this.images.Add(image);
+            currentUser.Images.Add(image);
+
             this.images.SaveChanges();
+            this.users.SaveChanges();
 
             return image.Id;
         }
 
-        public IQueryable<Image> GetAll()
+        public IQueryable<Image> All()
         {
             return this.images.All();
         }
 
-        public async Task<byte[]> GetUserImage(string userId)
+        public async Task<IList<byte[]>> GetUserImages(string userId)
         {
             var currentUser = this.users
                     .All()
@@ -70,31 +73,57 @@
                 throw new ArgumentException("Invalid user!");
             }
 
-            return await DownloadImageForUser(currentUser.UserName);
+            return await DownloadImagesForUser(currentUser.UserName);
         }
 
-        private async Task UploadImageForUser(string username, byte[] image, string extension)
+        private async Task UploadImageForUser(string name, string extension, string username, byte[] image)
         {
             using (MemoryStream memStream = new MemoryStream(image))
             {
                 await this.dropboxClient.Files.UploadAsync(
-                    string.Format("{0}/{1}.{2}", DropboxImagesFolderName, username, extension),
+                    string.Format("{0}/{1}/{2}.{3}", DropboxImagesFolderName, username, name, extension),
                     WriteMode.Overwrite.Instance,
                     body: memStream);
             }
         }
 
-        private async Task<byte[]> DownloadImageForUser(string username)
+        private async Task<IList<byte[]>> DownloadImagesForUser(string username)
         {
-            var fileList = await this.dropboxClient.Files.ListFolderAsync(DropboxImagesFolderName);
-            var fileItem = fileList.Entries.Where(i => i.IsFile &&
-                                i.Name.Substring(0, i.Name.LastIndexOf('.')) == username)
-                                .SingleOrDefault();
+            ListFolderResult fileList = await this.dropboxClient.Files.ListFolderAsync(string.Format("{0}/{1}", DropboxImagesFolderName, username));
 
-            using (var response = await this.dropboxClient.Files.DownloadAsync(string.Format("{0}/{1}", DropboxImagesFolderName, fileItem.Name)))
+            if (fileList.Entries.Count == 0)
             {
-                return await response.GetContentAsByteArrayAsync();
+                throw new InvalidOperationException("Invalid user specified or user has no images.");
             }
+
+            var result = new List<byte[]>();
+            foreach (var imageFile in fileList.Entries)
+            {
+                using (var response = await this.dropboxClient.Files.DownloadAsync(string.Format("{0}/{1}/{2}", DropboxImagesFolderName, username, imageFile.Name)))
+                {
+                    byte[] data = await response.GetContentAsByteArrayAsync();
+                    result.Add(data);
+                }
+            }
+
+            return result;
+        }
+
+        public async Task Delete(int id)
+        {
+            var image = this.images
+                .All()
+                .FirstOrDefault(i => i.Id == id);
+
+            if (image == null)
+            {
+                throw new ArgumentOutOfRangeException("Invalid image id.");
+            }
+
+            await this.dropboxClient.Files.DeleteAsync(string.Format("{0}/{1}/{2}.{3}", DropboxImagesFolderName, image.User.UserName, image.Name, image.Extension));
+
+            this.images.Delete(image);
+            this.images.SaveChanges();
         }
     }
 }

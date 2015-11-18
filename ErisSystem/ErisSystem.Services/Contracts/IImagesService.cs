@@ -1,15 +1,18 @@
 ﻿namespace ErisSystem.Services.Contracts
 {
     using ErisSystem.Models;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     public interface IImagesService
     {
-        Task<int> Add(byte[] imageData, string extension, string userId);
+        Task<int> Add(string name, string extension, string userId, byte[] imageData);
 
-        IQueryable<Image> GetAll();
+        IQueryable<Image> All();
 
-        Task<byte[]> GetUserImage(string userId);
+        Task<IList<byte[]>> GetUserImages(string userId);
+
+        Task Delete(int id);
     }
 }
