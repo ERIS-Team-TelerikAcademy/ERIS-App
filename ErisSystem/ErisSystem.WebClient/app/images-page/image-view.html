@@ -18,5 +18,5 @@
             type="submit" data-ng-click="getImages()">all Images</button>
 </div>
 <div ng-repeat="image in data">
-    <img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>
+    <img data-ng-src="data:image/{{image.Extension}};base64,{{image.Data}}" data-err-src="images/png/avatar.png"/>
 </div>
