@@ -3,7 +3,7 @@
 app.factory('authData', ['$http', '$q', 'localStorageService',
     function ($http, $q, localStorageService) {
 
-        var serviceBase = 'http://localhost:28499/';
+        var serviceBase = 'http://erissystem.azurewebsites.net/';
 
         var authServiceFactory = {};
 

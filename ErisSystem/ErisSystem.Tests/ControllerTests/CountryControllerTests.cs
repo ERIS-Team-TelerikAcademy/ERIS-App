@@ -3,7 +3,6 @@
     using Api.Controllers;
     using Api.Models.ResponseModels;
     using Setup.DummyObjects;
-    using Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using MyTested.WebApi;
     using System.Linq;

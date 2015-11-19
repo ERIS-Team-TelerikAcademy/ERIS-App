@@ -1,9 +1,11 @@
 ﻿namespace ErisSystem.Tests.Setup.DummyObjects
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using Data;
+    using Models.Enumerators;
     using Models;
 
     using Moq;
@@ -34,6 +36,65 @@
 
             return repo.Object;
         }
+
+        internal static IRepository<User> DummyHitmenRepository()
+        {
+            var repo = new Mock<IRepository<User>>();
+
+            var users = new List<User>();
+
+            for (int i = 0; i < NumberOfTestObjects; i++)
+            {
+                users.Add(new User
+                {
+                    RegistrationDate = DateTime.Now,
+                    AboutMe = "Test About Me" + i,
+                    DateOfBirth = DateTime.Now.AddYears(i),
+                    Gender = true,
+                    IsWorking = i % 2 == 0
+                });
+            }
+
+            repo.Setup(r => r.All()).Returns(() =>
+            {
+                return users.AsQueryable();
+            });
+
+            return repo.Object;
+        }
+
+        internal static IRepository<Contract> DummyContractsRepository()
+        {
+            var repo = new Mock<IRepository<Contract>>();
+
+            var contracts = new List<Contract>();
+
+            for (int i = 0; i < NumberOfTestObjects; i++)
+            {
+                contracts.Add(new Contract
+                {
+                    ClientId = (i % 2 == 0 ? i : 3).ToString(),
+                    HitmanId = (i % 2 == 0 ? i : 3).ToString() + "hitman",
+                    Deadline = DateTime.Now,
+                    HitStatus = HitStatus.Pending,
+                    Status = ConnectionStatus.Pending,
+                    Id = i
+                });
+            }
+
+            repo.Setup(r => r.GetById(It.Is<int>(x => x == 4))).Returns(() => 
+            {
+                return contracts.Where(c => c.Id == 4).FirstOrDefault();
+            });
+
+            repo.Setup(r => r.All()).Returns(() =>
+            {
+                return contracts.AsQueryable();
+            });
+
+            return repo.Object;
+        }
+
         internal static IRepository<UserRating> DummyUserRatingsRepository()
         {
             var repo = new Mock<IRepository<UserRating>>();
