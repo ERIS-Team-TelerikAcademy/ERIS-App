@@ -52,6 +52,28 @@
             return this.Ok(result);
         }
 
+        [Route("all-for-client/{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetAllForClient(string userId)
+        {
+            var result = this.contracts
+                .GetAllWhereClient(userId)
+                .ProjectTo<ContractResponseModel>();
+
+            return this.Ok(result);
+        }
+
+        [Route("all-for-hitman/{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetAllForHitman(string userId)
+        {
+            var result = this.contracts
+                .GetAllWhereHitman(userId)
+                .ProjectTo<ContractResponseModel>();
+
+            return this.Ok(result);
+        }
+
         /// <summary>
         /// Endpoint for registering a new contract
         /// </summary>

@@ -109,5 +109,23 @@
 
             return this.contracts.SaveChanges();
         }
+
+        public IQueryable<Contract> GetAllWhereClient(string userId)
+        {
+            var result = this.contracts
+                .All()
+                .Where(x => x.ClientId == userId);
+
+            return result;
+        }
+
+        public IQueryable<Contract> GetAllWhereHitman(string userId)
+        {
+            var result = this.contracts
+                .All()
+                .Where(x => x.HitmanId == userId);
+
+            return result;
+        }
     }
 }
