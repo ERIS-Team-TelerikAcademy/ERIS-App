@@ -93,6 +93,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ControllerTests\ContractsControllerTests.cs" />
     <Compile Include="ControllerTests\CountryControllerTests.cs" />
     <Compile Include="ControllerTests\UserRatingControllerTests.cs" />
     <Compile Include="Setup\DummyObjects\DummyRepositories.cs" />
