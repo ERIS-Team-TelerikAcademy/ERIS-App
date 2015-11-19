@@ -7,11 +7,13 @@
     using System.IO;
 
     using Contracts;
+    using Common.Helpers.Dropbox;
     using Models;
     using Data;
 
     using Dropbox.Api;
     using Dropbox.Api.Files;
+
 
     public class ImagesService : IImagesService
     {
@@ -62,7 +64,7 @@
             return this.images.All();
         }
 
-        public async Task<IList<byte[]>> GetUserImages(string userId)
+        public async Task<IList<DropBoxImageModel>> GetUserImages(string userId)
         {
             var currentUser = this.users
                     .All()
@@ -87,7 +89,7 @@
             }
         }
 
-        private async Task<IList<byte[]>> DownloadImagesForUser(string username)
+        private async Task<IList<DropBoxImageModel>> DownloadImagesForUser(string username)
         {
             ListFolderResult fileList = await this.dropboxClient.Files.ListFolderAsync(string.Format("{0}/{1}", DropboxImagesFolderName, username));
 
@@ -96,13 +98,20 @@
                 throw new InvalidOperationException("Invalid user specified or user has no images.");
             }
 
-            var result = new List<byte[]>();
+            var result = new List<DropBoxImageModel>();
             foreach (var imageFile in fileList.Entries)
             {
                 using (var response = await this.dropboxClient.Files.DownloadAsync(string.Format("{0}/{1}/{2}", DropboxImagesFolderName, username, imageFile.Name)))
                 {
                     byte[] data = await response.GetContentAsByteArrayAsync();
-                    result.Add(data);
+                    var currentImage = new DropBoxImageModel()
+                    {
+                        Data = data,
+                        ImageName = imageFile.Name,
+                        UserName = username
+                    };
+
+                    result.Add(currentImage);
                 }
             }
 

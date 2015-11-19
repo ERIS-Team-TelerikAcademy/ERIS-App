@@ -104,6 +104,10 @@
     <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ErisSystem.Common\ErisSystem.Common.csproj">
+      <Project>{4aa362ce-e871-4b00-9f83-5c931d360f66}</Project>
+      <Name>ErisSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ErisSystem.Data\ErisSystem.Data.csproj">
       <Project>{aa67e41e-f175-4841-9294-ffd962700a14}</Project>
       <Name>ErisSystem.Data</Name>

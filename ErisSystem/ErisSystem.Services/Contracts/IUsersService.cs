@@ -11,7 +11,7 @@
     {
         IQueryable<User> GetAll();
 
-        User GetById(int id);
+        User GetById(string id);
                                                
         int Add(string nickName, string aboutMe, bool gender, string password, bool isWorking = false, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null);
 

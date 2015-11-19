@@ -11,6 +11,7 @@
     using Services.Contracts;
 
     using AutoMapper.QueryableExtensions;
+    using Common.Constants;
 
     [RoutePrefix("api/Images")]
     public class ImagesController : ApiController
@@ -41,20 +42,27 @@
         [HttpGet]
         public async Task<IHttpActionResult> Get(string userId)
         {
-            var images = await this.images.GetUserImages(userId);
+            var imagesFromDropbox = await this.images.GetUserImages(userId);
+            var images = this.images
+                .All()
+                .Where(img => img.UserId == userId)
+                .ProjectTo<ImageResponseModel>()
+                .ToList();
 
             if (images.Count == 0)
             {
                 return this.BadRequest();
             }
 
-            var imagesAsBase64 = new List<string>();
             foreach (var image in images)
             {
-                imagesAsBase64.Add(Convert.ToBase64String(image));
+                image.Data = imagesFromDropbox
+                    .Where(img => img.ImageName == string.Format(GlobalConstants.FileStringFormat, image.Name, image.Extension))
+                    .Select(img => Convert.ToBase64String(img.Data))
+                    .FirstOrDefault();
             }
 
-            return this.Ok(imagesAsBase64);
+            return this.Ok(images);
         }
 
         public async Task<IHttpActionResult> Post([FromBody]ImageRequestModel sentImage)

@@ -17,11 +17,20 @@ app.factory('contractData', ['$http', '$q', 'data',
             return data.post(baseUrl + 'new-contract-page', postData);
         }
 
+        function updateAprovalStatus(postData){
+            return data.put();
+        }
+
+        function getUserNickname(postData){
+            return data.get('api/hitmen/byId/' + postData);
+        }
+
         //TODO: http put
 
         contractData.getAll = getAll;
         contractData.getById = getById;
         contractData.createContract = createContract;
+        contractData.getUserNickname = getUserNickname;
 
         return contractData;
     }]);
