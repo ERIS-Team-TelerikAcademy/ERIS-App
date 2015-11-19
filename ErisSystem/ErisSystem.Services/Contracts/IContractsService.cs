@@ -10,6 +10,10 @@
     {
         IQueryable<Contract> GetAll();
 
+        IQueryable<Contract> GetAllWhereClient(string userId);
+
+        IQueryable<Contract> GetAllWhereHitman(string userId);
+
         Contract GetById(int id);
 
         int Add(string hitmanId, string clientId, DateTime deadLine);

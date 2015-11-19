@@ -1,37 +1,67 @@
 'use strict';
-app.controller('contractController', ['$scope', 'contractData', function ($scope, contractData) {
+app.controller('contractController', ['$scope', 'contractData', 'authData', function ($scope, contractData, authData) {
 
     var activeContractsContainer = $('#activeContracts');
     var pendingContractsContainer = $('#pendingContracts');
-    var dataCollection = [];
+    var dataForHitman = [];
+    var dataForClient = [];
     var userNames = [];
-    var contracts = contractData
-        .getAll().then(function (data) {
+    var userId = authData.authentication.userId;
+    contractData
+        .getAllForHitman(userId)
+        .then(function (data) {
             var i = 0;
             var j = 0;
-            for (i = 0; i < data.length; i += 1){
+            for (i = 0; i < data.length; i += 1) {
                 var currentContract = data[i];
                 contractData.getUserNickname(currentContract.ClientId)
-                    .then(function(userData){
-                    userNames[j] = userData.UserName;
+                    .then(function (userData) {
+                        userNames[j] = userData.UserName;
                         j++;
-                    return data;
+                        return data;
 
-                }).then(function (data) {
-                    console.log(data);
-                    for (var i = 0; i < data.length; i += 1) {
-                        var currentContract = data[i];
-                        dataCollection[i] = {
-                            UserName: userNames[i],
-                            DeadLine: currentContract.Deadline,
-                            Status: currentContract.Status
+                    }).then(function (data) {
+                        for (var i = 0; i < data.length; i += 1) {
+                            var currentContract = data[i];
+                            dataForHitman[i] = {
+                                UserName: userNames[i],
+                                DeadLine: currentContract.Deadline,
+                                Status: currentContract.Status
+                            }
                         }
-                    }
-                })
+                    })
             }
 
         });
-            $scope.data = dataCollection;
+
+    contractData
+        .getAllForClient(userId)
+        .then(function (data) {
+            var i = 0;
+            var j = 0;
+            for (i = 0; i < data.length; i += 1) {
+                var currentContract = data[i];
+                contractData.getUserNickname(currentContract.ClientId)
+                    .then(function (userData) {
+                        userNames[j] = userData.UserName;
+                        j++;
+                        return data;
+
+                    }).then(function (data) {
+                        for (var i = 0; i < data.length; i += 1) {
+                            var currentContract = data[i];
+                            dataForClient[i] = {
+                                UserName: userNames[i],
+                                DeadLine: currentContract.Deadline,
+                                Status: currentContract.Status
+                            }
+                        }
+                    })
+            }
+
+        });
+
+    $scope.data = dataForClient;
 
 
     $('body').on('click', '.userSelectionButton', function () {
