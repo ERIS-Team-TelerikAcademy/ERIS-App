@@ -6,6 +6,7 @@
 
     using ErisSystem.Models;
     using Models.Enumerators;
+    using System;
 
     public interface IUsersService
     {
@@ -18,6 +19,8 @@
         void Delete(User hitman);
 
         User GetByUserName(string userName);
+
+        int Update(string userName, string aboutMe, bool gender, bool isWorking, DateTime dateOfBirth);
 
     }
 }

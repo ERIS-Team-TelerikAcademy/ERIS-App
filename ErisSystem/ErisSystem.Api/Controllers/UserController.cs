@@ -13,7 +13,7 @@
     [RoutePrefix("api/Hitmen")]
     public class UserController : ApiController
     {
-        private readonly IUsersService hitmen;
+        private readonly IUsersService users;
 
         public UserController()
             : this(new UsersService(new EfGenericRepository<User>(new ErisSystemContext())))
@@ -22,14 +22,14 @@
 
         public UserController(IUsersService hitmenServices)
         {
-            this.hitmen = hitmenServices;
+            this.users = hitmenServices;
         }
-        
+
         [Route("{userName}")]
         [HttpGet]
         public IHttpActionResult GetHitmanByUserName(string userName)
         {
-            var result = Mapper.Map<UserResponseModel>(this.hitmen
+            var result = Mapper.Map<UserResponseModel>(this.users
                 .GetByUserName(userName));
 
             if (result == null)
@@ -44,7 +44,7 @@
         [HttpGet]
         public IHttpActionResult GetHitmanById(string id)
         {
-            var result = Mapper.Map<UserResponseModel>(this.hitmen
+            var result = Mapper.Map<UserResponseModel>(this.users
                 .GetById(id));
 
             if (result == null)
@@ -63,13 +63,13 @@
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var result = this.hitmen
+            var result = this.users
                 .GetAll()
                 .ProjectTo<UserResponseModel>();
 
             return this.Ok(result);
         }
-               
+
         /// <summary>
         /// Not sure what to do here.
         /// </summary>
@@ -79,7 +79,19 @@
         [HttpPut]
         public IHttpActionResult Put([FromBody]UserResponseModel model)
         {
-            return this.InternalServerError(new System.NotImplementedException());
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            var result = this.users.Update(
+              model.UserName,
+              model.AboutMe,
+              model.Gender,
+              model.IsWorking,
+              model.DateOfBirth);
+
+            return this.Ok(result);
         }
     }
 }
