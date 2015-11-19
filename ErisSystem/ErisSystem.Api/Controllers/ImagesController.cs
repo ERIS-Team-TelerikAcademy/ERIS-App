@@ -65,7 +65,8 @@
             return this.Ok(images);
         }
 
-        public async Task<IHttpActionResult> Post([FromBody]ImageRequestModel sentImage)
+        [Authorize]
+        public async Task<IHttpActionResult> Post(ImageRequestModel sentImage)
         {
             if (!this.ModelState.IsValid)
             {
@@ -85,6 +86,7 @@
         }
 
         [Route("{imageId}")]
+        [Authorize]
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int imageId)
         {

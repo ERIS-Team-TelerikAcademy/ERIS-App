@@ -80,8 +80,9 @@
         /// <param name="model">Gets a response model from the client side</param>
         /// <returns>an HttpActionResult with the id of the created contract</returns>
         [Route("new-contract")]
+        [Authorize]
         [HttpPost]
-        public IHttpActionResult Post([FromBody]ContractResponseModel model)
+        public IHttpActionResult Post(ContractResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -104,6 +105,7 @@
         /// <param name="model">Gets a contract model with the new info</param>
         /// <returns>ID of the updated contract</returns>
         [Route("approve-contract")]
+        [Authorize]
         [HttpPut]
         public IHttpActionResult ApproveContract(ContractResponseModel model)
         {

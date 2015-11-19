@@ -76,8 +76,9 @@
         /// <param name="model"></param>
         /// <returns></returns>
         [Route("profile")]
+        [Authorize]
         [HttpPut]
-        public IHttpActionResult Put([FromBody]UserResponseModel model)
+        public IHttpActionResult Put(UserResponseModel model)
         {
             if (!this.ModelState.IsValid)
             {

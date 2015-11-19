@@ -36,6 +36,7 @@
         }
 
         [Route("rate")]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult AddRating([FromBody]UserRatingResponseModel model)
         {
