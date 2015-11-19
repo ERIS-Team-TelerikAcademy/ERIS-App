@@ -9,6 +9,7 @@
     using Models;
 
     using Moq;
+    using Api.Models.RequestModels;
 
     internal static class DummyRepositories
     {
@@ -47,6 +48,7 @@
             {
                 users.Add(new User
                 {
+                    Id = i.ToString(),
                     RegistrationDate = DateTime.Now,
                     AboutMe = "Test About Me" + i,
                     DateOfBirth = DateTime.Now.AddYears(i),
@@ -125,6 +127,52 @@
             });
 
             return repo.Object;
+        }
+
+        internal static IRepository<Image> DummyImagesRepository()
+        {
+            var repository = new Mock<IRepository<Image>>();
+            var images = new List<Image>();
+
+            for (int i = 0; i < NumberOfTestObjects; i++)
+            {
+                var user = DummyHitmenRepository()
+                    .All()
+                    .FirstOrDefault(u => u.Id == i.ToString());
+
+                images.Add(new Image()
+                {
+                    Id = i,
+                    Name = "Image #" + i,
+                    Extension = ".png",
+                    UserId = user.Id,
+                    User = user
+                });
+            }
+
+            repository.Setup(r => r.All()).Returns(() =>
+            {
+                return images.AsQueryable();
+            });
+
+            repository
+                .Setup(r => r.Add(It.IsAny<Image>()))
+                .Callback<Image>(i =>
+                {
+                    i.Id = images.LastOrDefault().Id + 1;
+                    images.Add(i);
+                });
+
+            repository.Setup(r => r.SaveChanges()).Returns(images.Last().Id);
+
+            repository
+                .Setup(r => r.Delete(It.IsAny<Image>()))
+                .Callback<Image>(i =>
+                {
+                    images.RemoveAt(i.Id);
+                });
+
+            return repository.Object;
         }
     }
 }
