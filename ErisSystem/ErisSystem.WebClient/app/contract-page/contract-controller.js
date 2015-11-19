@@ -61,7 +61,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
 
         });
 
-    $scope.data = dataForClient;
+    $scope.dataForClient = dataForClient;
+    $scope.dataForHitman = dataForHitman;
 
 
     $('body').on('click', '.userSelectionButton', function () {
