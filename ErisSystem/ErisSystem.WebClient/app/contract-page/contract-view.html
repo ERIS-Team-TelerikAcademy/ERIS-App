@@ -4,8 +4,8 @@
     </div>
     <div class="col-md-5">
         <h2>Active contracts</h2>
-        <ul ng-repeat="contract in dataForHitman" class="contracts">
-            <li ng-if="contract.Status == 1">
+        <ul class="contracts" id="activeContracts">
+            <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 1" class="contractItem">
                 <p>For user: {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
             </li>
@@ -16,8 +16,8 @@
     </div>
     <div class="col-md-5">
         <h2>Pending contracts</h2>
-        <ul ng-repeat="contract in dataForHitman" class="contracts">
-            <li ng-if="contract.Status == 2" class="contractItem">
+        <ul class="contracts pendingContracts">
+            <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 2" class="contractItem">
                 <p>For user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
                 <button class="btn-success userSelectionButton" data="{{contract.ContractId}} 1 {{contract.ClientId}}">+</button>
@@ -31,8 +31,8 @@
     </div>
     <div class="col-md-5">
         <h2>Active contracts</h2>
-        <ul ng-repeat="contract in dataForClient" class="contracts">
-            <li ng-if="contract.Status == 1">
+        <ul class="contracts">
+            <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 1" class="contractItem">
                 <p>From user: {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
             </li>
@@ -45,8 +45,8 @@
 
     <div class="col-md-5">
         <h2>Pending contracts</h2>
-        <ul ng-repeat="contract in dataForClient" class="contracts">
-            <li ng-if="contract.Status == 2">
+        <ul class="contracts">
+            <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 2" class="contractItem">
                 <p>From user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
             </li>

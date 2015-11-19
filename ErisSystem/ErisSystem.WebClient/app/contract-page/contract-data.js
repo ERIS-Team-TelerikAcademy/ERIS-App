@@ -17,7 +17,7 @@ app.factory('contractData', ['$http', '$q', 'data',
         }
 
         function updateAprovalStatus(postData){
-            return data.put();
+            return data.put(baseUrl + 'approve-contract', postData);
         }
 
         function getUserNickname(postData){
@@ -32,7 +32,6 @@ app.factory('contractData', ['$http', '$q', 'data',
             return data.get(baseUrl + 'all-for-hitman/' + postData);
         }
 
-        //TODO: http put
 
         contractData.getAll = getAll;
         contractData.getById = getById;
@@ -40,6 +39,7 @@ app.factory('contractData', ['$http', '$q', 'data',
         contractData.getUserNickname = getUserNickname;
         contractData.getAllForClient = getAllClients;
         contractData.getAllForHitman = getAllHitmen;
+        contractData.put = updateAprovalStatus;
 
         return contractData;
     }]);
