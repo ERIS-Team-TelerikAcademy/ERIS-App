@@ -1,6 +1,7 @@
 # ERIS-App
 Teamwork project for the course "Web services & cloud" 2015 @ TelerikAcademy.
 
+**Repository link**: https://github.com/ERIS-Team-TelerikAcademy/ERIS-App 
 ## Description 
 The idea behind our application is to serve as a social network for "special" services. The network has two types of user: a hitman or a client.
 
@@ -19,17 +20,20 @@ The idea behind our application is to serve as a social network for "special" se
 | api/Account/UserInfo | GET | Requires OAuth bearer token | Returns a `UserInfoViewModel` object.
 | api/Account/Logout | POST | Requires OAuth bearer token | Logs out the current user.
 | api/Account/ChangePassword | POST | Requires OAuth bearer token | Changes the password of the authenticated user.
-| api/Contracts/all | GET | - | Returns a `ContractResponseModel` projection of all contracts in the database
+| api/Contracts/all | GET | — | Returns a `ContractResponseModel` projection of all contracts in the database
 | api/Contracts/{contractId} | GET | `contractId` - the id of the contract to retrieve | Returns a `ContractResponseModel`
 | api/Contracts/all-for-client/{userId} | `userId` - the id of the client whose contracts are to be retrieved |GET | Returns a list of `ContractResponseModel`
 | api/Contracts/all-for-hitman/{userId} | `userId` - the id of the hitman whose contracts are to be retrieved | GET | Returns a list of `ContractResponseModel`
 | api/Contracts/new-contract | POST | `ContractResponseModel` in the body of the request | Registers a new contract via a `ContractResponseModel`
 | api/Contracts/approve-contract | PUT | `ContractResponseModel` in the body of the request | Updates a contract and returns the id of the updated contract
-| api/Countries | GET | - | Returns a list of `CountryResponseModel` projections from the countries in the database
-| api/Images          | GET    | –                                                            | Returns a list of `ImageResponseModel` objects.                        
+| api/Countries | GET | — | Returns a list of `CountryResponseModel` projections from the countries in the database
+| api/Images          | GET    | —                                                            | Returns a list of `ImageResponseModel` objects.                        
 | api/Images/{userId} | GET    | `userId` - the id of the user whose image is to be retrieved | Returns a list of `ImageResponseModel` objects for the user with id `userId`. 
 | api/Images/{userId} | POST   | `userId` - the id of the user whose image is to be uploaded  | Saves an `ImageRequestModel` object to Dropbox, linking it to SQL server.          
 | api/Images/{imageId}| DELETE | `imageId` - the id of the image to be deleted | Deletes the image with id `imageId` from both SQL server and Dropbox.
+| api/Hitmen/{username} | GET | `username` - a string representing the username of the hitman | Gets a `UserResponseModel` by `username`
+| api/Hitmen/byId/{hitmanId} | GET | `hitmanId` - the id of the hitman whose info to fetch | Gets a `UserResponseModel` by `id`
+| api/Hitmen/profile | PUT | `UserResponseModel` in the body of the request | Updates the hitman profile with the `UserResponseModel` from the request body
 | api/Ratings/{hitmanId} | GET | `hitmanId` - the id of the hitman whose ratings to fetch | Returns a collection of `UserRatingResponseModel` projections
 | api/Ratings/rate | POST | `UserRatingResponseModel` in the body of the request | Adds a new rating and returns its id
 ### Class diagrams
