@@ -2,8 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Services;
     using Services.Contracts;
+
+    using Dropbox.Api;
 
     public static class DummyServices
     {
@@ -20,6 +23,14 @@
         internal static IContractsService GetDummyContractsService()
         {
             return new ContractsService(DummyRepositories.DummyContractsRepository(), DummyRepositories.DummyHitmenRepository());
+        }
+
+        public static IImagesService GetDummyImagesService()
+        {
+            return new ImagesService(
+                DummyRepositories.DummyImagesRepository(),
+                DummyRepositories.DummyHitmenRepository(),
+                new DropboxClient("rRbWGOFRsGAAAAAAAAAABs8x29IZ2uajqNU4mtZRAIU1qrxcUPM3Ox3C9DUhnW1l"));
         }
     }
 }
