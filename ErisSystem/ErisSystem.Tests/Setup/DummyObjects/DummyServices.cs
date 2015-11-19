@@ -1,4 +1,4 @@
-﻿namespace ErisSystem.Tests.DummyObjects
+﻿namespace ErisSystem.Tests.Setup.DummyObjects
 {
     using Services;
     using Services.Contracts;
