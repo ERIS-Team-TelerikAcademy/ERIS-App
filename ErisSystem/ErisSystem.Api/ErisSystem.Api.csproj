@@ -246,11 +246,9 @@
     <Compile Include="Helpers\Account\RandomOAuthStateGenerator.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\BindingModels\AddExternalLoginBindingModel.cs" />
     <Compile Include="Models\Account\BindingModels\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\Account\ViewModels\ExternalLoginViewModel.cs" />

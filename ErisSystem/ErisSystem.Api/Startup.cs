@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using ErisSystem.Api.Migrations;
-using ErisSystem.Data;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
-using ErisSystem.Data.Migrations;
-using ErisSystem.Common.Constants;
-using System.Reflection;
 
 [assembly: OwinStartup(typeof(ErisSystem.Api.Startup))]
 
