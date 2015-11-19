@@ -91,4 +91,58 @@ a{
     font-size:16px;
 }
 
+.avatarContainer{
+  display: inline-block;
+  float: left;
+}
+
+.infoContainer{
+  display: inline-block;
+  float: right;
+}
+
+ /*start of rating section*/
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.star-rating .star {
+  padding: 1px;
+  color: #ddd;
+  font-size: 20px;
+  text-shadow: .05em .05em #aaa;
+  list-style-type: none;
+  display: inline-block;
+  cursor: pointer;
+}
+.star-rating .star.filled {
+  color: #fd0;
+}
+.star-rating.readonly .star.filled {
+  color: #666;
+}
+/*end of rating section*/
+
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
 
