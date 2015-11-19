@@ -56,6 +56,11 @@ app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
 
+app.constant('appSettings', {
+    serverPath : 'http://localhost:28499/'
+    // serverPath 'http://erissystem.azurewebsites.net/';
+});
+
 app.run(['authData', function (authData) {
     authData.fillAuthData();
 }]);
