@@ -15,16 +15,18 @@ app.controller('imageController', ['$scope', 'imageData', 'authData',
                 userId: userId
             };
 
+
             imageData.upload(uploadFile)
                 .then(function (res) {
                     console.log(res);
                 });
         };
 
-        imageData.getById(userId).
-            then(function (response) {
-                $scope.data = response;
-            });
+            imageData.getById(userId).
+                then(function (response) {
+                    console.log(response);
+                    $scope.data = response;
+                });
 
         $scope.getImages = function () {
             imageData.getAll().
