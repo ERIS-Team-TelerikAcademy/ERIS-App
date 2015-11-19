@@ -8,4 +8,9 @@ app.controller('hitmanController', ['$scope', '$routeParams', '$rootScope', 'hit
                 $scope.hitman = response;
             })
 
+        $scope.rating = 2;
+        $scope.rateFunction = function (rating) {
+
+        }
+
     }]);

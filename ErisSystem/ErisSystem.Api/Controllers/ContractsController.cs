@@ -1,11 +1,7 @@
 ﻿namespace ErisSystem.Api.Controllers
 {
     using System.Web.Http;
-    using Data.Repositories;
-    using Data;
-    using ErisSystem.Models;
     using Services.Contracts;
-    using Services;
     using AutoMapper;
     using Models.ResponseModels;
     using AutoMapper.QueryableExtensions;
