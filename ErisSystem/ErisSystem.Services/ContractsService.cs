@@ -22,7 +22,7 @@
             this.users = hitmen;
         }
 
-        public int Add(string hitmanId, string clientId, DateTime deadline)
+        public int Add(string hitmanId, string clientId, DateTime deadline, string targetName = null, string location = null)
         {
             var hitmanFromDb = this.users
                 .All()
@@ -45,6 +45,8 @@
             contract.Client = client;
             contract.Hitman = hitmanFromDb;
             contract.Deadline = deadline;
+            contract.TargetName = targetName;
+            contract.Location = location;
 
             this.contracts.Add(contract);
             return this.contracts.SaveChanges();
@@ -75,7 +77,6 @@
 
 
             contract.Status = connectionStatus;
-            contract.HitStatus = hitStatus;
             this.contracts.Update(contract);
 
             return this.contracts.SaveChanges();
@@ -90,21 +91,6 @@
             }
 
             contract.Status = connectionStatus;
-            this.contracts.Update(contract);
-
-            return this.contracts.SaveChanges();
-        }
-
-        public int UpdateHitStatus(int id, HitStatus hitStatus)
-        {
-            var contract = this.contracts.GetById(id);
-
-            if (contract == null)
-            {
-                return -1;
-            }
-
-            contract.HitStatus = hitStatus;
             this.contracts.Update(contract);
 
             return this.contracts.SaveChanges();
