@@ -59,8 +59,7 @@ a{
 
 .approvalButton{
     background-image: url("approvebutton.png");
-    background-color: transparent;
-    background: no-repeat;
+    background: repeat;
 }
 
 .rejectButton{
