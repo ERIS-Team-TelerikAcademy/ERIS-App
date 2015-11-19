@@ -26,6 +26,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                             dataForHitman[i] = {
                                 UserName: userNames[i],
                                 DeadLine: currentContract.Deadline,
+                                TargetName: currentContract.TargetName,
+                                Location: currentContract.Location,
                                 Status: currentContract.Status,
                                 ContractId: currentContract.Id,
                                 ClientId: currentContract.ClientId
@@ -35,6 +37,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
             }
 
         }).then(function(){
+            console.log('123123123');
             $scope.dataForHitman = dataForHitman;
         });
 
@@ -56,6 +59,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                             var currentContract = data[i];
                             dataForClient[i] = {
                                 UserName: userNames[i],
+                                TargetName: currentContract.TargetName,
+                                Location: currentContract.Location,
                                 DeadLine: currentContract.Deadline,
                                 Status: currentContract.Status
                             }
@@ -64,6 +69,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
             }
 
         }).then(function(){
+            console.log('123123123');
             $scope.dataForClient = dataForClient;
         });
 
