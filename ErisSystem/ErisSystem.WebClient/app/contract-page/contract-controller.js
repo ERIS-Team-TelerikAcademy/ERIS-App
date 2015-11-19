@@ -70,14 +70,21 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
     $('body').on('click', '.userSelectionButton', function (e) {
         var a = $(e.target);
         var contract  = a.attr('data').split(' ');
-        alert('ContractId: ' + contract[0] + ' ApprovalStatus:' + contract[1] + ' ClinetId: ' + contract[2]);
-        //Put - get contract id from button data attribute
-        //{
-         //   "id": 1,
-          //  "HitmanId": "66e9bbe8-8e74-41b9-b09d-361ffc8ce313",
-           // "ClientId": "66e9bbe8-8e74-41b9-b09d-361ffc8ce313",
-           // "Status": 1
-       // }
+        var data = {
+            "id": contract[0],
+            "HitmanId": userId,
+            "ClientId": contract[2],
+            "Status": contract[1]
+        };
+        var res = contractData.put(data);
+        if(res){
+            var newThing = a.parent();
+            $('#pendingContracts').remove(a.parent());
+            newThing.children().remove('.userSelectionButton');
+            if(contract[0] === '1'){
+                $('#activeContracts').append(newThing);
+            }
+        }
     })
 
 }]);
