@@ -44,8 +44,9 @@ body{
 }
 .userSelectionButton{
     margin: 5px;
-    width:40px;
-    height: 40px;
+    width:30px;
+    height: 60px;
+    font-size: 24px;
 }
 .separator {
     border-left: 3px solid black;
@@ -53,19 +54,27 @@ body{
     height: 700px;
 }
 
+.contractHeader{
+    text-align: center;
+    margin:10px;
+    font-size: 26px;
+    font-weight: bolder;
+    color: firebrick;
+}
+
+.contractItem{
+    border-bottom: dashed 1px;
+}
+
+.customHr{
+    border-color: firebrick;
+    border-bottom: dashed 1px;
+    margin-top:10px;
+    color:firebrick;
+}
+
 a{
     color: red;
-}
-
-.approvalButton{
-    background-image: url("approvebutton.png");
-    background-color: transparent;
-    background: no-repeat;
-}
-
-.rejectButton{
-    background-image: url("rejectbutton.png");
-    background: no-repeat;
 }
 
 .footer {
@@ -80,11 +89,6 @@ a{
 .footerText{
     color:white;
     font-size:16px;
-}
-
-/*hitman view*/
-.username{
-  margin-bottom: 20px;
 }
 
 .avatarContainer{
@@ -119,3 +123,48 @@ a{
   color: #666;
 }
 /*end of rating section*/
+
+/*upload image*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#upload-img{
+    width: 400px;
+    height: 300px;
+}
+/*upload image*/
+
+/*hitmen list view */
+#hitmen-list .hitman-name{
+    font-size: 2.2em;
+}
+
+#hitmen-list .row{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#hitmen-list img{
+    width: 160px;
+    height: 160px;
+}
+
+/*hitmen list view */

@@ -5,7 +5,7 @@
 	      <!--<img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>-->
 	      <div class="caption">
 	        <h3>Rating</h3>
-	        <p><div star-rating ng-model="2" max="5"></div></p>
+	        <p><div star-rating ng-model="rating" max="5" n-rating-select="rateFunction(rating)"></div></p>
 	      </div>
 	    </div>
     </div>
@@ -37,7 +37,7 @@
 			  </div>	
 		    </div>
 	    </div>
-	    <div class="col-md-8"><a class="btn btn-danger btn-block" href="#" role="button">Update Profile Info</a></div>
+	    <div class="col-md-8" ng-show="authentication.userName == userName"><a class="btn btn-danger btn-block" href="#" role="button">Update Profile Info</a></div>
 	</div>
 	<!--<div>{{hitman.Id}}</div>-->
 </div>

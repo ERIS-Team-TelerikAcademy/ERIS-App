@@ -10,14 +10,14 @@
     {
         IQueryable<Contract> GetAll();
 
+        IQueryable<Contract> GetAllWhereClient(string userId);
+
+        IQueryable<Contract> GetAllWhereHitman(string userId);
+
         Contract GetById(int id);
 
-        int Add(string hitmanId, string clientId, DateTime deadLine);
-
-        int UpdateConnectionStatus(int id, HitStatus hitStatus, ConnectionStatus connectionStatus);
+        int Add(string hitmanId, string clientId, DateTime deadLine, string targetName, string location);
 
         int UpdateConnectionStatus(int id, ConnectionStatus connectionStatus);
-
-        int UpdateHitStatus(int id, HitStatus hitStatus);
     }
 }

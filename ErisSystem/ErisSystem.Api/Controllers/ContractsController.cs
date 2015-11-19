@@ -52,6 +52,28 @@
             return this.Ok(result);
         }
 
+        [Route("all-for-client/{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetAllForClient(string userId)
+        {
+            var result = this.contracts
+                .GetAllWhereClient(userId)
+                .ProjectTo<ContractResponseModel>();
+
+            return this.Ok(result);
+        }
+
+        [Route("all-for-hitman/{userId}")]
+        [HttpGet]
+        public IHttpActionResult GetAllForHitman(string userId)
+        {
+            var result = this.contracts
+                .GetAllWhereHitman(userId)
+                .ProjectTo<ContractResponseModel>();
+
+            return this.Ok(result);
+        }
+
         /// <summary>
         /// Endpoint for registering a new contract
         /// </summary>
@@ -69,7 +91,9 @@
             var newContractId = this.contracts.Add(
                 model.HitmanId,
                 model.ClientId,
-                model.Deadline);
+                model.Deadline,
+                model.TargetName,
+                model.Location);
             
             return this.Created(this.Url.ToString(), newContractId);
         }
@@ -89,30 +113,6 @@
             }
 
             var updated = this.contracts.UpdateConnectionStatus(model.Id, (ConnectionStatus)model.Status);
-
-            if (updated == -1)
-            {
-                return this.NotFound();
-            }
-
-            return this.Ok(updated);
-        }
-
-        /// <summary>
-        /// An endpoint for updating the info on a contract
-        /// </summary>
-        /// <param name="model">Gets a contract model with the new info</param>
-        /// <returns>ID of the updated contract</returns>
-        [Route("update")]
-        [HttpPut]
-        public IHttpActionResult UpdateHitStatus(ContractResponseModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.BadRequest(this.ModelState);
-            }
-
-            var updated = this.contracts.UpdateHitStatus(model.Id, (HitStatus)model.HitStatus);
 
             if (updated == -1)
             {

@@ -1,65 +1,51 @@
 'use strict';
+app.factory('data', ['$http', '$q', 'appSettings',
+    function ($http, $q, appSettings) {
 
-app.factory('data', ['$http', '$q',
-    function ($http, $q) {
-        var serverPath = 'http://erissystem.azurewebsites.net/';
-        var odataServerPath = '';
         var header = {headers: {'Content-Type': 'application/json'}};
         var data = {};
 
-        function get(url, options) {
-         //   var headers = options.headers || header;
+        function request(method, url, data) {
             var deferred = $q.defer();
 
-            var URL = serverPath + url;
+            var URL = appSettings.serverPath + url;
 
-            $http.get(URL, header)
-                .success(function (data) {
-                    deferred.resolve(data);
-                })
-                .error(function (err) {
-                    deferred.reject(err);
+            $http({
+                method: method,
+                url: URL,
+                data: data,
+                headers: header
+            })
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                },
+                function (err) {
+                    deferred.reject(err)
                 });
 
             return deferred.promise;
         }
 
-        function getOdata(url, options) {
-            var deferred = $q.defer();
-            var URL = odataServerPath + url;
-          //  var headers = options.headers || header;
-
-            $http.get(URL, header)
-                .success(function (data) {
-                    deferred.resolve(data);
-                })
-                .error(function (err) {
-                    deferred.reject(err);
-                });
-
-            return deferred.promise;
+        function get(url) {
+            return request('GET', url);
         }
 
-        function post(url, data, options) {
-            var deferred = $q.defer();
+        function post(url, data) {
+            return request('POST', url, data);
+        }
 
-            var URL = serverPath + url;
-          //  var headers = options.headers || header;
+        function put(url, data) {
+            return request('PUT', url, data);
+        }
 
-            $http.post(URL, data, header)
-                .success(function (data) {
-                    deferred.resolve(data);
-                })
-                .error(function (err) {
-                    deferred.reject(err);
-                });
-
-            return deferred.promise;
+        function deleteReq(url, data) {
+            return request('DELETE', url, data);
         }
 
         data.get = get;
-        data.getOdata = getOdata;
         data.post = post;
+        data.put = put;
+        data.delete = deleteReq;
 
         return data;
     }]);

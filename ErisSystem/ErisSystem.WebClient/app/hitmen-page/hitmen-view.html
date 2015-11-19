@@ -1,11 +1,20 @@
-<div ng-repeat="hitman in data">
-    <img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>
-    <div star-rating ng-model="rating" max="5" on-rating-select="rateFunction(rating)"></div>
-    <div><a ng-href="#/hitman/{{hitman.UserName}}">{{hitman.UserName}}</a></div>
-    <div>{{hitman.Id}}</div>
-    <div>{{hitman.DateOfBirth}}</div>
-    <div>{{hitman.AboutMe}}</div>
-    <div>{{hitman.Gender}}</div>
+<div ng-repeat="hitman in data" id="hitmen-list">
+    <div class="row">
+        <div class="col-md-2 avatarContainer">
+            <div class="thumbnail">
+                <a href="#/hitman/{{hitman.UserName}}">
+                    <img src="../avatar.png" alt="Avatar Me"/>
+                </a>
+                <div star-rating ng-model="rating" max="5" on-rating-select="rateFunction(rating)"></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div><a ng-href="#/hitman/{{hitman.UserName}}" class="hitman-name">{{hitman.UserName}}</a></div>
+            <span> Date of bird: {{ hitman.DateOfBirth | date:'MMM dd yyyy'}}</span><br>
+            <div>Gender: {{hitman.Gender ? 'Male' : 'Female'}}</div>
+        </div>
+    </div>
 </div>
 
 
