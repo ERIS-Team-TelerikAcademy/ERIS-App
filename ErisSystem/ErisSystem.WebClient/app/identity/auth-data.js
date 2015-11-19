@@ -1,9 +1,7 @@
 'use strict';
 
-app.factory('authData', ['$http', '$q', 'localStorageService',
-    function ($http, $q, localStorageService) {
-        var serviceBase = 'http://localhost:28499/';
-     //   var serviceBase = 'http://erissystem.azurewebsites.net/';
+app.factory('authData', ['$http', '$q', 'appSettings', 'localStorageService',
+    function ($http, $q, appSettings, localStorageService) {
 
         var authServiceFactory = {};
 
@@ -17,7 +15,7 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
 
             logOut();
 
-            return $http.post(serviceBase + 'api/account/register', registration,
+            return $http.post(appSettings.serverPath + 'api/account/register', registration,
                 {headers: {'Content-Type': 'application/json'}})
                 .then(function (response) {
                     return response;
@@ -31,11 +29,11 @@ app.factory('authData', ['$http', '$q', 'localStorageService',
 
             var deferred = $q.defer();
 
-            $http.post(serviceBase + 'token', data,
+            $http.post(appSettings.serverPath + 'token', data,
                 {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
                 .success(function (response) {
 
-                    $http.get(serviceBase + 'api/hitmen/' + loginData.userName)
+                    $http.get(appSettings.serverPath + 'api/hitmen/' + loginData.userName)
                         .success(function (userResponse) {
                             localStorageService.set('authorizationData',
                                 {token: response.access_token, userName: loginData.userName, userId: userResponse.Id});

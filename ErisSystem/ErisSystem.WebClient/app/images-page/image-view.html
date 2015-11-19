@@ -11,9 +11,8 @@
                 <h4 class="modal-title" id="myModalLabel">Add Image</h4>
             </div>
             <div class="modal-body">
-                <div class="col-md-12 text-center        $scope.getMyImages = function () {
-">
-                    <img data-ng-src="data:{{file.filetype}};base64,{{file.base64}}"
+                <div class="col-md-12 text-center">
+                    <img id="upload-img" ng-show="file.filetype" data-ng-src="data:{{file.filetype}};base64,{{file.base64}}"
                          data-err-src="images/png/avatar.png"/>
                 </div>
 

@@ -1,9 +1,6 @@
 'use strict';
-app.factory('data', ['$http', '$q',
-    function ($http, $q) {
-        var serverPath = 'http://localhost:28499/';
-
-      //  var serverPath = 'http://erissystem.azurewebsites.net/';
+app.factory('data', ['$http', '$q', 'appSettings',
+    function ($http, $q, appSettings) {
 
         var header = {headers: {'Content-Type': 'application/json'}};
         var data = {};
@@ -11,7 +8,7 @@ app.factory('data', ['$http', '$q',
         function request(method, url, data) {
             var deferred = $q.defer();
 
-            var URL = serverPath + url;
+            var URL = appSettings.serverPath + url;
 
             $http({
                 method: method,
