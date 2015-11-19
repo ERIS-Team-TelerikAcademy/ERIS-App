@@ -20,9 +20,9 @@
             <li ng-if="contract.Status == 2">
                 <p>For user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
-                <button class="approvalButton userSelectionButton" data="{{contract.ContractId}} 1">
+                <button class="approvalButton userSelectionButton" data="{{contract.ContractId}} 1 {{contract.ClientId}}">
                 </button>
-                <button class="rejectButton userSelectionButton" data="{{contract.ContractId}} 0"></button>
+                <button class="rejectButton userSelectionButton" data="{{contract.ContractId}} 0 {{contract.ClientId}}"></button>
             </li>
         </ul>
     </div>

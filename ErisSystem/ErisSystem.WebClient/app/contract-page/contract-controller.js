@@ -27,7 +27,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                                 UserName: userNames[i],
                                 DeadLine: currentContract.Deadline,
                                 Status: currentContract.Status,
-                                ContractId: currentContract.Id
+                                ContractId: currentContract.Id,
+                                ClientId: currentContract.ClientId
                             }
                         }
                     })
@@ -68,9 +69,15 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
 
     $('body').on('click', '.userSelectionButton', function (e) {
         var a = $(e.target);
-        var contractId  = a.attr('data').split(' ');
-        alert('ContractId: ' + contractId[0] + 'ApprovalStatus:' + contractId[1]);
+        var contract  = a.attr('data').split(' ');
+        alert('ContractId: ' + contract[0] + ' ApprovalStatus:' + contract[1] + ' ClinetId: ' + contract[2]);
         //Put - get contract id from button data attribute
+        //{
+         //   "id": 1,
+          //  "HitmanId": "66e9bbe8-8e74-41b9-b09d-361ffc8ce313",
+           // "ClientId": "66e9bbe8-8e74-41b9-b09d-361ffc8ce313",
+           // "Status": 1
+       // }
     })
 
 }]);
