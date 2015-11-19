@@ -53,6 +53,21 @@ body{
     height: 700px;
 }
 
+.contractHeader{
+    text-align: center;
+    margin:10px;
+    font-size: 26px;
+    font-weight: bolder;
+    color: firebrick;
+}
+
+.customHr{
+    border-color: firebrick;
+    border-bottom: dashed 1px;
+    margin-top:10px;
+    color:firebrick;
+}
+
 a{
     color: red;
 }
