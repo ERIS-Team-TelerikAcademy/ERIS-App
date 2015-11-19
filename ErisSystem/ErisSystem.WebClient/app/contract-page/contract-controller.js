@@ -66,8 +66,10 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
     $scope.dataForHitman = dataForHitman;
 
 
-    $('body').on('click', '.userSelectionButton', function () {
-        alert('asd');
+    $('body').on('click', '.userSelectionButton', function (e) {
+        var a = $(e.target);
+        var contractId  = a.attr('data').split(' ');
+        alert('ContractId: ' + contractId[0] + 'ApprovalStatus:' + contractId[1]);
         //Put - get contract id from button data attribute
     })
 
