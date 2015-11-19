@@ -2,7 +2,7 @@
 Teamwork project for the course "Web services & cloud" 2015 @ TelerikAcademy.
 
 ## Description 
-The idea behind our application is to server as a social network for "special" services. The network has two types of user: a hitman or a client.
+The idea behind our application is to serve as a social network for "special" services. The network has two types of user: a hitman or a client.
 
 - Hitmen offer their services to clients via *contracts*.
 - Client chooses a hitman and sends a contract offer.
@@ -13,15 +13,19 @@ The idea behind our application is to server as a social network for "special" s
 
 ### Endpoints table
 
-| Endpoint   | Location                                | Method | Parameters                                                   | Explanation                                                                         | Response format |
-|------------|-----------------------------------------|--------|--------------------------------------------------------------|-------------------------------------------------------------------------------------|-----------------|
-| api/Images | http://{url}:{port}/api/Images          | GET    | –                                                            | Returns a list of images with an id for the respective user.                        | XML/JSON        |
-| api/Images | http://{url}:{port}/api/Images/{userId} | GET    | `userId` - the id of the user whose image is to be retrieved | Returns a base64-encoded string which is the image for the   user with id `userId`. | XML/JSON        |
-| api/Images | http://{url}:{port}/api/Images/{userId} | POST   | `userId` - the id of the user whose image is to be uploaded  | Saves an `ImageResponseModel` object to Dropbox, linking it to   SQL server.          | XML/JSON        |
-
+| Endpoint   | Location                                | Method | Parameters                                                   | Explanation                                                                         
+|------------|-----------------------------------------|--------|--------------------------------------------------------------|-------------------------------------------------------------------------------------
+| api/Account| http://domain.com/api/Account/Register | POST | `RegisterBindingModel` | Registers a user based on the sent model.
+| api/Account| http://domain.com/api/Account/UserInfo | GET | Requires OAuth bearer token | Returns a `UserInfoViewModel` object.
+| api/Account| http://domain.com/api/Account/Logout | POST | Requires OAuth bearer token | Logs out the current user.
+| api/Account| http://domain.com/api/Account/ChangePassword | POST | Requires OAuth bearer token | Changes the password of the authenticated user.
+| api/Images | http://domain.com/api/Images          | GET    | –                                                            | Returns a list of `ImageResponseModel` objects.                        
+| api/Images | http://domain.com/api/Images/{userId} | GET    | `userId` - the id of the user whose image is to be retrieved | Returns a list of `ImageResponseModel` objects for the user with id `userId`. 
+| api/Images | http://domain.com/api/Images/{userId} | POST   | `userId` - the id of the user whose image is to be uploaded  | Saves an `ImageRequestModel` object to Dropbox, linking it to SQL server.          
+| api/Images | http://domain.com/api/Images/{imageId}| DELETE | `imageId` - the id of the image to be deleted | Deletes the image with id `imageId` from both SQL server and Dropbox.
 ### Class diagrams
 
-TODO
+![Class diagram](http://puu.sh/lrBij/b1c248857d.png)
 
 ### Participants
 
