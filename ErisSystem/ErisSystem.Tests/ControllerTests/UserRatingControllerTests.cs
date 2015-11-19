@@ -3,11 +3,10 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Api.Models.ResponseModels;
-    using Models;
     using Api.Controllers;
+    using Setup.DummyObjects;
 
     using MyTested.WebApi;
-    using DummyObjects;
     using System.Linq;
 
     [TestClass]
@@ -35,6 +34,24 @@
                 .Calling(c => c.GetRatingsForUser("Not-availableId"))
                 .ShouldReturn()
                 .NotFound();
+        }
+
+        [TestMethod]
+        public void AddRatingShouldAddARatingAndReturnItsInt()
+        {
+            MyWebApi
+                .Controller<UserRatingsController>()
+                .WithResolvedDependencies(DummyServices.GetDummyUserRatingsService())
+                .Calling(c => c.AddRating(new UserRatingResponseModel
+                {
+                    ClientId = "Test",
+                    HitmanId = "Test2",
+                    Rating = 1
+                }))
+                .ShouldReturn()
+                .Ok()
+                .WithResponseModelOfType<int>()
+                .Passing(r => r == DummyRepositories.NumberOfTestObjects - 1);
         }
     }
 }

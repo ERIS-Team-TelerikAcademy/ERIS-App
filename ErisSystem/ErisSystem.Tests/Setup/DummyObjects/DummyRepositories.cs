@@ -1,4 +1,4 @@
-﻿namespace ErisSystem.Tests.DummyObjects
+﻿namespace ErisSystem.Tests.Setup.DummyObjects
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -37,23 +37,30 @@
         internal static IRepository<UserRating> DummyUserRatingsRepository()
         {
             var repo = new Mock<IRepository<UserRating>>();
+            var ratings = new List<UserRating>();
+
+            for (int i = 0; i < NumberOfTestObjects; i++)
+            {
+                ratings.Add(new UserRating
+                {
+                    Id = i,
+                    ClientId = "TestId" + i,
+                    HitmanId = "TestId" + (i % 2 == 0 ? i : 3),
+                    Rating = i % 6
+                });
+            }
 
             repo.Setup(r => r.All()).Returns(() =>
             {
-                var ratings = new List<UserRating>();
-
-                for (int i = 0; i < NumberOfTestObjects; i++)
-                {
-                    ratings.Add(new UserRating
-                    {
-                        Id = i,
-                        ClientId = "TestId" + i,
-                        HitmanId = "TestId" + (i % 2 == 0 ? i : 3),
-                        Rating = i % 6
-                    });
-                }
-
                 return ratings.AsQueryable();
+            });
+
+            repo.Setup(r => r.SaveChanges()).Returns(ratings.Last().Id);
+
+            repo.Setup(r => r.Add(It.IsAny<UserRating>())).Callback<UserRating>(ur =>
+            {
+                ur.Id = ratings.LastOrDefault().Id + 1;
+                ratings.Add(ur);
             });
 
             return repo.Object;
