@@ -5,7 +5,7 @@
 	      <!--<img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>-->
 	      <div class="caption">
 	        <h3>Rating</h3>
-	        <p><div star-rating ng-model="2" max="5"></div></p>
+	        <p><div star-rating ng-model="rating" max="5" n-rating-select="rateFunction(rating)"></div></p>
 	      </div>
 	    </div>
     </div>

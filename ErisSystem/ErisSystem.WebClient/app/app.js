@@ -18,7 +18,7 @@ app.config(function ($routeProvider) {
         templateUrl: "identity/login.html"
     });
 
-    $routeProvider.when("/profile", {
+    $routeProvider.when("/profile/:name", {
         controller: "hitmanController",
         templateUrl: "hitman-page/hitman-view.html"
     });

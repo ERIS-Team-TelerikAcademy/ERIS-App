@@ -17,7 +17,7 @@
                     <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
                         <ul class="nav navbar-nav navbar-right">
                             <li data-ng-hide="!authentication.isAuth">
-                                <a href="#/profile" >Profile</a></li>
+                                <a href="#/profile/{{authentication.userName}}" >Profile</a></li>
                             <li data-ng-hide="!authentication.isAuth">
                                 <a href="#/contract" >Contract</a></li>
                             <li data-ng-hide="!authentication.isAuth">
