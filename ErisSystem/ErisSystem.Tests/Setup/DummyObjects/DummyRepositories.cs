@@ -78,7 +78,6 @@
                     ClientId = (i % 2 == 0 ? i : 3).ToString(),
                     HitmanId = (i % 2 == 0 ? i : 3).ToString() + "hitman",
                     Deadline = DateTime.Now,
-                    HitStatus = HitStatus.Pending,
                     Status = ConnectionStatus.Pending,
                     Id = i
                 });
