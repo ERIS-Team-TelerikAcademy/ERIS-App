@@ -17,12 +17,11 @@
     <div class="col-md-5">
         <h2>Pending contracts</h2>
         <ul ng-repeat="contract in dataForHitman" class="contracts">
-            <li ng-if="contract.Status == 2">
+            <li ng-if="contract.Status == 2" class="contractItem">
                 <p>For user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
-                <button class="approvalButton userSelectionButton" data="{{contract.ContractId}} 1 {{contract.ClientId}}">
-                </button>
-                <button class="rejectButton userSelectionButton" data="{{contract.ContractId}} 0 {{contract.ClientId}}"></button>
+                <button class="btn-success userSelectionButton" data="{{contract.ContractId}} 1 {{contract.ClientId}}">+</button>
+                <button class="btn-danger userSelectionButton" data="{{contract.ContractId}} 0 {{contract.ClientId}}">x</button>
             </li>
         </ul>
     </div>

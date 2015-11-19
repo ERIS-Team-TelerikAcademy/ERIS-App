@@ -44,8 +44,9 @@ body{
 }
 .userSelectionButton{
     margin: 5px;
-    width:40px;
-    height: 40px;
+    width:30px;
+    height: 60px;
+    font-size: 24px;
 }
 .separator {
     border-left: 3px solid black;
@@ -61,6 +62,10 @@ body{
     color: firebrick;
 }
 
+.contractItem{
+    border-bottom: dashed 1px;
+}
+
 .customHr{
     border-color: firebrick;
     border-bottom: dashed 1px;
@@ -70,16 +75,6 @@ body{
 
 a{
     color: red;
-}
-
-.approvalButton{
-    background-image: url("approvebutton.png");
-    background: repeat;
-}
-
-.rejectButton{
-    background-image: url("rejectbutton.png");
-    background: no-repeat;
 }
 
 .footer {

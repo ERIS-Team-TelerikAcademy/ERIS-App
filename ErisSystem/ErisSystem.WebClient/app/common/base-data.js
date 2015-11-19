@@ -2,7 +2,7 @@
 
 app.factory('data', ['$http', '$q',
     function ($http, $q) {
-        var serverPath = 'http://erissystem.azurewebsites.net/';
+        var serverPath = 'http://localhost:28499/';
         var odataServerPath = '';
         var header = {headers: {'Content-Type': 'application/json'}};
         var data = {};
