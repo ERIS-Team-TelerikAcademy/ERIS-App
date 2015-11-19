@@ -25,7 +25,8 @@
                 .ForMember(c => c.HitmanId, opts => opts.MapFrom(c => c.HitmanId))
                 .ForMember(c => c.ClientId, opts => opts.MapFrom(c => c.ClientId))
                 .ForMember(c => c.Status, opts => opts.MapFrom(c => (int)c.Status))
-                .ForMember(c => c.HitStatus, opts => opts.MapFrom(c => (int)c.HitStatus));
+                .ForMember(c => c.TargetName, opts => opts.MapFrom(c => c.TargetName))
+                .ForMember(c => c.Location, opts => opts.MapFrom(c => c.Location));
         }
     }
 }

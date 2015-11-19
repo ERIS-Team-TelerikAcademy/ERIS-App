@@ -34,6 +34,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                     })
             }
 
+        }).then(function(){
+            $scope.dataForHitman = dataForHitman;
         });
 
     contractData
@@ -61,10 +63,10 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                     })
             }
 
+        }).then(function(){
+            $scope.dataForClient = dataForClient;
         });
 
-    $scope.dataForClient = dataForClient;
-    $scope.dataForHitman = dataForHitman;
 
 
     $('body').on('click', '.userSelectionButton', function (e) {
@@ -79,7 +81,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
         var res = contractData.put(data);
         if(res){
             var newThing = a.parent();
-            $('#pendingContracts').remove(a.parent());
+            $('#pendingContracts').children().remove(newThing);
             newThing.children().remove('.userSelectionButton');
             if(contract[0] === '1'){
                 $('#activeContracts').append(newThing);
