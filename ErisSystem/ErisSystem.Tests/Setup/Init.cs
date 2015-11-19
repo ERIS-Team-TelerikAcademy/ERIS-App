@@ -1,19 +1,23 @@
-﻿namespace ErisSystem.Api
+﻿namespace ErisSystem.Tests.Setup
 {
-    using System.Web;
-    using System.Web.Http;
-    using Models.ResponseModels;
-    using ErisSystem.Models;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Api.Models.ResponseModels;
+    using Models;
+    using Api;
+
+    using MyTested.WebApi;
     using AutoMapper;
 
-    public class WebApiApplication : HttpApplication
+    [TestClass]
+    public class Init
     {
-        protected void Application_Start()
-        {
-            DatabaseConfig.Initialize();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+        private static ResponseModelFactory modelFactory;
 
-            var modelFactory = new ResponseModelFactory();
+        [AssemblyInitialize]
+        public static void Initialize(TestContext cont)
+        {
+            modelFactory = new ResponseModelFactory();
 
             modelFactory.MapBothWays<Country, CountryResponseModel>();
             modelFactory.MapBothWays<UserRating, HitmanRatingResponseModel>();
@@ -26,6 +30,9 @@
                 .ForMember(c => c.ClientId, opts => opts.MapFrom(c => c.ClientId))
                 .ForMember(c => c.Status, opts => opts.MapFrom(c => (int)c.Status))
                 .ForMember(c => c.HitStatus, opts => opts.MapFrom(c => (int)c.HitStatus));
+
+            MyWebApi.IsRegisteredWith(WebApiConfig.Register);
         }
+
     }
 }

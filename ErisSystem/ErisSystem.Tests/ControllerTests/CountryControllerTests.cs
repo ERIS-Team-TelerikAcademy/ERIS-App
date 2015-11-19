@@ -1,9 +1,8 @@
 ﻿namespace ErisSystem.Tests.ControllerTests
 {
-    using System.Collections.Generic;
     using Api.Controllers;
     using Api.Models.ResponseModels;
-    using DummyObjects;
+    using Setup.DummyObjects;
     using Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using MyTested.WebApi;
@@ -11,18 +10,7 @@
 
     [TestClass]
     public class CountryControllerTests
-    {
-        private static ResponseModelFactory modelFactory;
-
-        [AssemblyInitialize]
-        public static void Init(TestContext cont)
-        {
-            modelFactory = new ResponseModelFactory();
-
-            modelFactory.MapBothWays<UserRating, UserRatingResponseModel>();
-            modelFactory.MapBothWays<Country, CountryResponseModel>();
-        }
-
+    {        
         [TestMethod]
         public void GetMethodShouldReturnAListOfCountries()
         {
