@@ -23,6 +23,11 @@ app.config(function ($routeProvider) {
         templateUrl: "hitman-page/hitman-view.html"
     });
 
+    $routeProvider.when("/profile/:name/update", {
+        controller: "hitmanUpdateController",
+        templateUrl: "hitman-page/hitman-update-view.html"
+    });
+
     $routeProvider.when("/contract", {
         controller: "contractController",
         templateUrl: "contract-page/contract-view.html"
@@ -57,8 +62,8 @@ app.config(function ($httpProvider) {
 });
 
 app.constant('appSettings', {
-    serverPath : 'http://localhost:28499/'
-    // serverPath 'http://erissystem.azurewebsites.net/';
+    //serverPath : 'http://localhost:28499/'
+     serverPath: 'http://erissystem.azurewebsites.net/'
 });
 
 app.run(['authData', function (authData) {

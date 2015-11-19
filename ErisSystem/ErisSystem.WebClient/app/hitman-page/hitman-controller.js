@@ -12,6 +12,6 @@ app.controller('hitmanController', ['$scope', '$routeParams', 'authData', 'hitma
         $scope.rating = 2;
         $scope.rateFunction = function (rating) {
 
-        }
+        };
 
     }]);
