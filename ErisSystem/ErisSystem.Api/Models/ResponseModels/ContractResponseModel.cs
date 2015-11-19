@@ -15,7 +15,9 @@
 
         public int Status { get; set; }
 
-        public int HitStatus { get; set; }
+        public string TargetName { get; set; }
+
+        public string Location { get; set; }
 
         public DateTime Deadline { get; set; }
     }

@@ -10,7 +10,6 @@
         public Contract()
         {
             this.Status = ConnectionStatus.Pending;
-            this.HitStatus = HitStatus.Pending;
         }
 
         [Key]
@@ -28,7 +27,11 @@
 
         public ConnectionStatus Status { get; set; }
 
-        public HitStatus HitStatus { get; set; }
+        [MaxLength(50)]
+        public string TargetName { get; set; }
+
+        [MaxLength(250)]
+        public string Location { get; set; }
 
         [Required]
         [Column(TypeName = "datetime2")]
