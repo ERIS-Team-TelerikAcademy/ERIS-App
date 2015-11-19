@@ -8,9 +8,6 @@
             <li ng-if="contract.Status == 1">
                 <p>For user: {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
-                <button class="approvalButton userSelectionButton">
-                </button>
-                <button class="rejectButton userSelectionButton"></button>
             </li>
         </ul>
     </div>
@@ -23,7 +20,7 @@
             <li ng-if="contract.Status == 2">
                 <p>For user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
-                <button class="approvalButton userSelectionButton">
+                <button class="approvalButton userSelectionButton" data="{{contract.ContractId}}">
                 </button>
                 <button class="rejectButton userSelectionButton"></button>
             </li>
@@ -39,9 +36,6 @@
             <li ng-if="contract.Status == 1">
                 <p>From user: {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
-                <button class="approvalButton userSelectionButton">
-                </button>
-                <button class="rejectButton userSelectionButton"></button>
             </li>
         </ul>
     </div>
@@ -56,9 +50,6 @@
             <li ng-if="contract.Status == 2">
                 <p>From user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
-                <button class="approvalButton userSelectionButton">
-                </button>
-                <button class="rejectButton userSelectionButton"></button>
             </li>
         </ul>
     </div>

@@ -26,7 +26,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                             dataForHitman[i] = {
                                 UserName: userNames[i],
                                 DeadLine: currentContract.Deadline,
-                                Status: currentContract.Status
+                                Status: currentContract.Status,
+                                ContractId: currentContract.Id
                             }
                         }
                     })
@@ -66,7 +67,8 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
 
 
     $('body').on('click', '.userSelectionButton', function () {
-        alert('asd'); // And make post requests someday
+        alert('asd');
+        //Put - get contract id from button data attribute
     })
 
 }]);
