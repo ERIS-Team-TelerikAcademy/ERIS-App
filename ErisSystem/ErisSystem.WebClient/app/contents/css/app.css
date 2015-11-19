@@ -82,6 +82,21 @@ a{
     font-size:16px;
 }
 
+/*hitman view*/
+.username{
+  margin-bottom: 20px;
+}
+
+.avatarContainer{
+  display: inline-block;
+  float: left;
+}
+
+.infoContainer{
+  display: inline-block;
+  float: right;
+}
+
  /*start of rating section*/
 .star-rating {
   margin: 0;
