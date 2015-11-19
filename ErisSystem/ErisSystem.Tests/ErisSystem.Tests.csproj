@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="ControllerTests\CountryControllerTests.cs" />
     <Compile Include="ControllerTests\UserRatingControllerTests.cs" />
+    <Compile Include="RouteTests\ImagesControllerTests.cs" />
     <Compile Include="Setup\DummyObjects\DummyRepositories.cs" />
     <Compile Include="Setup\DummyObjects\DummyServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
