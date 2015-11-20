@@ -62,8 +62,8 @@ app.config(function ($httpProvider) {
 });
 
 app.constant('appSettings', {
-    //serverPath : 'http://localhost:28499/'
-     serverPath: 'http://erissystem.azurewebsites.net/'
+    serverPath : 'http://localhost:28499/'
+    // serverPath: 'http://erissystem.azurewebsites.net/'
 });
 
 app.run(['authData', function (authData) {

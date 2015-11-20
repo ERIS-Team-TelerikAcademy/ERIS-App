@@ -18,20 +18,34 @@ app.controller('imageController', ['$scope', 'imageData', 'authData',
 
             imageData.upload(uploadFile)
                 .then(function (res) {
-                    console.log(res);
+                    getImage();;
                 });
         };
 
+        function getImage() {
             imageData.getById(userId).
                 then(function (response) {
                     console.log(response);
                     $scope.data = response;
                 });
+        }
 
         $scope.getImages = function () {
             imageData.getAll().
                 then(function (response) {
                     $scope.data = response.data
                 });
+        };
+
+        function deleteImage(index) {
+            var imageId = $scope.data[index].Id;
+            console.log(imageId);
+            imageData.delete(imageId);
+            getImage();
         }
+
+        $scope.deleteImage = deleteImage;
+
+        getImage();
+
     }]);

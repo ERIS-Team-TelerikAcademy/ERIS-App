@@ -12,7 +12,8 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12 text-center">
-                    <img id="upload-img" ng-show="file.filetype" data-ng-src="data:{{file.filetype}};base64,{{file.base64}}"
+                    <img id="upload-img" ng-show="file.filetype"
+                         data-ng-src="data:{{file.filetype}};base64,{{file.base64}}"
                          data-err-src="images/png/avatar.png"/>
                 </div>
 
@@ -39,8 +40,35 @@
             <h1 class="page-header">Gallery</h1>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6 thumb" ng-repeat="image in data">
-            <img class="img-responsive" data-ng-src="data:image/{{image.Extension}};base64,{{image.Data}}"
+            <button type="button" data-toggle="modal" data-target="{{'#Modal' + image.Id}}">
+             <img class="img-responsive" data-ng-src="data:image/{{image.Extension}};base64,{{image.Data}}"
                  data-err-src="images/png/avatar.png"/>
+            </button>
+            <div class="modal fade" id="{{'Modal' + image.Id}}" tabindex="-1" role="dialog" aria-labelledby="{{ 'Modal' + image.Id + 'Label'}}">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="{{ 'Modal' + image.Id + 'Label'}}">Add Image</h4>
+                        </div>
+                        <div class="modal-body text-center">
+
+                            <img data-ng-src="data:image/{{image.Extension}};base64,{{image.Data}}"
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary"
+                                    data-dismiss="modal" >Cancel
+                            </button>
+                            <button class="btn btn-primary"
+                                    data-dismiss="modal" data-ng-click="deleteImage($index)">Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+</div>
 </div>
