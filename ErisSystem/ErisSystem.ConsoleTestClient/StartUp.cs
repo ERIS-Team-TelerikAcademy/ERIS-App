@@ -1,18 +1,15 @@
 ﻿namespace ErisSystem.ConsoleTestClient
 {
-    using System.Data.Entity;
-    using Data.Migrations;
-    using System.Linq;
-    using Models;
     using System;
-
-    using ErisSystem.Data;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using Data.Repositories;
+    using ErisSystem.Data;
+    using Models;
 
-    class StartUp
+    public class StartUp
     {
-        static void Main()
+        public static void Main()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ErisSystemContext, Data.Migrations.EfConfiguration>());
 
@@ -30,11 +27,9 @@
             hitman.PasswordHash = "ASFADSFDEFE@#@$@$@ASDFAS";
             hitman.DateOfBirth = date;
             hitman.CountriesOfOperation.Add(country);
-           
 
             db.Users.AddOrUpdate(hitman);
             db.SaveChanges();
-
 
             var repositoryTest = new EfGenericRepository<User>(db);
 
@@ -47,7 +42,6 @@
                 Console.WriteLine(x.AboutMe);
                 Console.WriteLine(x.DateOfBirth);
             }
-
         }
     }
 }

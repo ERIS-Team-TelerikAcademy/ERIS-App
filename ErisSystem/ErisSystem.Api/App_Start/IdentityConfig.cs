@@ -1,13 +1,11 @@
 ﻿namespace ErisSystem.Api
 {
-    using System.Threading.Tasks;
-
+    using Data;
+    using ErisSystem.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
-    using ErisSystem.Models;
-    using Data;
 
     public class ApplicationUserManager : UserManager<User>
     {

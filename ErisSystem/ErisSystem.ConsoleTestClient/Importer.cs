@@ -3,8 +3,8 @@
     using System.Collections.ObjectModel;
     using System.IO;
 
-    using Models;
     using Data;
+    using Models;
 
     internal static class Importer
     {
@@ -21,10 +21,10 @@
                 currentCountry.Name = country;
                 db.Countries.Add(currentCountry);
             }
+
             db.SaveChanges();
             db.Dispose();
         }
-
 
         private static Collection<string> GetCountries(string pathToFile)
         {

@@ -1,9 +1,10 @@
 ﻿namespace ErisSystem.Services
 {
     using System.Linq;
-    using Models;
+
     using Contracts;
     using Data;
+    using Models;
 
     public class UsersRatingService : IUsersRatingsService
     {

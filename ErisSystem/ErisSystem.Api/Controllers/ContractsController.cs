@@ -1,11 +1,12 @@
 ﻿namespace ErisSystem.Api.Controllers
 {
     using System.Web.Http;
-    using Services.Contracts;
+
     using AutoMapper;
-    using Models.ResponseModels;
     using AutoMapper.QueryableExtensions;
     using ErisSystem.Models.Enumerators;
+    using Models.ResponseModels;
+    using Services.Contracts;
 
     [RoutePrefix("api/Contracts")]
     public class ContractsController : ApiController

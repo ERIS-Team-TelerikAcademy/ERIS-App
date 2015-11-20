@@ -1,12 +1,12 @@
 ﻿namespace ErisSystem.Services
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
 
-    using Models;
     using Contracts;
     using Data;
+    using Models;
 
     public class UsersService : IUsersService
     {
@@ -17,7 +17,7 @@
             this.users = user;
         }
 
-        public int Add(string nickName, string aboutMe, bool gender, string password, bool isWorking = false, ICollection < Image> images = null, ICollection<Country> countriesOfOperation = null)
+        public int Add(string nickName, string aboutMe, bool gender, string password, bool isWorking = false, ICollection<Image> images = null, ICollection<Country> countriesOfOperation = null)
         {
             var isValidUserName = Validator.ValidateStringLenght(3, 20, nickName);
             var isValidAboutMe = Validator.ValidateStringLenght(0, 250, aboutMe);
@@ -80,7 +80,7 @@
         {
             var user = this.GetByUserName(userName);
 
-            if(user == null)
+            if (user == null)
             {
                 throw new ArgumentNullException("No such user exists");
             }

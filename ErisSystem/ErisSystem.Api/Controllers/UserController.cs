@@ -1,14 +1,15 @@
 ﻿namespace ErisSystem.Api.Controllers
 {
     using System.Web.Http;
-    using Data.Repositories;
-    using Data;
-    using ErisSystem.Models;
-    using Services;
-    using Services.Contracts;
+
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using Data;
+    using Data.Repositories;
+    using ErisSystem.Models;
     using Models.ResponseModels;
+    using Services;
+    using Services.Contracts;
 
     [RoutePrefix("api/Hitmen")]
     public class UserController : ApiController

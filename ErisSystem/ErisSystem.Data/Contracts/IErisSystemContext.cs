@@ -23,6 +23,5 @@
         void Dispose();
 
         int SaveChanges();
-
     }
 }

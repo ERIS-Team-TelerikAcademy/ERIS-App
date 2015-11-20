@@ -10,7 +10,6 @@
 
         IQueryable<UserRating> GetAllForHitman(string id);
 
-                                
         int Add(int rating, string hitmanId, string clientId);
     }
 }

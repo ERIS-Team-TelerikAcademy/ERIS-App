@@ -2,18 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.IO;
 
-    using Contracts;
     using Common.Helpers.Dropbox;
-    using Models;
+    using Contracts;
     using Data;
-
     using Dropbox.Api;
     using Dropbox.Api.Files;
-
+    using Models;
 
     public class ImagesService : IImagesService
     {
@@ -48,7 +46,7 @@
                 UserId = userId
             };
 
-            await UploadImageForUser(name, extension, currentUser.UserName, imageData);
+            await this.UploadImageForUser(name, extension, currentUser.UserName, imageData);
 
             this.images.Add(image);
             currentUser.Images.Add(image);
@@ -75,7 +73,24 @@
                 throw new ArgumentException("Invalid user!");
             }
 
-            return await DownloadImagesForUser(currentUser.UserName);
+            return await this.DownloadImagesForUser(currentUser.UserName);
+        }
+
+        public async Task Delete(int id)
+        {
+            var image = this.images
+                .All()
+                .FirstOrDefault(i => i.Id == id);
+
+            if (image == null)
+            {
+                throw new ArgumentOutOfRangeException("Invalid image id.");
+            }
+
+            await this.dropboxClient.Files.DeleteAsync(string.Format("{0}/{1}/{2}.{3}", DropboxImagesFolderName, image.User.UserName, image.Name, image.Extension));
+
+            this.images.Delete(image);
+            this.images.SaveChanges();
         }
 
         private async Task UploadImageForUser(string name, string extension, string username, byte[] image)
@@ -116,23 +131,6 @@
             }
 
             return result;
-        }
-
-        public async Task Delete(int id)
-        {
-            var image = this.images
-                .All()
-                .FirstOrDefault(i => i.Id == id);
-
-            if (image == null)
-            {
-                throw new ArgumentOutOfRangeException("Invalid image id.");
-            }
-
-            await this.dropboxClient.Files.DeleteAsync(string.Format("{0}/{1}/{2}.{3}", DropboxImagesFolderName, image.User.UserName, image.Name, image.Extension));
-
-            this.images.Delete(image);
-            this.images.SaveChanges();
         }
     }
 }

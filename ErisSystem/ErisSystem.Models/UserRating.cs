@@ -8,7 +8,7 @@
         public int Id { get; set; }
 
         [Required]
-        [Range(0,5)]
+        [Range(0, 5)]
         public int Rating { get; set; }
 
         [Required]

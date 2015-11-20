@@ -1,18 +1,17 @@
 ﻿namespace ErisSystem.Data
 {
-    using System;
     using System.Data.Entity;
-
-    using ErisSystem.Models;
     using System.Data.Entity.ModelConfiguration.Conventions;
+
     using Microsoft.AspNet.Identity.EntityFramework;
+
+    using Models;
 
     public class ErisSystemContext : IdentityDbContext<User>, IErisSystemContext
     {
         public ErisSystemContext()
-            :base("ErisSystemContext")
+            : base("ErisSystemContext")
         {
-
         }
 
         public IDbSet<Country> Countries { get; set; }

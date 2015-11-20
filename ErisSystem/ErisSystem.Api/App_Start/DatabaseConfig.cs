@@ -1,13 +1,10 @@
-﻿using ErisSystem.Data;
-using ErisSystem.Data.Migrations;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-
-namespace ErisSystem.Api
+﻿namespace ErisSystem.Api
 {
+    using System.Data.Entity;
+
+    using Data;
+    using Data.Migrations;
+
     public static class DatabaseConfig
     {
         public static void Initialize()

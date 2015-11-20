@@ -1,9 +1,10 @@
 ﻿namespace ErisSystem.Models
 {
-    using Enumerators;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    using Enumerators;
 
     public class Contract
     {
@@ -23,7 +24,7 @@
         [Required]
         public string ClientId { get; set; }
 
-        public virtual User Client{ get; set; }
+        public virtual User Client { get; set; }
 
         public ConnectionStatus Status { get; set; }
 

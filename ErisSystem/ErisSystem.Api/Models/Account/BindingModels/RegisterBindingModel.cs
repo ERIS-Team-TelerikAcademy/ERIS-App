@@ -13,8 +13,9 @@
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
+        /// F*** you microsoft! why have it here and in the config! 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)] //F*** you microsoft! why have it here and in the config! 
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)] 
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

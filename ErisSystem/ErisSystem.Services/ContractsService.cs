@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
 
+    using Data;
     using ErisSystem.Models;
     using ErisSystem.Models.Enumerators;
     using ErisSystem.Services.Contracts;
-    using Data;
 
     public class ContractsService : IContractsService
     {
@@ -74,7 +74,6 @@
             {
                 return -1;
             }
-
 
             contract.Status = connectionStatus;
             this.contracts.Update(contract);

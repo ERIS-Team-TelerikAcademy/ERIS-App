@@ -1,18 +1,16 @@
 ﻿namespace ErisSystem.Api.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
 
+    using AutoMapper.QueryableExtensions;
+    using Common.Constants;
     using Models.RequestModels;
     using Models.ResponseModels;
     using Services.Contracts;
-
-    using AutoMapper.QueryableExtensions;
-    using Common.Constants;
-
+    
     [RoutePrefix("api/Images")]
     public class ImagesController : ApiController
     {

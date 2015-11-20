@@ -2,9 +2,10 @@
 {
     using System.Web;
     using System.Web.Http;
-    using Models.ResponseModels;
-    using ErisSystem.Models;
+
     using AutoMapper;
+    using ErisSystem.Models;
+    using Models.ResponseModels;
 
     public class WebApiApplication : HttpApplication
     {

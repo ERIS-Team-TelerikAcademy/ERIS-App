@@ -1,10 +1,10 @@
 ﻿namespace ErisSystem.Services.Contracts
 {
+    using System;
     using System.Linq;
 
     using ErisSystem.Models;
     using Models.Enumerators;
-    using System;
 
     public interface IContractsService
     {

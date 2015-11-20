@@ -6,21 +6,21 @@ namespace ErisSystem.Api.Helpers.Account
 
     public static class RandomOAuthStateGenerator
     {
-        private static RandomNumberGenerator _random = new RNGCryptoServiceProvider();
+        private static RandomNumberGenerator random = new RNGCryptoServiceProvider();
 
         public static string Generate(int strengthInBits)
         {
-            const int bitsPerByte = 8;
+            const int BitsPerByte = 8;
 
-            if (strengthInBits % bitsPerByte != 0)
+            if (strengthInBits % BitsPerByte != 0)
             {
                 throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
             }
 
-            int strengthInBytes = strengthInBits / bitsPerByte;
+            int strengthInBytes = strengthInBits / BitsPerByte;
 
             byte[] data = new byte[strengthInBytes];
-            _random.GetBytes(data);
+            random.GetBytes(data);
             return HttpServerUtility.UrlTokenEncode(data);
         }
     }

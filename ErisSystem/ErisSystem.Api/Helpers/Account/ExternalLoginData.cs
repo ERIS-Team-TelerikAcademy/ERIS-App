@@ -17,11 +17,11 @@ namespace ErisSystem.Api.Helpers.Account
         public IList<Claim> GetClaims()
         {
             IList<Claim> claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, this.ProviderKey, null, this.LoginProvider));
 
-            if (UserName != null)
+            if (this.UserName != null)
             {
-                claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
+                claims.Add(new Claim(ClaimTypes.Name, this.UserName, null, this.LoginProvider));
             }
 
             return claims;
@@ -36,8 +36,8 @@ namespace ErisSystem.Api.Helpers.Account
 
             Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
 
-            if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
-                || String.IsNullOrEmpty(providerKeyClaim.Value))
+            if (providerKeyClaim == null || string.IsNullOrEmpty(providerKeyClaim.Issuer)
+                || string.IsNullOrEmpty(providerKeyClaim.Value))
             {
                 return null;
             }

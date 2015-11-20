@@ -1,8 +1,6 @@
 ﻿namespace ErisSystem.Api.Models.ResponseModels
 {
-    using ErisSystem.Models;
     using System;
-    using System.Linq;
 
     public class UserResponseModel
     {

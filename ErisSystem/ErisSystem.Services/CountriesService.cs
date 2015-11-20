@@ -2,9 +2,9 @@
 {
     using System.Linq;
 
-    using Models;
     using Contracts;
     using Data;
+    using Models;
 
     public class CountriesService : ICountriesService
     {
