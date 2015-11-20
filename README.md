@@ -1,7 +1,11 @@
 # ERIS-App
+
 Teamwork project for the course "Web services & cloud" 2015 @ TelerikAcademy.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/2h0xx6xm6tr2xrbb/branch/master?svg=true)](https://ci.appveyor.com/project/arnaudoff/eris-app/branch/master)
+
 **Repository link**: https://github.com/ERIS-Team-TelerikAcademy/ERIS-App 
+
 ## Description 
 The idea behind our application is to serve as a social network for "special" services. The network has two types of user: a hitman or a client.
 
