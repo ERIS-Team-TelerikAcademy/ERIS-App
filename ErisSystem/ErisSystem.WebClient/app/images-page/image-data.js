@@ -16,9 +16,14 @@ app.factory('imageData', ['$http', '$q', 'data',
             return data.post(baseUrl, image)
         }
 
+        function delImage(id) {
+            return data.delete(baseUrl + id)
+        }
+
         imageData.getAll = getAll;
         imageData.getById = getById;
         imageData.upload = upload;
+        imageData.delete = delImage;
 
         return imageData;
     }]);

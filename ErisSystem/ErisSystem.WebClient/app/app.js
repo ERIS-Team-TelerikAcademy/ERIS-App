@@ -67,6 +67,7 @@ app.config(function ($httpProvider) {
 });
 
 app.constant('appSettings', {
+
    //serverPath: 'http://localhost:28499/'
    serverPath: 'http://erissystem.azurewebsites.net/'
 });
