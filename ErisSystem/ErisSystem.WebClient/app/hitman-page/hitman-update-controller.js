@@ -14,14 +14,14 @@ app.controller('hitmanUpdateController', ['$scope', '$routeParams', 'authData', 
 
         };
 
-        $('body').on('click', $('#save'), function(e){
+        $('body').on('click', '#save', function(e){
             var data = {
                 "UserName": $scope.userName,
                 "AboutMe": $("#aboutMeText").val(),
                 "Gender" : getGender(),
                 "DateOfBirth" : $('#bday').val(),
                 "IsWorking": getIsWorking()
-            }
+            };
 
             hitmanUpdateData.updateInfo(data);
         });

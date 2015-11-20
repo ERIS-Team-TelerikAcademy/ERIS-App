@@ -168,3 +168,12 @@ a{
 }
 
 /*hitmen list view */
+
+.sendContractBtn{
+    margin: 5px;
+}
+
+.dialogBox{
+    width:100px;
+    height: 300px;
+}

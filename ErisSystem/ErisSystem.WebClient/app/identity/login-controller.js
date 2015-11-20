@@ -14,7 +14,9 @@ app.controller('loginController', ['$scope', '$location', 'authData',
                     $location.path('/home-page');
                 },
                 function (err) {
-                    $scope.message = err.error_description;
+                    console.log(err);
+                    console.log(err.message);
+                    $scope.message = err.message;
                 });
         };
 
