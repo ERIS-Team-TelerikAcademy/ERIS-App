@@ -4,8 +4,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
     var activeContractsContainer = $('#activeContracts');
     var pendingContractsContainer = $('#pendingContracts');
     var dataForHitman = [];
-    var dataForClient = [];
-    var userNames = [];
+    var clientsNames = [];
     var userId = authData.authentication.userId;
     contractData
         .getAllForHitman(userId)
@@ -16,7 +15,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                 var currentContract = data[i];
                 contractData.getUserNickname(currentContract.ClientId)
                     .then(function (userData) {
-                        userNames[j] = userData.UserName;
+                        clientsNames[j] = userData.UserName;
                         j++;
                         return data;
 
@@ -24,7 +23,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                         for (var i = 0; i < data.length; i += 1) {
                             var currentContract = data[i];
                             dataForHitman[i] = {
-                                UserName: userNames[i],
+                                UserName: clientsNames[i],
                                 DeadLine: currentContract.Deadline,
                                 TargetName: currentContract.TargetName,
                                 Location: currentContract.Location,
@@ -35,12 +34,13 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                         }
                     })
             }
-
-        }).then(function(){
-            console.log('123123123');
+            console.log('hitman data came');
+        }).then(function () {
+            console.log('hitman data got set ');
             $scope.dataForHitman = dataForHitman;
         });
-
+    var dataForClient = [];
+    var hitmenNames = [];
     contractData
         .getAllForClient(userId)
         .then(function (data) {
@@ -48,9 +48,9 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
             var j = 0;
             for (i = 0; i < data.length; i += 1) {
                 var currentContract = data[i];
-                contractData.getUserNickname(currentContract.ClientId)
+                contractData.getUserNickname(currentContract.HitmanId)
                     .then(function (userData) {
-                        userNames[j] = userData.UserName;
+                        hitmenNames[j] = userData.UserName;
                         j++;
                         return data;
 
@@ -58,7 +58,7 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                         for (var i = 0; i < data.length; i += 1) {
                             var currentContract = data[i];
                             dataForClient[i] = {
-                                UserName: userNames[i],
+                                UserName: hitmenNames[i],
                                 TargetName: currentContract.TargetName,
                                 Location: currentContract.Location,
                                 DeadLine: currentContract.Deadline,
@@ -67,17 +67,17 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                         }
                     })
             }
+            console.log("client data came");
 
-        }).then(function(){
-            console.log('123123123');
+        }).then(function () {
+            console.log('client data got set');
             $scope.dataForClient = dataForClient;
         });
 
 
-
     $('body').on('click', '.userSelectionButton', function (e) {
         var a = $(e.target);
-        var contract  = a.attr('data').split(' ');
+        var contract = a.attr('data').split(' ');
         var data = {
             "id": contract[0],
             "HitmanId": userId,
@@ -85,12 +85,12 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
             "Status": contract[1]
         };
         var res = contractData.put(data);
-        if(res){
+        if (res) {
             var newThing = a.parent();
-            $('#pendingContracts').children().remove(newThing);
+            $(".pendingContracts").remove(a.parent());
             newThing.children().remove('.userSelectionButton');
-            if(contract[0] === '1'){
-                $('#activeContracts').append(newThing);
+            if (contract[0] === '1') {
+                $('.activeContracts').append(newThing);
             }
         }
     })

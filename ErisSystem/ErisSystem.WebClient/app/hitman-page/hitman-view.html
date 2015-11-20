@@ -1,43 +1,52 @@
 <div class="row">
-	<div class="col-md-4 avatarContainer">
-	    <div class="thumbnail">
-	    <img src="../avatar.png" alt="Avatar Me"/>
-	      <!--<img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>-->
-	      <div class="caption">
-	        <h3>Rating</h3>
-	        <p><div star-rating ng-model="rating" max="5" n-rating-select="rateFunction(rating)"></div></p>
-	      </div>
-	    </div>
+    <div class="col-md-4 avatarContainer">
+        <div class="thumbnail">
+            <img src="../avatar.png" alt="Avatar Me"/>
+            <!--<img data-ng-src="data:{{image.extension}};base64,{{image.data}}" data-err-src="images/png/avatar.png"/>-->
+            <div class="caption">
+                <h3>Rating</h3>
+
+                <p>
+
+                <div star-rating ng-model="rating" max="5" n-rating-select="rateFunction(rating)"></div>
+                </p>
+            </div>
+        </div>
     </div>
-	<div class="col-md-8 infoContainer">
-		<div class="username col-md-8 text-uppercase">
-			<h2><a ng-href="#/hitman/{{hitman.UserName}}">{{hitman.UserName}}</a></h2>
-		</div>
-		<br/>
-		<div class="col-md-8">
-			<div class="panel panel-danger">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">About me</h3>
-			  </div>
-			  <div class="panel-body">
-			    <div>{{hitman.AboutMe}}
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.			
-			    </div>
-			  </div>
-			</div>	
-		</div>
-		<div class="col-md-8">
-			<div class="panel panel-danger">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">Personal Information</h3>
-			  </div>
-			  <div class="panel-body">
-			    <div>Date of Birth: {{hitman.DateOfBirth}}</div>
-			    <div>Gender: {{hitman.Gender}}</div>
-			  </div>	
-		    </div>
-	    </div>
-	    <div class="col-md-8" ng-show="authentication.userName == userName"><a class="btn btn-danger btn-block" href="#/profile/{{authentication.userName}}/update" role="button">Update Profile Info</a></div>
-	</div>
-	<!--<div>{{hitman.Id}}</div>-->
+    <div class="col-md-8 infoContainer">
+        <div class="username col-md-8 text">
+            <h2><a ng-href="#/hitman/{{hitman.UserName}}" id="userName">{{hitman.UserName}}</a></h2>
+        </div>
+        <br/>
+
+        <div class="col-md-8">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">About me</h3>
+                </div>
+                <div class="panel-body">
+                    <div>{{hitman.AboutMe}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personal Information</h3>
+                </div>
+                <div class="panel-body">
+                    <div>Date of Birth: {{hitman.DateOfBirth}}</div>
+                    <div>Gender: {{hitman.Gender}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" ng-show="authentication.userName == userName"><a class="btn btn-danger btn-block"
+                                                                               href="#/profile/{{authentication.userName}}/update"
+                                                                               role="button">Update Profile Info</a>
+        </div>
+        <div class="col-md-8" ng-show="authentication.userName != userName"><a class="btn btn-warning btn-block"
+                                                                               href="#/contract/new"
+                                                                               role="button">Send contract offer</a>
+        </div>
+    </div>
 </div>

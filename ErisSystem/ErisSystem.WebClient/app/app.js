@@ -33,6 +33,11 @@ app.config(function ($routeProvider) {
         templateUrl: "contract-page/contract-view.html"
     });
 
+    $routeProvider.when("/contract/new", {
+        controller: "newContractController",
+        templateUrl: "contract-page/new-contract-view.html"
+    });
+
     $routeProvider.when("/image", {
         controller: "imageController",
         templateUrl: "images-page/image-view.html"
@@ -62,9 +67,11 @@ app.config(function ($httpProvider) {
 });
 
 app.constant('appSettings', {
-    serverPath : 'http://localhost:28499/'
-    // serverPath: 'http://erissystem.azurewebsites.net/'
+
+   //serverPath: 'http://localhost:28499/'
+   serverPath: 'http://erissystem.azurewebsites.net/'
 });
+
 
 app.run(['authData', function (authData) {
     authData.fillAuthData();

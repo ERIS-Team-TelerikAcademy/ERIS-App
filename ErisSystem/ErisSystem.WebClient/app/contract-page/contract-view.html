@@ -6,7 +6,7 @@
         <h2>Active contracts</h2>
         <ul class="contracts" id="activeContracts">
             <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 1" class="contractItem">
-                <p>For user : {{contract.UserName}}</p>
+                <p>From user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
                 <p>Target : {{contract.TargetName}}</p>
                 <p>Location: {{contract.Location}}</p>
@@ -20,7 +20,7 @@
         <h2>Pending contracts</h2>
         <ul class="contracts pendingContracts">
             <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 2" class="contractItem">
-                <p>For user : {{contract.UserName}}</p>
+                <p>From user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
                 <p>Target : {{contract.TargetName}}</p>
                 <p>Location: {{contract.Location}}</p>
@@ -36,7 +36,7 @@
     <div class="col-md-5">
         <h2>Active contracts</h2>
         <ul class="contracts">
-            <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 1" class="contractItem">
+            <li ng-repeat="contract in dataForClient" ng-if="contract.Status == 1" class="contractItem">
                 <p>For user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
                 <p>Target : {{contract.TargetName}}</p>
@@ -52,7 +52,7 @@
     <div class="col-md-5">
         <h2>Pending contracts</h2>
         <ul class="contracts">
-            <li ng-repeat="contract in dataForHitman" ng-if="contract.Status == 2" class="contractItem">
+            <li ng-repeat="contract in dataForClient" ng-if="contract.Status == 2" class="contractItem">
                 <p>For user : {{contract.UserName}}</p>
                 <p>Deadline : {{contract.DeadLine}}</p>
                 <p>Target : {{contract.TargetName}}</p>

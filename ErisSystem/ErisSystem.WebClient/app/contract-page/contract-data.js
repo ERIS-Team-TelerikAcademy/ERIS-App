@@ -13,7 +13,7 @@ app.factory('contractData', ['$http', '$q', 'data',
         }
 
         function createContract(postData) {
-            return data.post(baseUrl + 'new-contract-page', postData);
+            return data.post(baseUrl + 'new-contract', postData);
         }
 
         function updateAprovalStatus(postData){
