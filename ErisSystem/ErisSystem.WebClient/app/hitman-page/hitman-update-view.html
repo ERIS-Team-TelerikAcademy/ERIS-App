@@ -1,5 +1,5 @@
 <h3>Update your profile information</h3>
-<h2><a ng-href="#/hitman/{{hitman.UserName}}">{{hitman.UserName}}</a></h2>
+<h2><a ng-href="#/hitman/{{hitman.UserName}}">{{hitman.userName}}</a></h2>
 <form>
 
     <div class="row">
@@ -24,24 +24,24 @@
     <div class="row">
         <div class="form-group col-md-12">   
             <label for="aboutMeText">About me:</label>
-            <input type="text" class="form-control" id="aboutMeText" placeholder="AboutMe">
+            <input type="text" class="form-control" id="aboutMeText" placeholder="AboutMe" value="">
           </div>
     </div>
 
       <div class="form-group">
         <label for="exampleInputPassword1">Gender:</label><br/>
-         <input type="radio" name="gender" value="male">Male
+         <input type="radio" id="genderMale" name="gender" value="male">Male
             <br>
             <input type="radio" name="gender" value="female">Female
       </div>
       <div class="form-group">
         <label for="bday">Date of Birth:</label>
-         <input type="date" class="form-control" name="bday" id="bday">
+         <input type="date" class="form-control" name="bday" id="bday" value="{{hitman.DateOfBirth}}">
       </div>
       
         <div class="checkbox">
             <label>
-                <input type="checkbox"> Are you working?
+                <input type="checkbox" id="isWorking"> Are you working?
             </label>
         </div>
     </div>
