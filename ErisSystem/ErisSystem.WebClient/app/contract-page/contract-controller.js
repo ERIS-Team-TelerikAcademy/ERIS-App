@@ -1,5 +1,6 @@
 'use strict';
-app.controller('contractController', ['$scope', 'contractData', 'authData', function ($scope, contractData, authData) {
+app.controller('contractController', ['$scope', 'contractData', 'authData', 'ratingData',
+    function ($scope, contractData, authData, ratingData) {
 
     var activeContractsContainer = $('#activeContracts');
     var pendingContractsContainer = $('#pendingContracts');
@@ -93,6 +94,17 @@ app.controller('contractController', ['$scope', 'contractData', 'authData', func
                 $('#activeContracts').append(newThing);
             }
         }
+    });
+
+    $('body').on('click', '.ratingButton', function (e) {
+        var a = $(e.target);
+        var clientId  = a.attr('data');
+        var data = {
+            "HitmanId": userId,
+            "ClientId": clientId,
+            "Rating": 2
+        };
+        var res = ratingData.post(data);
     })
 
 }]);
