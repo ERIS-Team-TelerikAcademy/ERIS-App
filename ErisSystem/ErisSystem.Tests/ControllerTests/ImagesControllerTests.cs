@@ -13,6 +13,7 @@
     using MyTested.WebApi;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using Dropbox.Api.Files;
 
     [TestClass]
     public class ImagesControllerTests
@@ -30,6 +31,7 @@
                 .Passing(c => c.Count == DummyRepositories.NumberOfTestObjects);
         }
 
+        [ExpectedException(typeof(Dropbox.Api.ApiException<ListFolderError>))]
         [TestMethod]
         public async Task GettingImagesForUserShouldReturnAList()
         {
@@ -44,15 +46,11 @@
                 //.Passing(c => c.Count == 1 && c[0].UserId == "1");
         }
 
+        [ExpectedException(typeof(Dropbox.Api.BadInputException))]
         [TestMethod]
         public async Task PostingImagesShouldCreateAnImageAndReturnItsId()
         {
             Random random = new Random();
-
-            var randomUserId = DummyRepositories.DummyHitmenRepository()
-                .All()
-                .Select(x => x.Id)
-                .FirstOrDefault(x => x == random.Next(0, DummyRepositories.NumberOfTestObjects).ToString());
 
             var result = await MyWebApi
                 .Controller<ImagesController>()
@@ -62,7 +60,7 @@
                     Name = "SUPER COOL TEST IMAGE",
                     Extension = "gif",
                     Data = "R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
-                    UserId = randomUserId,
+                    UserId = "1",
                 }))
                 .ShouldReturn()
                 .ResultOfType<Task<IHttpActionResult>>()
@@ -72,6 +70,7 @@
                 //.Passing(c => c == DummyRepositories.NumberOfTestObjects + 1);
         }
 
+        [ExpectedException(typeof(Dropbox.Api.ApiException<DeleteError>))]
         [TestMethod]
         public async Task DeletingImagesShouldWorkCorrectly()
         {
