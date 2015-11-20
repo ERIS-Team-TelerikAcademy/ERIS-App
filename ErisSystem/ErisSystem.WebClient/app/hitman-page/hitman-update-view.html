@@ -46,4 +46,8 @@
         </div>
     </div>
 <button type="submit" class="btn btn-default" id="save">Save</button></form>
+<div data-ng-hide="message == ''"
+     data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+    {{message}}
+</div>
   

@@ -3,3 +3,6 @@ Target name: <input type="text" id="name"/>
 Location: <input type="text" id="location"/>
 Deadline: <input type="date" class="form-control" id="deadline">
 <button class="btn btn-danger" id="send">Send</button>
+<div data-ng-hide="message == ''" class="alert alert-danger">
+    {{message.data}}
+</div>

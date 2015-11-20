@@ -1,6 +1,6 @@
 'use strict';
-app.controller('hitmanUpdateController', ['$scope', '$routeParams', 'authData', 'hitmanUpdateData',
-    function ($scope,  $routeParams, authData, hitmanUpdateData) {
+app.controller('hitmanUpdateController', ['$scope', '$location', '$routeParams', 'authData', 'hitmanUpdateData',
+    function ($scope, $location,  $routeParams, authData, hitmanUpdateData) {
         $scope.userName = $routeParams.name;
 
         hitmanUpdateData.getByUserName($scope.userName)
@@ -23,7 +23,14 @@ app.controller('hitmanUpdateController', ['$scope', '$routeParams', 'authData', 
                 "IsWorking": getIsWorking()
             };
 
-            hitmanUpdateData.updateInfo(data);
+            hitmanUpdateData.updateInfo(data).then(function(){
+                $scope.savedSuccessfully = true;
+                $scope.message = 'Profile data updated successfully :)'
+            },
+            function(err){
+                $scope.savedSuccessfully = false;
+                $scope.message = 'an error occured';
+            });
         });
     }]);
 

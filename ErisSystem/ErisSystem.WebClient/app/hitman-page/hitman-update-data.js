@@ -1,6 +1,6 @@
 'use strict';
-app.factory('hitmanUpdateData', ['$http', '$q', 'data',
-    function ($http, $q, data) {
+app.factory('hitmanUpdateData', ['$http', '$location', '$q', 'data',
+    function ($http, $location, $q, data) {
         var baseUrl = 'api/Hitmen/';
         var hitmanUpdateData = {};
 
